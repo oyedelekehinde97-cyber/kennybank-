@@ -1,0 +1,24 @@
+# Browser saved pages
+Bing Videos.html
+Bing Videos_files/
+
+# Images not part of the project
+b18305c42c18b5607f34092f4fcd465e.jpg
+family.png
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# Old/unused HTML files
+airtime.html
+amount.html
+bills.html
+cards.html
+history.html
+home.html
+transfer.html
