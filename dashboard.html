@@ -479,6 +479,78 @@
       .balance-row { gap: 20px; }
       .numpad { max-width: 100%; }
     }
+
+    /* ===== BANK CARD GRID ===== */
+    .bank-category { margin-bottom: 20px; }
+
+    .bank-category-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      padding: 0 2px;
+    }
+
+    .bank-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 10px;
+    }
+
+    .bank-card {
+      background: var(--bg-white);
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 8px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-align: center;
+    }
+
+    .bank-card:hover {
+      border-color: var(--primary-blue);
+      background: var(--primary-blue-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .bank-card.selected {
+      border-color: var(--primary-blue);
+      background: var(--primary-blue-light);
+      box-shadow: 0 0 0 3px rgba(15,82,186,0.15);
+    }
+
+    .bank-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      font-family: var(--font-display);
+      flex-shrink: 0;
+    }
+
+    .bank-card-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .bank-card.selected .bank-card-name {
+      color: var(--primary-blue);
+    }
   </style>
 </head>
 <body>
@@ -729,81 +801,127 @@
             </div>
           </div>
 
+          <!-- Bank Search -->
           <div class="input-group">
             <label class="input-label">Select Bank</label>
-            <div class="input-icon-wrap">
-              <i class="fa-solid fa-building-columns field-icon"></i>
-              <select class="input-field" id="transfer-bank-select" style="padding-left:44px;cursor:pointer;appearance:none;" onchange="onTransferBankChange()">
-                <!-- Own Bank -->
-                <option value="Antigravity Bank">Antigravity Bank</option>
+            <div class="search-bar" style="margin-bottom:10px;max-width:100%;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="bank-search-input" placeholder="Search bank name…" oninput="filterBanks(this.value)" autocomplete="off">
+            </div>
+            <!-- Selected bank display -->
+            <div id="selected-bank-display" style="display:none;background:var(--primary-blue-light);border-radius:12px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;">
+              <div id="selected-bank-icon" style="width:36px;height:36px;border-radius:8px;background:var(--primary-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;"></div>
+              <div style="flex:1;">
+                <div style="font-size:13px;color:var(--text-secondary);">Selected Bank</div>
+                <div id="selected-bank-name" style="font-size:15px;font-weight:700;color:var(--primary-blue);"></div>
+              </div>
+              <i class="fa-solid fa-circle-check" style="color:var(--primary-blue);font-size:18px;"></i>
+            </div>
+          </div>
 
-                <!-- Commercial Banks -->
-                <optgroup label="─── Commercial Banks ───">
-                  <option>Access Bank</option>
-                  <option>Citibank Nigeria</option>
-                  <option>Ecobank Nigeria</option>
-                  <option>Fidelity Bank</option>
-                  <option>First Bank of Nigeria</option>
-                  <option>First City Monument Bank (FCMB)</option>
-                  <option>Globus Bank</option>
-                  <option>GTBank (Guaranty Trust Bank)</option>
-                  <option>Heritage Bank</option>
-                  <option>Jaiz Bank</option>
-                  <option>Keystone Bank</option>
-                  <option>Lotus Bank</option>
-                  <option>Parallex Bank</option>
-                  <option>Polaris Bank</option>
-                  <option>Providus Bank</option>
-                  <option>Stanbic IBTC Bank</option>
-                  <option>Standard Chartered Bank</option>
-                  <option>Sterling Bank</option>
-                  <option>SunTrust Bank</option>
-                  <option>Titan Trust Bank</option>
-                  <option>UBA (United Bank for Africa)</option>
-                  <option>Union Bank of Nigeria</option>
-                  <option>Unity Bank</option>
-                  <option>Wema Bank</option>
-                  <option>Zenith Bank</option>
-                </optgroup>
+          <!-- Hidden select for JS compatibility -->
+          <select id="transfer-bank-select" style="display:none;" onchange="onTransferBankChange()">
+            <option value="Antigravity Bank">Antigravity Bank</option>
+            <option>Access Bank</option><option>Citibank Nigeria</option><option>Ecobank Nigeria</option>
+            <option>Fidelity Bank</option><option>First Bank of Nigeria</option><option>First City Monument Bank (FCMB)</option>
+            <option>Globus Bank</option><option>GTBank (Guaranty Trust Bank)</option><option>Heritage Bank</option>
+            <option>Jaiz Bank</option><option>Keystone Bank</option><option>Lotus Bank</option>
+            <option>Parallex Bank</option><option>Polaris Bank</option><option>Providus Bank</option>
+            <option>Stanbic IBTC Bank</option><option>Standard Chartered Bank</option><option>Sterling Bank</option>
+            <option>SunTrust Bank</option><option>Titan Trust Bank</option><option>UBA (United Bank for Africa)</option>
+            <option>Union Bank of Nigeria</option><option>Unity Bank</option><option>Wema Bank</option><option>Zenith Bank</option>
+            <option>Carbon (One Finance)</option><option>Eyowo</option><option>FairMoney MFB</option>
+            <option>Kuda Bank</option><option>Moniepoint MFB</option><option>OPay (OPay Digital Services)</option>
+            <option>PalmPay</option><option>Paga</option><option>Rubies Bank</option>
+            <option>Sparkle MFB</option><option>VFD Microfinance Bank</option><option>Zeptobank</option>
+            <option>Coronation Merchant Bank</option><option>FBNQuest Merchant Bank</option><option>FSDH Merchant Bank</option>
+            <option>Greenwich Merchant Bank</option><option>Nova Merchant Bank</option><option>Rand Merchant Bank Nigeria</option>
+            <option>AB Microfinance Bank</option><option>Accion MFB</option><option>Advans MFB</option>
+            <option>LAPO Microfinance Bank</option><option>NPF Microfinance Bank</option>
+            <option>Page Financials MFB</option><option>Petra Microfinance Bank</option><option>Mutual Trust MFB</option>
+          </select>
 
-                <!-- Digital & Fintech Banks -->
-                <optgroup label="─── Digital & Fintech Banks ───">
-                  <option>Carbon (One Finance)</option>
-                  <option>Eyowo</option>
-                  <option>FairMoney MFB</option>
-                  <option>Kuda Bank</option>
-                  <option>Moniepoint MFB</option>
-                  <option>OPay (OPay Digital Services)</option>
-                  <option>PalmPay</option>
-                  <option>Paga</option>
-                  <option>Rubies Bank</option>
-                  <option>Sparkle MFB</option>
-                  <option>VFD Microfinance Bank</option>
-                  <option>Zeptobank</option>
-                </optgroup>
+          <!-- Visible Bank Grid -->
+          <div id="bank-grid-wrapper" style="margin-bottom:20px;">
+            <div id="bank-category-commercial" class="bank-category">
+              <div class="bank-category-label">🏦 Commercial Banks</div>
+              <div class="bank-card-grid">
+                <div class="bank-card selected" onclick="selectBankCard(this,'Antigravity Bank')"><div class="bank-card-icon" style="background:hsl(216,85%,39%);">AG</div><div class="bank-card-name">Antigravity Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Access Bank')"><div class="bank-card-icon" style="background:#b91c1c;">AC</div><div class="bank-card-name">Access Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Citibank Nigeria')"><div class="bank-card-icon" style="background:#1d4ed8;">CI</div><div class="bank-card-name">Citibank Nigeria</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Ecobank Nigeria')"><div class="bank-card-icon" style="background:#166534;">EC</div><div class="bank-card-name">Ecobank Nigeria</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Fidelity Bank')"><div class="bank-card-icon" style="background:#0e7490;">FI</div><div class="bank-card-name">Fidelity Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'First Bank of Nigeria')"><div class="bank-card-icon" style="background:#92400e;">FB</div><div class="bank-card-name">First Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'First City Monument Bank (FCMB)')"><div class="bank-card-icon" style="background:#7c3aed;">FC</div><div class="bank-card-name">FCMB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Globus Bank')"><div class="bank-card-icon" style="background:#0f766e;">GL</div><div class="bank-card-name">Globus Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'GTBank (Guaranty Trust Bank)')"><div class="bank-card-icon" style="background:#f97316;">GT</div><div class="bank-card-name">GTBank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Heritage Bank')"><div class="bank-card-icon" style="background:#15803d;">HE</div><div class="bank-card-name">Heritage Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Jaiz Bank')"><div class="bank-card-icon" style="background:#065f46;">JZ</div><div class="bank-card-name">Jaiz Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Keystone Bank')"><div class="bank-card-icon" style="background:#9f1239;">KS</div><div class="bank-card-name">Keystone Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Lotus Bank')"><div class="bank-card-icon" style="background:#4d7c0f;">LO</div><div class="bank-card-name">Lotus Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Parallex Bank')"><div class="bank-card-icon" style="background:#5b21b6;">PX</div><div class="bank-card-name">Parallex Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Polaris Bank')"><div class="bank-card-icon" style="background:#0369a1;">PL</div><div class="bank-card-name">Polaris Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Providus Bank')"><div class="bank-card-icon" style="background:#b45309;">PR</div><div class="bank-card-name">Providus Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Stanbic IBTC Bank')"><div class="bank-card-icon" style="background:#1e40af;">SI</div><div class="bank-card-name">Stanbic IBTC</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Standard Chartered Bank')"><div class="bank-card-icon" style="background:#065f46;">SC</div><div class="bank-card-name">Standard Chartered</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Sterling Bank')"><div class="bank-card-icon" style="background:#be185d;">ST</div><div class="bank-card-name">Sterling Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'SunTrust Bank')"><div class="bank-card-icon" style="background:#b45309;">SU</div><div class="bank-card-name">SunTrust Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Titan Trust Bank')"><div class="bank-card-icon" style="background:#7c3aed;">TT</div><div class="bank-card-name">Titan Trust</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'UBA (United Bank for Africa)')"><div class="bank-card-icon" style="background:#b91c1c;">UB</div><div class="bank-card-name">UBA</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Union Bank of Nigeria')"><div class="bank-card-icon" style="background:#1d4ed8;">UN</div><div class="bank-card-name">Union Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Unity Bank')"><div class="bank-card-icon" style="background:#15803d;">UT</div><div class="bank-card-name">Unity Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Wema Bank')"><div class="bank-card-icon" style="background:#6d28d9;">WE</div><div class="bank-card-name">Wema Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Zenith Bank')"><div class="bank-card-icon" style="background:#dc2626;">ZE</div><div class="bank-card-name">Zenith Bank</div></div>
+              </div>
+            </div>
 
-                <!-- Merchant Banks -->
-                <optgroup label="─── Merchant Banks ───">
-                  <option>Coronation Merchant Bank</option>
-                  <option>FBNQuest Merchant Bank</option>
-                  <option>FSDH Merchant Bank</option>
-                  <option>Greenwich Merchant Bank</option>
-                  <option>Nova Merchant Bank</option>
-                  <option>Rand Merchant Bank Nigeria</option>
-                </optgroup>
+            <div id="bank-category-digital" class="bank-category">
+              <div class="bank-category-label">📱 Digital & Fintech Banks</div>
+              <div class="bank-card-grid">
+                <div class="bank-card" onclick="selectBankCard(this,'Carbon (One Finance)')"><div class="bank-card-icon" style="background:#1c1c1e;">CA</div><div class="bank-card-name">Carbon</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Eyowo')"><div class="bank-card-icon" style="background:#0ea5e9;">EY</div><div class="bank-card-name">Eyowo</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'FairMoney MFB')"><div class="bank-card-icon" style="background:#16a34a;">FM</div><div class="bank-card-name">FairMoney</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Kuda Bank')"><div class="bank-card-icon" style="background:#7c3aed;">KD</div><div class="bank-card-name">Kuda Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Moniepoint MFB')"><div class="bank-card-icon" style="background:#0f172a;">MP</div><div class="bank-card-name">Moniepoint</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'OPay (OPay Digital Services)')"><div class="bank-card-icon" style="background:#16a34a;">OP</div><div class="bank-card-name">OPay</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'PalmPay')"><div class="bank-card-icon" style="background:#15803d;">PP</div><div class="bank-card-name">PalmPay</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Paga')"><div class="bank-card-icon" style="background:#b45309;">PG</div><div class="bank-card-name">Paga</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Rubies Bank')"><div class="bank-card-icon" style="background:#be123c;">RB</div><div class="bank-card-name">Rubies Bank</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Sparkle MFB')"><div class="bank-card-icon" style="background:#7c3aed;">SP</div><div class="bank-card-name">Sparkle</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'VFD Microfinance Bank')"><div class="bank-card-icon" style="background:#0369a1;">VF</div><div class="bank-card-name">VFD MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Zeptobank')"><div class="bank-card-icon" style="background:#1d4ed8;">ZP</div><div class="bank-card-name">Zeptobank</div></div>
+              </div>
+            </div>
 
-                <!-- Microfinance Banks -->
-                <optgroup label="─── Microfinance Banks ───">
-                  <option>AB Microfinance Bank</option>
-                  <option>Accion MFB</option>
-                  <option>Advans MFB</option>
-                  <option>LAPO Microfinance Bank</option>
-                  <option>NPF Microfinance Bank</option>
-                  <option>Page Financials MFB</option>
-                  <option>Petra Microfinance Bank</option>
-                  <option>Mutual Trust MFB</option>
-                </optgroup>
-              </select>
+            <div id="bank-category-merchant" class="bank-category">
+              <div class="bank-category-label">🏢 Merchant Banks</div>
+              <div class="bank-card-grid">
+                <div class="bank-card" onclick="selectBankCard(this,'Coronation Merchant Bank')"><div class="bank-card-icon" style="background:#78350f;">CO</div><div class="bank-card-name">Coronation</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'FBNQuest Merchant Bank')"><div class="bank-card-icon" style="background:#1e3a5f;">FQ</div><div class="bank-card-name">FBNQuest</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'FSDH Merchant Bank')"><div class="bank-card-icon" style="background:#065f46;">FS</div><div class="bank-card-name">FSDH</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Greenwich Merchant Bank')"><div class="bank-card-icon" style="background:#1d4ed8;">GR</div><div class="bank-card-name">Greenwich</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Nova Merchant Bank')"><div class="bank-card-icon" style="background:#6d28d9;">NV</div><div class="bank-card-name">Nova</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Rand Merchant Bank Nigeria')"><div class="bank-card-icon" style="background:#9f1239;">RM</div><div class="bank-card-name">Rand Merchant</div></div>
+              </div>
+            </div>
+
+            <div id="bank-category-mfb" class="bank-category">
+              <div class="bank-category-label">🏘️ Microfinance Banks</div>
+              <div class="bank-card-grid">
+                <div class="bank-card" onclick="selectBankCard(this,'AB Microfinance Bank')"><div class="bank-card-icon" style="background:#0f766e;">AB</div><div class="bank-card-name">AB MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Accion MFB')"><div class="bank-card-icon" style="background:#0369a1;">AC</div><div class="bank-card-name">Accion MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Advans MFB')"><div class="bank-card-icon" style="background:#1d4ed8;">AD</div><div class="bank-card-name">Advans MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'LAPO Microfinance Bank')"><div class="bank-card-icon" style="background:#166534;">LP</div><div class="bank-card-name">LAPO MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'NPF Microfinance Bank')"><div class="bank-card-icon" style="background:#1e3a5f;">NP</div><div class="bank-card-name">NPF MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Page Financials MFB')"><div class="bank-card-icon" style="background:#7c3aed;">PF</div><div class="bank-card-name">Page Financials</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Petra Microfinance Bank')"><div class="bank-card-icon" style="background:#be185d;">PE</div><div class="bank-card-name">Petra MFB</div></div>
+                <div class="bank-card" onclick="selectBankCard(this,'Mutual Trust MFB')"><div class="bank-card-icon" style="background:#b45309;">MT</div><div class="bank-card-name">Mutual Trust</div></div>
+              </div>
+            </div>
+
+            <div id="bank-no-results" style="display:none;text-align:center;padding:24px;color:var(--text-secondary);font-size:14px;">
+              <i class="fa-solid fa-magnifying-glass" style="font-size:28px;margin-bottom:8px;opacity:.4;display:block;"></i>
+              No bank found. Try a different name.
             </div>
           </div>
 
@@ -1172,6 +1290,61 @@
 </nav>
 
 <script>
+  // ===== BANK INTERACTIVE SELECTION & SEARCH =====
+  function selectBankCard(cardEl, bankName) {
+    // Unselect previous
+    document.querySelectorAll('.bank-card').forEach(card => card.classList.remove('selected'));
+    // Select clicked
+    cardEl.classList.add('selected');
+
+    // Update hidden select element for compatibility with existing JS logic
+    const selectEl = document.getElementById('transfer-bank-select');
+    if (selectEl) {
+      selectEl.value = bankName;
+      // Trigger change event to fire recipient lookup
+      onTransferBankChange();
+    }
+
+    // Update visible selected display
+    const displayEl = document.getElementById('selected-bank-display');
+    const iconEl = document.getElementById('selected-bank-icon');
+    const nameEl = document.getElementById('selected-bank-name');
+
+    if (displayEl && iconEl && nameEl) {
+      nameEl.textContent = bankName;
+      iconEl.textContent = bankName.slice(0, 2).toUpperCase();
+      displayEl.style.display = 'flex';
+    }
+  }
+
+  function filterBanks(query) {
+    query = query.toLowerCase().trim();
+    let hasMatches = false;
+
+    // Filter categories and individual cards
+    document.querySelectorAll('.bank-category').forEach(cat => {
+      let catHasMatches = false;
+      cat.querySelectorAll('.bank-card').forEach(card => {
+        const bankName = card.querySelector('.bank-card-name').textContent.toLowerCase();
+        if (bankName.includes(query)) {
+          card.style.display = 'flex';
+          catHasMatches = true;
+          hasMatches = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      // Show/Hide category label based on matches
+      cat.style.display = catHasMatches ? 'block' : 'none';
+    });
+
+    // Show/Hide "No Results" display
+    const noResultsEl = document.getElementById('bank-no-results');
+    if (noResultsEl) {
+      noResultsEl.style.display = hasMatches ? 'none' : 'block';
+    }
+  }
+
   // ===== SCREEN TITLES =====
   const SCREEN_TITLES = {
     home: 'Home', account: 'Account Details', transfer: 'Transfer Money',
@@ -1258,7 +1431,46 @@
     const input = document.getElementById('transfer-acct-input');
     const sel = document.getElementById('transfer-bank-select');
     if (input) input.value = acct;
-    if (sel) { for (let i = 0; i < sel.options.length; i++) { if (sel.options[i].text === bank) { sel.selectedIndex = i; break; } } }
+    if (sel) { 
+      for (let i = 0; i < sel.options.length; i++) { 
+        if (sel.options[i].text === bank || sel.options[i].value === bank) { 
+          sel.selectedIndex = i; 
+          break; 
+        } 
+      } 
+    }
+
+    // Find and select the corresponding bank card in UI
+    let foundCard = false;
+    document.querySelectorAll('.bank-card').forEach(card => {
+      const cardName = card.querySelector('.bank-card-name').textContent.toLowerCase();
+      // Match partial names like "GTBank" with "GTBank (Guaranty Trust Bank)"
+      if (bank.toLowerCase().includes(cardName) || cardName.includes(bank.toLowerCase()) || 
+          (bank === 'Antigravity Bank' && cardName === 'antigravity bank')) {
+        // Unselect others and select this card
+        document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        
+        // Show in selected display
+        const displayEl = document.getElementById('selected-bank-display');
+        const iconEl = document.getElementById('selected-bank-icon');
+        const nameEl = document.getElementById('selected-bank-name');
+        if (displayEl && iconEl && nameEl) {
+          nameEl.textContent = bank;
+          iconEl.textContent = bank.slice(0, 2).toUpperCase();
+          displayEl.style.display = 'flex';
+        }
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        foundCard = true;
+      }
+    });
+
+    if (!foundCard) {
+      // Hide selected badge if contact bank isn't on the grid
+      const displayEl = document.getElementById('selected-bank-display');
+      if (displayEl) displayEl.style.display = 'none';
+    }
+
     resolveTransferAccount(acct);
   }
 
