@@ -811,21 +811,25 @@
                 <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-wifi"></i></div>
                 <span>Data</span>
               </div>
-              <div class="quick-action-btn" onclick="alert('Betting Service: Fund your Bet9ja, SportyBet or 1xBet accounts easily.')">
+              <div class="quick-action-btn" onclick="navigate('betting')">
                 <div class="quick-action-icon" style="background:hsl(142,70%,93%);color:#15803d;"><i class="fa-solid fa-dice"></i></div>
                 <span>Betting</span>
               </div>
-              <div class="quick-action-btn" onclick="navigate('bills'); openBillPay('DSTV / GoTV','Cable TV')">
+              <div class="quick-action-btn" onclick="navigate('tv')">
                 <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-tv"></i></div>
                 <span>TV</span>
               </div>
-              <div class="quick-action-btn" onclick="alert('Safe Box: Save money automatically and earn up to 15% interest.')">
+              <div class="quick-action-btn" onclick="navigate('safebox')">
                 <div class="quick-action-icon" style="background:hsl(180,60%,93%);color:#0f766e;"><i class="fa-solid fa-vault"></i></div>
                 <span>Safe Box</span>
               </div>
-              <div class="quick-action-btn" onclick="alert('Loan Invitation: Get instant access to collateral-free personal loans up to ₦5,000,000.')">
+              <div class="quick-action-btn" onclick="navigate('loan')">
                 <div class="quick-action-icon" style="background:hsl(328,100%,95%);color:hsl(328,80%,45%);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                <span>Loan Invitation</span>
+                <span>Loan</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('invitation')">
+                <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-user-plus"></i></div>
+                <span>Invitation</span>
               </div>
               <div class="quick-action-btn" onclick="navigate('more-services')">
                 <div class="quick-action-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-ellipsis"></i></div>
@@ -1635,6 +1639,131 @@
         </div>
       </div>
 
+      <!-- ========== BETTING ========== -->
+      <div id="screen-betting" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Betting Account Funding</h2>
+        </div>
+        <div style="max-width:520px;">
+          <p class="section-title">Select Bookmaker</p>
+          <div class="network-grid" style="margin-bottom:20px;">
+            <div class="network-item selected" onclick="selectNet2(this)"><div class="network-name">Bet9ja</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">SportyBet</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">1xBet</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">BetWay</div></div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">User ID / Account ID</label>
+            <input type="text" class="input-field" placeholder="Enter betting user ID" value="98765432">
+          </div>
+          <div class="input-group">
+            <label class="input-label">Amount (₦)</label>
+            <input type="number" id="betting-amount" class="input-field" placeholder="e.g. 1000" value="2000">
+          </div>
+          <button class="btn btn-primary btn-full" onclick="showReceipt('betting')"><i class="fa-solid fa-circle-check"></i> Fund Account</button>
+        </div>
+      </div>
+
+      <!-- ========== TV ========== -->
+      <div id="screen-tv" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Pay TV Subscription</h2>
+        </div>
+        <div style="max-width:520px;">
+          <p class="section-title">Select Provider</p>
+          <div class="network-grid" style="margin-bottom:20px;">
+            <div class="network-item selected" onclick="selectNet2(this)"><div class="network-name">DStv</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">GOtv</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">StarTimes</div></div>
+            <div class="network-item" onclick="selectNet2(this)"><div class="network-name">Showmax</div></div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Smartcard / UIC Number</label>
+            <input type="text" class="input-field" placeholder="Enter smartcard number" value="1098765432">
+          </div>
+          <p class="section-title">Select Package</p>
+          <div class="data-plan-grid" style="margin-bottom:20px;">
+            <div class="data-plan selected" onclick="selectPlan(this)"><div class="data-plan-size">Compact</div><div class="data-plan-validity">1 Month</div><div class="data-plan-price">₦12,500</div></div>
+            <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">Premium</div><div class="data-plan-validity">1 Month</div><div class="data-plan-price">₦29,500</div></div>
+            <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">Confam</div><div class="data-plan-validity">1 Month</div><div class="data-plan-price">₦7,600</div></div>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="showReceipt('tv')"><i class="fa-solid fa-tv"></i> Renew Subscription</button>
+        </div>
+      </div>
+
+      <!-- ========== SAFE BOX ========== -->
+      <div id="screen-safebox" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Safe Box</h2>
+        </div>
+        <div style="max-width:520px;">
+          <div class="balance-card" style="background:linear-gradient(135deg, #0d9488 0%, #115e59 100%);">
+            <div class="balance-label">Total Locked Savings</div>
+            <div class="balance-amount" id="safebox-balance">₦1,200,000.00</div>
+            <div style="font-size:12px;opacity:.8;margin-top:8px;">Interest Rate: 15% Per Annum</div>
+          </div>
+          <div class="input-group">
+            <label class="input-label">Amount to Lock (₦)</label>
+            <input type="number" id="safebox-lock-amount" class="input-field" placeholder="e.g. 5000">
+          </div>
+          <button class="btn btn-success btn-full" style="margin-bottom:10px;" onclick="lockMoney()"><i class="fa-solid fa-lock"></i> Lock Money Now</button>
+          <button class="btn btn-secondary btn-full" onclick="withdrawSafebox()"><i class="fa-solid fa-unlock"></i> Withdraw to Main Balance</button>
+        </div>
+      </div>
+
+      <!-- ========== LOAN ========== -->
+      <div id="screen-loan" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Personal Loans</h2>
+        </div>
+        <div style="max-width:520px;">
+          <div class="card" style="background:#fffbeb;border-color:#f59e0b;padding:20px;">
+            <div style="font-size:13px;font-weight:700;color:#b45309;text-transform:uppercase;">Loan Offer Limit</div>
+            <div style="font-size:36px;font-weight:800;color:#b45309;font-family:var(--font-display);margin:8px 0;">₦5,000,000</div>
+            <div style="font-size:12px;color:#b45309;opacity:.8;">Get instant collateral-free funding. Repay in 3 to 12 months.</div>
+          </div>
+          <div class="input-group" style="margin-top:20px;">
+            <label class="input-label">Loan Amount (₦)</label>
+            <input type="number" id="loan-amount-input" class="input-field" placeholder="Enter amount up to 5,000,000" value="500000">
+          </div>
+          <div class="input-group">
+            <label class="input-label">Repayment Tenure</label>
+            <select class="input-field" style="cursor:pointer;">
+              <option>3 Months (10% Interest)</option>
+              <option>6 Months (15% Interest)</option>
+              <option>12 Months (20% Interest)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="applyForLoan()"><i class="fa-solid fa-file-signature"></i> Accept Loan Offer</button>
+        </div>
+      </div>
+
+      <!-- ========== INVITATION ========== -->
+      <div id="screen-invitation" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Invitation &amp; Referrals</h2>
+        </div>
+        <div style="max-width:520px;text-align:center;">
+          <div class="card" style="padding:24px;">
+            <div style="font-size:44px;margin-bottom:12px;">🎉</div>
+            <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;">Refer &amp; Earn ₦500</h3>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin-bottom:20px;">Invite your friends to open an account with Antigravity Bank and receive ₦500 on their first transfer.</p>
+            <div class="account-number-box" style="margin-bottom:0;">
+              <div>
+                <div class="acct-num-label">Your Referral Code</div>
+                <div class="acct-num-value" style="letter-spacing:1px;font-size:24px;">OYED-KEHI</div>
+              </div>
+              <button class="copy-btn" onclick="alert('Referral link copied!')"><i class="fa-regular fa-copy"></i> Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div><!-- /dash-main -->
 
@@ -1735,7 +1864,10 @@
     history: 'Transaction History', bills: 'Pay Bills', airtime: 'Airtime & Data',
     cards: 'My Cards', notifications: 'Notifications', profile: 'My Profile',
     settings: 'Settings', help: 'Help & Support', 'add-money': 'Add Money',
-    'scan-qr': 'Scan QR Code', 'more-services': 'More Services'
+    'scan-qr': 'Scan QR Code', 'more-services': 'More Services',
+    betting: 'Fund Betting Account', tv: 'Pay TV Subscription',
+    safebox: 'Safe Box Savings', loan: 'Request Personal Loan',
+    invitation: 'Invite Friends & Earn'
   };
 
   // ===== ADD MONEY FUNCTIONS =====
@@ -2007,18 +2139,112 @@
     bills: { title: 'Bill Payment Successful!', subtitle: 'Your bill has been paid.' },
     airtime: { title: 'Airtime Purchased!', subtitle: 'Airtime topped up successfully.' },
     data: { title: 'Data Bundle Activated!', subtitle: 'Your data plan is now active.' },
+    betting: { title: 'Betting Wallet Funded!', subtitle: 'Your betting wallet has been credited.' },
+    tv: { title: 'TV Subscription Renewed!', subtitle: 'Your subscription is now active.' },
   };
   function showReceipt(type) {
     const cfg = receiptConfig[type] || { title: 'Success!', subtitle: 'Transaction completed.' };
     document.getElementById('receipt-title').textContent = cfg.title;
     document.getElementById('receipt-subtitle').textContent = cfg.subtitle;
-    const amt = type === 'airtime' ? (document.getElementById('airtime-amount').value || '200') : '5,000.00';
-    document.getElementById('receipt-amount').textContent = '\u20A6' + amt;
+    
+    let amt = '5,000.00';
+    if (type === 'airtime') {
+      amt = document.getElementById('airtime-amount').value || '200';
+    } else if (type === 'betting') {
+      amt = document.getElementById('betting-amount').value || '1,000';
+    } else if (type === 'tv') {
+      const selectedPlan = document.querySelector('#screen-tv .data-plan.selected .data-plan-price');
+      amt = selectedPlan ? selectedPlan.textContent.replace('₦', '') : '12,500';
+    }
+    
+    // Deduct from balance
+    const deductAmt = parseFloat(amt.replace(/,/g, ''));
+    if (!isNaN(deductAmt) && deductAmt <= accountBalance) {
+      accountBalance -= deductAmt;
+      const fmtBalance = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+      const homeBalEl = document.getElementById('home-balance');
+      if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+    }
+
+    document.getElementById('receipt-amount').textContent = '₦' + parseFloat(amt).toLocaleString('en-NG', { minimumFractionDigits: 2 });
     document.getElementById('receipt-ref').textContent = 'AGV' + Date.now().toString().slice(-10);
     const now = new Date();
     document.getElementById('receipt-date').textContent = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank', 'receipt-row-narr'].forEach(id => document.getElementById(id).style.display = 'none');
     document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  // ===== SAFE BOX LOGIC =====
+  let safeboxBalance = 1200000;
+  function lockMoney() {
+    const amountVal = document.getElementById('safebox-lock-amount').value;
+    const amount = parseFloat(amountVal);
+    if (!amountVal || amount <= 0) {
+      alert('Please enter a valid amount to lock.');
+      return;
+    }
+    if (amount > accountBalance) {
+      alert('Insufficient funds in your main balance.');
+      return;
+    }
+
+    // Process Transfer
+    accountBalance -= amount;
+    safeboxBalance += amount;
+
+    // Update UI
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    document.getElementById('safebox-balance').textContent = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    
+    alert(`Successfully locked ₦${amount.toLocaleString('en-NG')} in your Safe Box!`);
+    document.getElementById('safebox-lock-amount').value = '';
+    navigate('home');
+  }
+
+  function withdrawSafebox() {
+    const withdrawVal = prompt('Enter amount to withdraw from Safe Box to Main Balance:', '50000');
+    if (withdrawVal === null) return;
+    const amount = parseFloat(withdrawVal);
+    if (isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid amount.');
+      return;
+    }
+    if (amount > safeboxBalance) {
+      alert('Insufficient funds in your Safe Box.');
+      return;
+    }
+
+    // Process
+    safeboxBalance -= amount;
+    accountBalance += amount;
+
+    // Update UI
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    document.getElementById('safebox-balance').textContent = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    alert(`Successfully withdrew ₦${amount.toLocaleString('en-NG')} to your Main Balance.`);
+  }
+
+  // ===== LOAN LOGIC =====
+  function applyForLoan() {
+    const loanAmtVal = document.getElementById('loan-amount-input').value;
+    const loanAmt = parseFloat(loanAmtVal);
+    if (!loanAmtVal || loanAmt <= 0 || loanAmt > 5000000) {
+      alert('Please enter a valid loan amount up to ₦5,000,000.');
+      return;
+    }
+
+    // Process Loan Approval
+    accountBalance += loanAmt;
+
+    // Update UI
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    alert(`Congratulations! Your loan request of ₦${loanAmt.toLocaleString('en-NG')} has been approved and credited to your main balance.`);
+    navigate('home');
   }
 
   // ===== NOTIFICATIONS =====
