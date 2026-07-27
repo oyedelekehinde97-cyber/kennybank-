@@ -688,6 +688,9 @@
     <header class="dash-topbar">
       <div class="dash-topbar-title" id="topbar-title">Home</div>
       <div class="dash-topbar-right">
+        <div class="notif-btn" onclick="navigate('scan-qr')" title="Scan QR Code" style="background:hsl(328,100%,96%);color:hsl(328,80%,45%);border-color:hsl(328,80%,90%);">
+          <i class="fa-solid fa-qrcode" style="font-size:18px;"></i>
+        </div>
         <div class="notif-btn" onclick="navigate('notifications')" title="Notifications">
           <i class="fa-regular fa-bell" style="font-size:18px;color:var(--text-primary);"></i>
           <span class="notif-badge">3</span>
@@ -706,17 +709,20 @@
       <div id="screen-home" class="screen active">
         <div class="home-grid">
           <div class="home-grid-left">
-            <div class="balance-card">
+            <div class="balance-card" style="padding-bottom:20px;margin-bottom:20px;">
               <div class="card-chip"><i class="fa-solid fa-microchip"></i></div>
               <div class="balance-label">Total Balance</div>
-              <div style="display:flex;align-items:center;gap:14px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;">
                 <div class="balance-amount" id="home-balance">₦ 2,847,500.00</div>
                 <button class="balance-eye" id="toggle-balance" onclick="toggleBalance()"><i class="fa-regular fa-eye"></i></button>
               </div>
+              <button class="btn" style="background:rgba(255,255,255,0.18);color:#fff;border:none;border-radius:12px;height:40px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:background 0.2s;" onclick="navigate('add-money')">
+                <i class="fa-solid fa-circle-plus"></i> Add Money
+              </button>
             </div>
 
             <p class="section-title">Quick Actions</p>
-            <div class="quick-action-grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+            <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
               <div class="quick-action-btn" onclick="navigate('transfer')">
                 <div class="quick-action-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
                 <span>Transfer</span>
@@ -732,14 +738,6 @@
               <div class="quick-action-btn" onclick="navigate('cards')">
                 <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-credit-card"></i></div>
                 <span>Cards</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('add-money')">
-                <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-circle-plus"></i></div>
-                <span>Add Money</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('scan-qr')">
-                <div class="quick-action-icon" style="background:hsl(328,100%,93%);color:hsl(328,80%,45%);"><i class="fa-solid fa-qrcode"></i></div>
-                <span>Scan QR</span>
               </div>
             </div>
 
