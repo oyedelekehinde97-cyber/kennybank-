@@ -632,6 +632,70 @@
       font-size: 20px;
       flex-shrink: 0;
     }
+
+    /* ===== SERVICES STYLE GROUP ===== */
+    .services-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin: 18px 0 10px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 6px;
+    }
+
+    .services-grid-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .service-card-item {
+      background: var(--bg-white);
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-align: center;
+    }
+
+    .service-card-item:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: var(--primary-blue);
+      background: var(--primary-blue-light);
+    }
+
+    .service-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    @media (max-width: 640px) {
+      .services-grid-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -722,22 +786,50 @@
             </div>
 
             <p class="section-title">Quick Actions</p>
-            <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+            <div class="quick-action-grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+              <div class="quick-action-btn" onclick="navigate('transfer'); prefillContact('0123456789','Antigravity Bank')">
+                <div class="quick-action-icon" style="background:var(--primary-blue-light);color:var(--primary-blue);"><i class="fa-solid fa-building-columns"></i></div>
+                <span>To Antigravity</span>
+              </div>
               <div class="quick-action-btn" onclick="navigate('transfer')">
-                <div class="quick-action-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                <span>Transfer</span>
+                <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                <span>To Other Bank</span>
               </div>
-              <div class="quick-action-btn" onclick="navigate('bills')">
-                <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                <span>Pay Bills</span>
+              <div class="quick-action-btn" onclick="alert('Withdraw simulation: Go to any ATM and use cardless withdrawal or use cash-out at agent points.')">
+                <div class="quick-action-icon" style="background:hsl(0,100%,96%);color:#dc2626;"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <span>Withdraw</span>
               </div>
-              <div class="quick-action-btn" onclick="navigate('airtime')">
+            </div>
+
+            <p class="section-title">Services</p>
+            <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+              <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('airtime')">
                 <div class="quick-action-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-sim-card"></i></div>
                 <span>Airtime</span>
               </div>
-              <div class="quick-action-btn" onclick="navigate('cards')">
-                <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-credit-card"></i></div>
-                <span>Cards</span>
+              <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('data')">
+                <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-wifi"></i></div>
+                <span>Data</span>
+              </div>
+              <div class="quick-action-btn" onclick="alert('Betting Service: Fund your Bet9ja, SportyBet or 1xBet accounts easily.')">
+                <div class="quick-action-icon" style="background:hsl(142,70%,93%);color:#15803d;"><i class="fa-solid fa-dice"></i></div>
+                <span>Betting</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('bills'); openBillPay('DSTV / GoTV','Cable TV')">
+                <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-tv"></i></div>
+                <span>TV</span>
+              </div>
+              <div class="quick-action-btn" onclick="alert('Safe Box: Save money automatically and earn up to 15% interest.')">
+                <div class="quick-action-icon" style="background:hsl(180,60%,93%);color:#0f766e;"><i class="fa-solid fa-vault"></i></div>
+                <span>Safe Box</span>
+              </div>
+              <div class="quick-action-btn" onclick="alert('Loan Invitation: Get instant access to collateral-free personal loans up to ₦5,000,000.')">
+                <div class="quick-action-icon" style="background:hsl(328,100%,95%);color:hsl(328,80%,45%);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <span>Loan Invitation</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('more-services')">
+                <div class="quick-action-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-ellipsis"></i></div>
+                <span>More</span>
               </div>
             </div>
 
@@ -1418,6 +1510,131 @@
         </div>
       </div>
 
+      <!-- ========== MORE SERVICES ========== -->
+      <div id="screen-more-services" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">All Services &amp; Products</h2>
+        </div>
+        <div style="max-width:680px;">
+
+          <!-- Recently Used -->
+          <div class="services-section-title">🕒 Recently Used</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('EKEDC / IKEDC','Electricity')">
+              <div class="service-card-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-bolt"></i></div>
+              <div class="service-card-label">Electricity</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Product & Service: Browse and purchase partner business offerings.')">
+              <div class="service-card-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-cubes"></i></div>
+              <div class="service-card-label">Product &amp; Service</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Embassies: Pay visa fees, appointment fees and document handling charges.')">
+              <div class="service-card-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-passport"></i></div>
+              <div class="service-card-label">Embassies</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Fixed Deposit: Lock funds for fixed durations with higher returns.')">
+              <div class="service-card-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-clock"></i></div>
+              <div class="service-card-label">Fixed</div>
+            </div>
+          </div>
+
+          <!-- E-Commerce -->
+          <div class="services-section-title">🛒 E-Commerce</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="alert('AliExpress: Search products and pay securely with local currency.')">
+              <div class="service-card-icon" style="background:#fff1f2;color:#f43f5e;"><i class="fa-solid fa-bag-shopping"></i></div>
+              <div class="service-card-label">AliExpress</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Gift Card: Purchase iTunes, Amazon, Google Play, and PlayStation cards.')">
+              <div class="service-card-icon" style="background:#faf5ff;color:#a855f7;"><i class="fa-solid fa-gift"></i></div>
+              <div class="service-card-label">Gift Card</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Chowdeck: Order meals and pay directly from your bank account.')">
+              <div class="service-card-icon" style="background:#f0fdf4;color:#22c55e;"><i class="fa-solid fa-utensils"></i></div>
+              <div class="service-card-label">Chowdeck</div>
+            </div>
+          </div>
+
+          <!-- International Services -->
+          <div class="services-section-title">🌐 International Services</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="alert('Remit: Send international money transfers at friendly exchange rates.')">
+              <div class="service-card-icon" style="background:#eff6ff;color:#3b82f6;"><i class="fa-solid fa-globe"></i></div>
+              <div class="service-card-label">Remit</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Bills Payment: Pay bills for utilities and subscriptions globally.')">
+              <div class="service-card-icon" style="background:#fff7ed;color:#f97316;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+              <div class="service-card-label">Bills Payment</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Other international services coming soon!')">
+              <div class="service-card-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-circle-nodes"></i></div>
+              <div class="service-card-label">Others</div>
+            </div>
+          </div>
+
+          <!-- Finance -->
+          <div class="services-section-title">💰 Finance</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="alert('OWealth: Save and earn daily returns up to 15% per annum.')">
+              <div class="service-card-icon" style="background:#ecfdf5;color:#10b981;"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="service-card-label">OWealth</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Fixed Safebox: Safely lock away money for personal targets.')">
+              <div class="service-card-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-lock"></i></div>
+              <div class="service-card-label">Fixed Safebox</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Target: Create group or individual target savings goals.')">
+              <div class="service-card-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-bullseye"></i></div>
+              <div class="service-card-label">Target</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Spend & Save: Automatically save a percentage whenever you buy or pay.')">
+              <div class="service-card-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-percent"></i></div>
+              <div class="service-card-label">Spend &amp; Save</div>
+            </div>
+            <div class="service-card-item" onclick="alert('BNPL (Buy Now Pay Later): Get credit for purchases and pay back in flexible installments.')">
+              <div class="service-card-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="service-card-label">BNPL</div>
+            </div>
+          </div>
+
+          <!-- Rewards -->
+          <div class="services-section-title">🎁 Rewards</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="alert('Daily Check-in: Claim free points and cash rewards every day.')">
+              <div class="service-card-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-calendar-check"></i></div>
+              <div class="service-card-label">Daily Check-in</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Play4aChild: Join games and quizzes to donate to children charity pools.')">
+              <div class="service-card-icon" style="background:#fdf2f8;color:#db2777;"><i class="fa-solid fa-child"></i></div>
+              <div class="service-card-label">Play4aChild</div>
+            </div>
+            <div class="service-card-item" onclick="alert('Refer & Earn: Share your code and earn ₦500 for every active referral.')">
+              <div class="service-card-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-users"></i></div>
+              <div class="service-card-label">Refer &amp; Earn</div>
+            </div>
+          </div>
+
+          <!-- Others -->
+          <div class="services-section-title">🛠️ Others</div>
+          <div class="services-grid-list">
+            <div class="service-card-item" onclick="alert('SMS Alert: Turn real-time transactions alerts on/off.')">
+              <div class="service-card-icon" style="background:#f8fafc;color:#64748b;"><i class="fa-solid fa-comment-sms"></i></div>
+              <div class="service-card-label">SMS Alert</div>
+            </div>
+            <div class="service-card-item" onclick="navigate('cards')">
+              <div class="service-card-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="service-card-label">Physical Card</div>
+            </div>
+            <div class="service-card-item" onclick="navigate('cards')">
+              <div class="service-card-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-regular fa-credit-card"></i></div>
+              <div class="service-card-label">Virtual Card</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </main>
   </div><!-- /dash-main -->
 
@@ -1518,7 +1735,7 @@
     history: 'Transaction History', bills: 'Pay Bills', airtime: 'Airtime & Data',
     cards: 'My Cards', notifications: 'Notifications', profile: 'My Profile',
     settings: 'Settings', help: 'Help & Support', 'add-money': 'Add Money',
-    'scan-qr': 'Scan QR Code'
+    'scan-qr': 'Scan QR Code', 'more-services': 'More Services'
   };
 
   // ===== ADD MONEY FUNCTIONS =====
