@@ -1182,16 +1182,31 @@
           <h2 style="font-size:20px;">Pay Bills</h2>
         </div>
         <p class="section-title">Bill Categories</p>
-        <div class="bill-grid">
-          <div class="bill-item" onclick="openBillPay('EKEDC / IKEDC','Electricity')"><div class="bill-icon">⚡</div><div class="bill-label">Electricity</div></div>
-          <div class="bill-item" onclick="openBillPay('DSTV / GoTV','Cable TV')"><div class="bill-icon">📺</div><div class="bill-label">Cable TV</div></div>
-          <div class="bill-item" onclick="openBillPay('LWC Water','Water Bill')"><div class="bill-icon">💧</div><div class="bill-label">Water</div></div>
-          <div class="bill-item" onclick="openBillPay('Spectranet','Internet')"><div class="bill-icon">📡</div><div class="bill-label">Internet</div></div>
-          <div class="bill-item" onclick="openBillPay('WAEC / JAMB','Education')"><div class="bill-icon">🎓</div><div class="bill-label">Education</div></div>
-          <div class="bill-item" onclick="openBillPay('Insurance Premium','Insurance')"><div class="bill-icon">🛡️</div><div class="bill-label">Insurance</div></div>
-          <div class="bill-item" onclick="openBillPay('Waste Management','Waste')"><div class="bill-icon">♻️</div><div class="bill-label">Waste</div></div>
-          <div class="bill-item" onclick="openBillPay('TV Licence','TV Licence')"><div class="bill-icon">📻</div><div class="bill-label">TV Licence</div></div>
-          <div class="bill-item" onclick="openBillPay('TollGate / e-Tag','Toll')"><div class="bill-icon">🚗</div><div class="bill-label">Toll</div></div>
+        <div class="bill-grid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));">
+          <!-- Existing & Requested Categories -->
+          <div class="bill-item" onclick="openBillPay('Utility Co.','Electricity')"><div class="bill-icon">⚡</div><div class="bill-label">Electricity</div></div>
+          <div class="bill-item" onclick="openBillPay('DSTV / GOTV / StarTimes','Cable TV')"><div class="bill-icon">📺</div><div class="bill-label">Cable TV</div></div>
+          <div class="bill-item" onclick="openBillPay('Water Board','Water Bill')"><div class="bill-icon">💧</div><div class="bill-label">Water</div></div>
+          <div class="bill-item" onclick="openBillPay('WAEC / JAMB / Universities','School & Exams')"><div class="bill-icon">🎓</div><div class="bill-label">School &amp; Exams</div></div>
+          <div class="bill-item" onclick="openBillPay('Spectranet / Smile / Fiber','Internet Service')"><div class="bill-icon">📡</div><div class="bill-label">Internet Service</div></div>
+          <div class="bill-item" onclick="openBillPay('Fintech / Investment Partner','Financial Services')"><div class="bill-icon">🏦</div><div class="bill-label">Financial Services</div></div>
+          <div class="bill-item" onclick="openBillPay('Corporate Invoicing','Invoice Payment')"><div class="bill-icon">📄</div><div class="bill-label">Invoice Payment</div></div>
+          <div class="bill-item" onclick="openBillPay('Non-profit Partner','Aid, Grant & Donation')"><div class="bill-icon">❤️</div><div class="bill-label">Aid, Grant &amp; Donation</div></div>
+          <div class="bill-item" onclick="openBillPay('Faith Ministry / Organization','Religion')"><div class="bill-icon">⛪</div><div class="bill-label">Religion</div></div>
+          <div class="bill-item" onclick="openBillPay('LIRS / FIRS / Government','Government Payments')"><div class="bill-icon">🏛️</div><div class="bill-label">Government Payments</div></div>
+          <div class="bill-item" onclick="openBillPay('Embassy Visa Handling','Embassies')"><div class="bill-icon">🛂</div><div class="bill-label">Embassies</div></div>
+          <div class="bill-item" onclick="openBillPay('Netflix / Prime / Others','TV (Others)')"><div class="bill-icon">🍿</div><div class="bill-label">TV (Others)</div></div>
+          <div class="bill-item" onclick="openBillPay('Retailer Checkout','Online Shopping')"><div class="bill-icon">🛒</div><div class="bill-label">Online Shopping</div></div>
+          <div class="bill-item" onclick="openBillPay('POS Merchant Settlement','Merchant Payments')"><div class="bill-icon">🏪</div><div class="bill-label">Merchant Payments</div></div>
+          <div class="bill-item" onclick="openBillPay('Blackberry Services','Blackberry')"><div class="bill-icon">🍇</div><div class="bill-label">Blackberry</div></div>
+          <div class="bill-item" onclick="openBillPay('Paychoice Platform','Paychoice')"><div class="bill-icon">💳</div><div class="bill-label">Paychoice</div></div>
+          <div class="bill-item" onclick="openBillPay('Local Retail / Franchise','Commerce Retail Trade')"><div class="bill-icon">🏬</div><div class="bill-label">Commerce Retail Trade</div></div>
+          <div class="bill-item" onclick="openBillPay('Prepaid Card Topup','Prepaid Card Services')"><div class="bill-icon">🎟️</div><div class="bill-label">Prepaid Card Services</div></div>
+          <div class="bill-item" onclick="openBillPay('Global Roaming Topup','International Airtime')"><div class="bill-icon">🌍</div><div class="bill-label">International Airtime</div></div>
+          <div class="bill-item" onclick="openBillPay('Uber / Bolt / Railway','Transport')"><div class="bill-icon">🚗</div><div class="bill-label">Transport</div></div>
+          <div class="bill-item" onclick="openBillPay('Wakanow / Booking.com','Travel &amp; Hotel')"><div class="bill-icon">✈️</div><div class="bill-label">Travel &amp; Hotel</div></div>
+          <div class="bill-item" onclick="openBillPay('LASG Licence','TV Licence')"><div class="bill-icon">📻</div><div class="bill-label">TV Licence</div></div>
+          <div class="bill-item" onclick="openBillPay('LCC Tollgate','Toll')"><div class="bill-icon">🛣️</div><div class="bill-label">Toll</div></div>
         </div>
 
         <p class="section-title">Scheduled Bills</p>
