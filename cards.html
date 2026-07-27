@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Bank - My Cards</title>
+  <meta name="description" content="Manage your debit and virtual cards with Antigravity Bank.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="phone-wrapper">
+    <div class="phone-screen">
+
+      <div class="status-bar" id="app-status-bar">
+        <span id="status-time">09:41</span>
+        <div class="status-icons">
+          <i class="fa-solid fa-signal"></i>
+          <i class="fa-solid fa-wifi"></i>
+          <i class="fa-solid fa-battery-three-quarters"></i>
+        </div>
+      </div>
+
+      <div class="screen-container">
+        <div id="screen-cards" class="screen active">
+
+          <div class="sub-screen-header">
+            <a href="home.html" class="back-btn" style="text-decoration:none;"><i class="fa-solid fa-arrow-left"></i></a>
+            <h2 style="font-size:18px;">My Cards</h2>
+          </div>
+
+          <!-- Debit Card -->
+          <div class="virtual-card card-gradient-1">
+            <div>
+              <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Debit Card</div>
+              <div class="card-chip"><i class="fa-solid fa-microchip" style="font-size:18px;"></i></div>
+            </div>
+            <div>
+              <div class="card-number">•••• •••• •••• 4821</div>
+              <div class="card-info-row" style="margin-top:12px;">
+                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-expiry">Expires<strong>08/28</strong></div>
+                <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-mastercard"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+          </div>
+
+          <!-- Virtual Card -->
+          <div class="virtual-card card-gradient-2" style="margin-top:18px;">
+            <div>
+              <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Virtual Card</div>
+              <div class="card-chip"><i class="fa-solid fa-microchip" style="font-size:18px;"></i></div>
+            </div>
+            <div>
+              <div class="card-number">•••• •••• •••• 9034</div>
+              <div class="card-info-row" style="margin-top:12px;">
+                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-expiry">Expires<strong>03/27</strong></div>
+                <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-visa"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+          </div>
+
+          <button class="btn btn-secondary" style="margin-top:18px;border-radius:14px;"><i class="fa-solid fa-plus"></i> Add New Card</button>
+
+        </div>
+      </div><!-- /screen-container -->
+
+      <!-- Bottom Nav -->
+      <nav class="bottom-nav">
+        <a href="home.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-house" style="font-size:20px;"></i><span>Home</span>
+        </a>
+        <a href="history.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-clock-rotate-left" style="font-size:20px;"></i><span>History</span>
+        </a>
+        <a href="transfer.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;"></i><span>Transfer</span>
+        </a>
+        <a href="cards.html" class="nav-item active" style="text-decoration:none;">
+          <i class="fa-solid fa-credit-card" style="font-size:20px;"></i><span>Cards</span>
+        </a>
+        <a href="profile.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-regular fa-circle-user" style="font-size:20px;"></i><span>Profile</span>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+  <script>
+    function updateClock() {
+      const el = document.getElementById('status-time');
+      const now = new Date();
+      el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+    updateClock(); setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

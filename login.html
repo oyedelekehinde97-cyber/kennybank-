@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Bank – Log In or Sign Up</title>
+  <meta name="description" content="Securely access your Antigravity Bank account or create a new one.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .auth-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: linear-gradient(160deg, var(--primary-blue) 0%, hsl(216, 85%, 22%) 50%, var(--surface-off-white) 100%);
+    }
+
+    .form-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 460px;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .biometric-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1.5px solid #cbd5e1;
+      background: var(--bg-white);
+      color: var(--primary-blue);
+      font-size: 26px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .biometric-btn:hover {
+      background: var(--primary-blue-light);
+      border-color: var(--primary-blue);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; animation: fadeIn 0.3s ease; }
+  </style>
+</head>
+<body class="auth-page">
+
+  <!-- Minimal Nav -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="index.html" class="site-nav-brand">
+        <span class="brand-icon"><i class="fa-solid fa-building-columns"></i></span>
+        Antigravity Bank
+      </a>
+    </div>
+  </nav>
+
+  <main class="auth-body">
+
+    <!-- LOGIN FORM -->
+    <div id="screen-login" class="form-card screen active">
+      <div class="form-header">
+        <i class="fa-solid fa-building-columns"></i>
+        <h2 class="text-navy">Welcome Back</h2>
+        <p class="text-gray">Securely access your wealth</p>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="login-email">Email or Username</label>
+        <input id="login-email" type="text" class="input-field" placeholder="name@example.com" value="user@antigravity.com">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="login-password">Password</label>
+        <input id="login-password" type="password" class="input-field" placeholder="Enter password" value="••••••••••••">
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-secondary);cursor:pointer;">
+          <input type="checkbox" checked style="accent-color:var(--primary-blue);"> Remember me
+        </label>
+        <a href="#" class="text-navy" style="font-size:14px;font-weight:500;text-decoration:none;">Forgot Password?</a>
+      </div>
+
+      <a href="dashboard.html" class="btn btn-primary btn-full" id="login-submit" style="margin-bottom:16px;">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Log In
+      </a>
+
+      <div class="divider">Or log in with</div>
+
+      <div style="text-align:center;margin-bottom:24px;">
+        <a href="dashboard.html" class="biometric-btn" id="biometric-login" title="Biometric login">
+          <i class="fa-solid fa-fingerprint"></i>
+        </a>
+      </div>
+
+      <p style="text-align:center;font-size:14px;color:var(--text-secondary);">
+        Don't have an account?
+        <a href="#" onclick="toggleScreen()" class="text-navy" style="font-weight:600;text-decoration:none;"> Sign Up</a>
+      </p>
+    </div>
+
+    <!-- SIGN UP FORM -->
+    <div id="screen-signup" class="form-card screen">
+      <div class="form-header">
+        <i class="fa-solid fa-user-plus" style="color:var(--accent-green);"></i>
+        <h2 class="text-navy">Create Account</h2>
+        <p class="text-gray">Start your financial journey today</p>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="signup-name">Full Name</label>
+        <input id="signup-name" type="text" class="input-field" placeholder="John Doe">
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="signup-email">Email Address</label>
+        <input id="signup-email" type="email" class="input-field" placeholder="name@example.com">
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="signup-phone">Phone Number</label>
+        <input id="signup-phone" type="tel" class="input-field" placeholder="+234 800 000 0000">
+      </div>
+      <div class="input-group">
+        <label class="input-label" for="signup-password">Password</label>
+        <input id="signup-password" type="password" class="input-field" placeholder="Choose a secure password">
+      </div>
+
+      <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;font-size:13px;color:var(--text-secondary);line-height:1.5;cursor:pointer;">
+        <input type="checkbox" style="accent-color:var(--primary-blue);margin-top:3px;flex-shrink:0;">
+        <span>I agree to the <a href="#" class="text-navy" style="text-decoration:none;font-weight:600;">Terms of Service</a> and <a href="#" class="text-navy" style="text-decoration:none;font-weight:600;">Privacy Policy</a> regarding financial regulations.</span>
+      </label>
+
+      <a href="dashboard.html" class="btn btn-primary btn-full" id="signup-submit" style="margin-bottom:16px;">
+        <i class="fa-solid fa-check"></i> Create Account
+      </a>
+
+      <p style="text-align:center;font-size:14px;color:var(--text-secondary);">
+        Already have an account?
+        <a href="#" onclick="toggleScreen()" class="text-navy" style="font-weight:600;text-decoration:none;"> Log In</a>
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleScreen() {
+      const login  = document.getElementById('screen-login');
+      const signup = document.getElementById('screen-signup');
+      if (login.classList.contains('active')) {
+        login.classList.remove('active');
+        signup.classList.add('active');
+      } else {
+        signup.classList.remove('active');
+        login.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

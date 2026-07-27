@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Bank - Transaction History</title>
+  <meta name="description" content="View your full transaction history with Antigravity Bank.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="phone-wrapper">
+    <div class="phone-screen">
+
+      <div class="status-bar" id="app-status-bar">
+        <span id="status-time">09:41</span>
+        <div class="status-icons">
+          <i class="fa-solid fa-signal"></i>
+          <i class="fa-solid fa-wifi"></i>
+          <i class="fa-solid fa-battery-three-quarters"></i>
+        </div>
+      </div>
+
+      <div class="screen-container">
+        <div id="screen-history" class="screen active">
+
+          <div class="sub-screen-header">
+            <a href="home.html" class="back-btn" style="text-decoration:none;"><i class="fa-solid fa-arrow-left"></i></a>
+            <h2 style="font-size:18px;">Transaction History</h2>
+          </div>
+
+          <div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search transactions…"></div>
+          <div style="display:flex;gap:8px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px;scrollbar-width:none;">
+            <button style="background:var(--primary-blue);color:#fff;border:none;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">All</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Credits</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Debits</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Bills</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">Transfers</button>
+          </div>
+
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">July 2026</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="transaction-item">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div>
+                <div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit Card · Jul 12 · 14:32</div></div>
+              </div>
+              <div><div class="tx-amount-debit">–₦8,400</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+            <div class="transaction-item">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div>
+                <div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jul 10 · 08:00</div></div>
+              </div>
+              <div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+            <div class="transaction-item">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div>
+                <div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9 · 11:20</div></div>
+              </div>
+              <div><div class="tx-amount-debit">–₦15,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+            <div class="transaction-item">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📲</div>
+                <div><div style="font-size:14px;font-weight:600;">MTN Airtime</div><div class="tx-meta">Recharge · Jul 8 · 09:05</div></div>
+              </div>
+              <div><div class="tx-amount-debit">–₦2,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+            <div class="transaction-item" style="border:none;">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💳</div>
+                <div><div style="font-size:14px;font-weight:600;">Transfer from Ada Joy</div><div class="tx-meta">Credit · Jul 7 · 16:48</div></div>
+              </div>
+              <div><div class="tx-amount-credit">+₦50,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+          </div>
+
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin:12px 0 8px;">June 2026</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="transaction-item">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🏠</div>
+                <div><div style="font-size:14px;font-weight:600;">Rent Payment</div><div class="tx-meta">Transfer · Jun 28 · 09:00</div></div>
+              </div>
+              <div><div class="tx-amount-debit">–₦250,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+            <div class="transaction-item" style="border:none;">
+              <div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div>
+                <div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jun 10 · 08:00</div></div>
+              </div>
+              <div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /screen-container -->
+
+      <!-- Bottom Nav -->
+      <nav class="bottom-nav">
+        <a href="home.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-house" style="font-size:20px;"></i><span>Home</span>
+        </a>
+        <a href="history.html" class="nav-item active" style="text-decoration:none;">
+          <i class="fa-solid fa-clock-rotate-left" style="font-size:20px;"></i><span>History</span>
+        </a>
+        <a href="transfer.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;"></i><span>Transfer</span>
+        </a>
+        <a href="cards.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-solid fa-credit-card" style="font-size:20px;"></i><span>Cards</span>
+        </a>
+        <a href="profile.html" class="nav-item" style="text-decoration:none;">
+          <i class="fa-regular fa-circle-user" style="font-size:20px;"></i><span>Profile</span>
+        </a>
+      </nav>
+
+    </div>
+  </div>
+  <script>
+    function updateClock() {
+      const el = document.getElementById('status-time');
+      const now = new Date();
+      el.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+    updateClock(); setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

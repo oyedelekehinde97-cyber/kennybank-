@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Bank – Dashboard</title>
+  <meta name="description" content="Antigravity Bank – manage your accounts, transfer money, pay bills, buy airtime and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* ===== DASHBOARD LAYOUT ===== */
+    .dash-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .dash-sidebar {
+      width: 240px;
+      background: var(--bg-white);
+      border-right: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 300;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 20px 16px;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--primary-blue);
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sidebar-brand .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--primary-blue);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition-smooth);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar-item:hover {
+      background: var(--surface-off-white);
+      color: var(--text-primary);
+    }
+
+    .sidebar-item.active {
+      background: var(--primary-blue-light);
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+
+    .sidebar-item i {
+      width: 20px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: #f1f5f9;
+      margin: 8px 12px;
+    }
+
+    .sidebar-logout {
+      padding: 16px 12px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .sidebar-logout button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      width: 100%;
+      border: none;
+      background: #fef2f2;
+      color: #991b1b;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .sidebar-logout button:hover {
+      background: #fee2e2;
+    }
+
+    /* Main content area */
+    .dash-main {
+      margin-left: 240px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top bar */
+    .dash-topbar {
+      background: var(--bg-white);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dash-topbar-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .dash-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .notif-btn {
+      position: relative;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--surface-off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e2e8f0;
+      transition: var(--transition-smooth);
+    }
+
+    .notif-btn:hover {
+      background: var(--primary-blue-light);
+    }
+
+    .notif-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 16px;
+      height: 16px;
+      background: #ef4444;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px 6px 6px;
+      background: var(--surface-off-white);
+      border-radius: 99px;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+    }
+
+    /* Page content */
+    .dash-content {
+      padding: 28px 32px 48px;
+      flex: 1;
+    }
+
+    /* Screens */
+    .screen { display: none; animation: fadeIn 0.3s ease-out; }
+    .screen.active { display: block; }
+
+    /* ===== COMPONENT STYLES ===== */
+    .notif-badge-pill {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 16px;
+      height: 16px;
+      background: #ef4444;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+    }
+
+    .balance-card {
+      background: linear-gradient(135deg, hsl(216,85%,28%) 0%, hsl(216,85%,44%) 60%, hsl(194,100%,38%) 100%);
+      border-radius: 24px;
+      padding: 28px 32px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 28px rgba(15,82,186,.35);
+    }
+
+    .balance-card::before {
+      content: '';
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: rgba(255,255,255,.07);
+      border-radius: 50%;
+      top: -80px;
+      right: -60px;
+    }
+
+    .balance-card::after {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,.05);
+      border-radius: 50%;
+      bottom: -60px;
+      left: -40px;
+    }
+
+    .balance-label { font-size: 13px; opacity: .75; margin-bottom: 4px; }
+    .balance-amount { font-family: var(--font-display); font-size: 40px; font-weight: 800; letter-spacing: -2px; }
+    .balance-row { display: flex; gap: 40px; margin-top: 24px; }
+    .balance-stat { font-size: 12px; opacity: .8; }
+    .balance-stat strong { display: block; font-size: 15px; font-weight: 700; opacity: 1; }
+    .balance-eye { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; opacity: .8; }
+    .card-chip { font-size: 22px; color: rgba(255,255,255,.6); margin-bottom: 6px; }
+
+    .section-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+    .goal-bar-bg { height: 6px; background: #e2e8f0; border-radius: 99px; margin-top: 8px; }
+    .goal-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent-green), #00c896); }
+    .tx-amount-debit { color: #ef4444; font-weight: 700; }
+    .tx-amount-credit { color: var(--accent-green); font-weight: 700; }
+    .tx-meta { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+    .screen { animation: slideUp .3s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    .input-icon-wrap { position: relative; }
+    .input-icon-wrap .input-field { padding-left: 44px; }
+    .input-icon-wrap .field-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 16px; }
+
+    .amount-display { text-align: center; font-family: var(--font-display); font-size: 46px; font-weight: 800; color: var(--text-primary); letter-spacing: -2px; padding: 16px 0; }
+    .numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; max-width: 360px; }
+    .numpad-key { height: 56px; border-radius: 12px; background: var(--bg-white); border: none; cursor: pointer; font-size: 20px; font-weight: 600; font-family: var(--font-display); color: var(--text-primary); box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .numpad-key:active, .numpad-key:hover { background: var(--primary-blue-light); color: var(--primary-blue); transform: scale(.97); }
+
+    .contacts-row { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+    .contacts-row::-webkit-scrollbar { display: none; }
+    .contact-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 60px; cursor: pointer; }
+    .contact-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: #fff; box-shadow: var(--shadow-sm); }
+    .contact-name { font-size: 11px; color: var(--text-secondary); text-align: center; }
+
+    .bill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 12px; margin-bottom: 20px; }
+    .bill-item { background: var(--bg-white); border-radius: 16px; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .bill-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .bill-icon { font-size: 26px; }
+    .bill-label { font-size: 11px; font-weight: 600; color: var(--text-primary); text-align: center; }
+
+    .virtual-card { border-radius: 20px; padding: 24px 20px; color: #fff; position: relative; overflow: hidden; margin-bottom: 14px; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 24px rgba(0,0,0,.22); max-width: 380px; }
+    .card-gradient-1 { background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); }
+    .card-gradient-2 { background: linear-gradient(135deg,#0d4f3c,#00704a,#00c896); }
+    .card-number { font-size: 15px; letter-spacing: 3px; opacity: .85; font-weight: 600; }
+    .card-info-row { display: flex; justify-content: space-between; align-items: flex-end; }
+    .card-holder { font-size: 12px; opacity: .7; text-transform: uppercase; letter-spacing: 1px; }
+    .card-holder strong { display: block; font-size: 14px; opacity: 1; }
+    .card-expiry { font-size: 12px; opacity: .7; text-align: right; }
+    .card-expiry strong { display: block; font-size: 14px; opacity: 1; }
+    .card-controls { display: flex; gap: 10px; margin-top: 10px; max-width: 380px; }
+    .card-ctrl-btn { flex: 1; height: 44px; border-radius: 10px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition-smooth); }
+    .card-ctrl-btn.freeze { background: #eff6ff; color: #1d4ed8; }
+    .card-ctrl-btn.limits { background: #f0fdf4; color: #166534; }
+    .card-ctrl-btn.details { background: #faf5ff; color: #6b21a8; }
+    .card-ctrl-btn.block { background: #fef2f2; color: #991b1b; }
+    .card-ctrl-btn:hover { opacity: .85; transform: scale(.98); }
+
+    .notif-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #f1f5f9; }
+    .notif-icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-blue); margin-top: 6px; flex-shrink: 0; }
+    .notif-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .notif-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.4; }
+    .notif-time { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    .profile-hero { background: linear-gradient(135deg, hsl(216,85%,28%), hsl(216,85%,44%)); border-radius: 20px; padding: 28px; color: #fff; text-align: center; margin-bottom: 20px; }
+    .profile-avatar-lg { width: 80px; height: 80px; border-radius: 50%; background: var(--accent-green); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 800; border: 3px solid rgba(255,255,255,.6); margin-bottom: 12px; }
+    .profile-name { font-size: 22px; font-weight: 700; }
+    .profile-id { font-size: 12px; opacity: .7; margin-top: 4px; }
+
+    .menu-section { margin-bottom: 20px; }
+    .menu-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 8px; padding: 0 4px; }
+    .menu-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg-white); border-radius: 14px; margin-bottom: 6px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .menu-item:hover { box-shadow: var(--shadow-md); transform: translateX(3px); }
+    .menu-item-left { display: flex; align-items: center; gap: 14px; }
+    .menu-item-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+    .menu-item-label { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .menu-item-sub { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+    .menu-chevron { color: #cbd5e1; font-size: 14px; }
+
+    .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle-switch input { display: none; }
+    .toggle-track { position: absolute; inset: 0; background: #e2e8f0; border-radius: 99px; cursor: pointer; transition: background .25s; }
+    .toggle-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .25s; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+    .toggle-switch input:checked + .toggle-track { background: var(--primary-blue); }
+    .toggle-switch input:checked + .toggle-track::after { transform: translateX(20px); }
+
+    .faq-item { margin-bottom: 8px; }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; background: var(--bg-white); padding: 14px 16px; border-radius: 14px; cursor: pointer; box-shadow: var(--shadow-sm); font-size: 14px; font-weight: 600; transition: var(--transition-smooth); }
+    .faq-answer { display: none; background: var(--primary-blue-light); border-radius: 0 0 14px 14px; padding: 12px 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-top: -4px; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question { border-radius: 14px 14px 0 0; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform .25s; }
+
+    .support-btn { display: flex; align-items: center; gap: 14px; background: var(--bg-white); padding: 16px; border-radius: 16px; cursor: pointer; margin-bottom: 10px; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .support-btn:hover { box-shadow: var(--shadow-md); }
+    .support-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+
+    .network-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .network-item { background: var(--bg-white); border-radius: 12px; padding: 12px 6px; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: var(--transition-smooth); }
+    .network-item.selected { border-color: var(--primary-blue); background: var(--primary-blue-light); }
+    .network-item:hover { border-color: var(--primary-blue); }
+    .network-logo { font-size: 22px; }
+    .network-name { font-size: 11px; font-weight: 600; color: var(--text-primary); }
+
+    .data-plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+    .data-plan { background: var(--bg-white); border-radius: 14px; padding: 14px; cursor: pointer; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: var(--transition-smooth); }
+    .data-plan:hover { border-color: var(--primary-blue); }
+    .data-plan.selected { border-color: var(--primary-blue); background: var(--primary-blue-light); }
+    .data-plan-size { font-size: 18px; font-weight: 800; font-family: var(--font-display); color: var(--text-primary); }
+    .data-plan-validity { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+    .data-plan-price { font-size: 15px; font-weight: 700; color: var(--primary-blue); margin-top: 8px; }
+
+    .account-number-box { background: var(--primary-blue-light); border-radius: 14px; padding: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .acct-num-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .acct-num-value { font-size: 22px; font-weight: 800; font-family: var(--font-display); letter-spacing: 3px; color: var(--text-primary); }
+    .copy-btn { background: var(--primary-blue); color: #fff; border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 600; transition: var(--transition-smooth); }
+    .copy-btn:hover { background: hsl(216,85%,32%); }
+
+    .detail-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid #f1f5f9; }
+    .detail-label { font-size: 13px; color: var(--text-secondary); }
+    .detail-value { font-size: 14px; font-weight: 600; color: var(--text-primary); text-align: right; }
+
+    .sub-screen-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .back-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-white); border: none; cursor: pointer; font-size: 16px; color: var(--text-primary); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); flex-shrink: 0; }
+    .back-btn:hover { background: var(--primary-blue-light); color: var(--primary-blue); }
+
+    .tab-bar { display: flex; background: #e2e8f0; border-radius: 10px; padding: 4px; margin-bottom: 20px; max-width: 340px; }
+    .tab-btn { flex: 1; border: none; background: transparent; padding: 8px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: var(--transition-smooth); }
+    .tab-btn.active { background: var(--bg-white); color: var(--primary-blue); box-shadow: var(--shadow-sm); }
+
+    .chip { display: inline-flex; align-items: center; gap: 6px; background: var(--primary-blue-light); color: var(--primary-blue); border-radius: 99px; padding: 5px 12px; font-size: 12px; font-weight: 600; }
+
+    .search-bar { display: flex; align-items: center; gap: 10px; background: var(--bg-white); border-radius: 12px; padding: 10px 14px; box-shadow: var(--shadow-sm); margin-bottom: 16px; max-width: 480px; }
+    .search-bar input { border: none; outline: none; flex: 1; font-size: 14px; background: transparent; }
+    .search-bar i { color: var(--text-secondary); }
+
+    .mini-chart { display: flex; align-items: flex-end; gap: 5px; height: 60px; }
+    .chart-bar { flex: 1; border-radius: 4px 4px 0 0; background: var(--primary-blue-light); min-width: 0; }
+    .chart-bar.highlight { background: var(--primary-blue); }
+
+    /* Receipt overlay */
+    .receipt-overlay { display: none; position: fixed; inset: 0; background: rgba(10,25,47,.55); z-index: 600; justify-content: center; align-items: center; padding: 24px; }
+    .receipt-overlay.active { display: flex; }
+    .receipt-box { background: var(--bg-white); border-radius: 24px; padding: 36px 28px; width: 100%; max-width: 440px; text-align: center; animation: popIn .4s cubic-bezier(.34,1.56,.64,1); max-height: 90vh; overflow-y: auto; }
+    .success-badge { width: 80px; height: 80px; background: var(--accent-green-light); color: var(--accent-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 20px; animation: popIn .45s cubic-bezier(.34,1.56,.64,1) both; }
+    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    /* Dashboard home grid */
+    .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .home-grid-left { display: flex; flex-direction: column; }
+    .home-grid-right { display: flex; flex-direction: column; }
+
+    /* Mobile bottom nav (hidden on desktop) */
+    .mobile-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-white);
+      border-top: 1px solid #e2e8f0;
+      height: 68px;
+      padding: 0 8px;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 400;
+      box-shadow: 0 -4px 12px rgba(10,25,47,.06);
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: var(--transition-smooth);
+      border: none;
+      background: none;
+    }
+
+    .mobile-nav-item.active { color: var(--primary-blue); }
+    .mobile-nav-item i { font-size: 20px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .dash-sidebar { display: none; }
+      .dash-main { margin-left: 0; }
+      .dash-content { padding: 20px 16px 90px; }
+      .home-grid { grid-template-columns: 1fr; }
+      .data-plan-grid { grid-template-columns: repeat(2, 1fr); }
+      .mobile-bottom-nav { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .balance-amount { font-size: 30px; }
+      .balance-row { gap: 20px; }
+      .numpad { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="dash-sidebar">
+    <a href="index.html" class="sidebar-brand">
+      <span class="brand-icon"><i class="fa-solid fa-building-columns"></i></span>
+      Antigravity
+    </a>
+    <nav class="sidebar-nav">
+      <button class="sidebar-item active" id="nav-home" onclick="navigate('home')">
+        <i class="fa-solid fa-house"></i> Home
+      </button>
+      <button class="sidebar-item" id="nav-history" onclick="navigate('history')">
+        <i class="fa-solid fa-clock-rotate-left"></i> History
+      </button>
+      <button class="sidebar-item" id="nav-transfer" onclick="navigate('transfer')">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer
+      </button>
+      <button class="sidebar-item" id="nav-bills" onclick="navigate('bills')">
+        <i class="fa-solid fa-file-invoice-dollar"></i> Pay Bills
+      </button>
+      <button class="sidebar-item" id="nav-airtime" onclick="navigate('airtime')">
+        <i class="fa-solid fa-sim-card"></i> Airtime & Data
+      </button>
+      <button class="sidebar-item" id="nav-cards" onclick="navigate('cards')">
+        <i class="fa-solid fa-credit-card"></i> Cards
+      </button>
+      <div class="sidebar-divider"></div>
+      <button class="sidebar-item" id="nav-notifications" onclick="navigate('notifications')">
+        <i class="fa-regular fa-bell"></i> Notifications
+      </button>
+      <button class="sidebar-item" id="nav-profile" onclick="navigate('profile')">
+        <i class="fa-regular fa-circle-user"></i> Profile
+      </button>
+      <button class="sidebar-item" id="nav-settings" onclick="navigate('settings')">
+        <i class="fa-solid fa-gear"></i> Settings
+      </button>
+    </nav>
+    <div class="sidebar-logout">
+      <button onclick="window.location.href='login.html'">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="dash-main">
+
+    <!-- Top Bar -->
+    <header class="dash-topbar">
+      <div class="dash-topbar-title" id="topbar-title">Home</div>
+      <div class="dash-topbar-right">
+        <div class="notif-btn" onclick="navigate('notifications')" title="Notifications">
+          <i class="fa-regular fa-bell" style="font-size:18px;color:var(--text-primary);"></i>
+          <span class="notif-badge">3</span>
+        </div>
+        <div class="user-pill">
+          <div class="avatar">Ok</div>
+          <span style="font-size:13px;font-weight:600;">Oyedele K.</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="dash-content">
+
+      <!-- ========== HOME ========== -->
+      <div id="screen-home" class="screen active">
+        <div class="home-grid">
+          <div class="home-grid-left">
+            <div class="balance-card">
+              <div class="card-chip"><i class="fa-solid fa-microchip"></i></div>
+              <div class="balance-label">Total Balance</div>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div class="balance-amount" id="home-balance">₦ 2,847,500.00</div>
+                <button class="balance-eye" id="toggle-balance" onclick="toggleBalance()"><i class="fa-regular fa-eye"></i></button>
+              </div>
+              <div class="balance-row">
+                <div class="balance-stat"><span>Income</span><strong><i class="fa-solid fa-arrow-down" style="color:#4ade80;font-size:11px;"></i> ₦520K</strong></div>
+                <div class="balance-stat"><span>Expenses</span><strong><i class="fa-solid fa-arrow-up" style="color:#f87171;font-size:11px;"></i> ₦183K</strong></div>
+                <div class="balance-stat"><span>Savings</span><strong style="color:#4ade80;">₦1.2M</strong></div>
+              </div>
+            </div>
+
+            <p class="section-title">Quick Actions</p>
+            <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+              <div class="quick-action-btn" onclick="navigate('transfer')">
+                <div class="quick-action-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                <span>Transfer</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('bills')">
+                <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <span>Pay Bills</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('airtime')">
+                <div class="quick-action-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-sim-card"></i></div>
+                <span>Airtime</span>
+              </div>
+              <div class="quick-action-btn" onclick="navigate('cards')">
+                <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-credit-card"></i></div>
+                <span>Cards</span>
+              </div>
+            </div>
+
+            <div class="card" style="padding:0 16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-top:16px;">
+                <p class="section-title" style="margin:0;">Recent Transactions</p>
+                <span onclick="navigate('history')" style="font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">See all</span>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-left">
+                  <div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div>
+                  <div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit · Jul 12</div></div>
+                </div>
+                <div class="tx-amount-debit">–₦8,400</div>
+              </div>
+              <div class="transaction-item">
+                <div class="transaction-left">
+                  <div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div>
+                  <div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Credit · Jul 10</div></div>
+                </div>
+                <div class="tx-amount-credit">+₦520,000</div>
+              </div>
+              <div class="transaction-item" style="border:none;">
+                <div class="transaction-left">
+                  <div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div>
+                  <div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9</div></div>
+                </div>
+                <div class="tx-amount-debit">–₦15,000</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-grid-right">
+            <div class="card" style="margin-bottom:24px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <p class="section-title" style="margin:0;">Spending Overview</p>
+                <span class="chip">July 2026</span>
+              </div>
+              <div class="mini-chart">
+                <div class="chart-bar" style="height:45%;"></div>
+                <div class="chart-bar" style="height:65%;"></div>
+                <div class="chart-bar" style="height:30%;"></div>
+                <div class="chart-bar highlight" style="height:90%;"></div>
+                <div class="chart-bar" style="height:50%;"></div>
+                <div class="chart-bar" style="height:70%;"></div>
+                <div class="chart-bar" style="height:40%;"></div>
+                <div class="chart-bar" style="height:60%;"></div>
+                <div class="chart-bar" style="height:25%;"></div>
+                <div class="chart-bar" style="height:80%;"></div>
+                <div class="chart-bar" style="height:35%;"></div>
+                <div class="chart-bar" style="height:55%;"></div>
+                <div class="chart-bar highlight" style="height:95%;"></div>
+              </div>
+            </div>
+
+            <p class="section-title">Savings Goals</p>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:700;">🏠 New Apartment</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">₦340,000 of ₦1,000,000</div>
+                </div>
+                <span style="font-size:20px;font-weight:800;color:var(--accent-green);">34%</span>
+              </div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill" style="width:34%;"></div></div>
+            </div>
+
+            <div class="card" style="margin-top:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:700;">✈️ Travel Fund</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">₦120,000 of ₦500,000</div>
+                </div>
+                <span style="font-size:20px;font-weight:800;color:var(--primary-blue);">24%</span>
+              </div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill" style="width:24%;background:linear-gradient(90deg,var(--primary-blue),hsl(194,100%,38%));"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== ACCOUNT DETAILS ========== -->
+      <div id="screen-account" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Account Details</h2>
+        </div>
+        <div style="max-width:560px;">
+          <div class="balance-card" style="margin-bottom:20px;">
+            <div class="balance-label">Main Account · Savings</div>
+            <div class="balance-amount">₦ 2,847,500.00</div>
+            <div style="font-size:12px;opacity:.7;margin-top:8px;">Antigravity Bank · NGN Account</div>
+          </div>
+          <div class="account-number-box">
+            <div>
+              <div class="acct-num-label">Account Number</div>
+              <div class="acct-num-value">0123 456 789</div>
+            </div>
+            <button class="copy-btn" id="copy-btn-acct" onclick="copyAcctNum()"><i class="fa-regular fa-copy"></i> Copy</button>
+          </div>
+          <div class="card" style="padding:0 16px;">
+            <div class="detail-row"><span class="detail-label">Account Name</span><span class="detail-value">James Emeka Doe</span></div>
+            <div class="detail-row"><span class="detail-label">Bank Name</span><span class="detail-value">Antigravity Bank</span></div>
+            <div class="detail-row"><span class="detail-label">Account Type</span><span class="detail-value">Savings Account</span></div>
+            <div class="detail-row"><span class="detail-label">BVN</span><span class="detail-value">••••••••123</span></div>
+            <div class="detail-row"><span class="detail-label">Currency</span><span class="detail-value">Nigerian Naira (NGN)</span></div>
+            <div class="detail-row"><span class="detail-label">NIN</span><span class="detail-value">••••••••456</span></div>
+            <div class="detail-row" style="border:none;"><span class="detail-label">Date Opened</span><span class="detail-value">March 15, 2022</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
+            <button class="btn btn-secondary" style="height:46px;font-size:14px;border-radius:12px;"><i class="fa-solid fa-share-nodes"></i> Share</button>
+            <button class="btn btn-primary" style="height:46px;font-size:14px;border-radius:12px;"><i class="fa-solid fa-download"></i> Statement</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TRANSFER ========== -->
+      <div id="screen-transfer" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Transfer Money</h2>
+        </div>
+        <div style="max-width:520px;">
+          <p class="section-title">Recent Contacts</p>
+          <div class="contacts-row" style="margin-bottom:24px;">
+            <div class="contact-item" onclick="prefillContact('0123456789','Antigravity Bank')">
+              <div class="contact-avatar" style="background:#3b82f6;">AJ</div><span class="contact-name">Ada Joy</span>
+            </div>
+            <div class="contact-item" onclick="prefillContact('0987654321','GTBank')">
+              <div class="contact-avatar" style="background:#10b981;">MO</div><span class="contact-name">Mike O.</span>
+            </div>
+            <div class="contact-item" onclick="prefillContact('1122334455','Zenith Bank')">
+              <div class="contact-avatar" style="background:#f59e0b;">KF</div><span class="contact-name">Kemi F.</span>
+            </div>
+            <div class="contact-item" onclick="prefillContact('5566778899','First Bank')">
+              <div class="contact-avatar" style="background:#8b5cf6;">TK</div><span class="contact-name">Tunde K.</span>
+            </div>
+            <div class="contact-item" onclick="prefillContact('9988776655','Access Bank')">
+              <div class="contact-avatar" style="background:#ef4444;">BI</div><span class="contact-name">Bisi I.</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar" style="background:#0d9488;">+</div><span class="contact-name">New</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Select Bank</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-building-columns field-icon"></i>
+              <select class="input-field" id="transfer-bank-select" style="padding-left:44px;cursor:pointer;appearance:none;" onchange="onTransferBankChange()">
+                <option>Antigravity Bank</option>
+                <option>First Bank</option>
+                <option>GTBank</option>
+                <option>Zenith Bank</option>
+                <option>Access Bank</option>
+                <option>UBA</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label">Account Number</label>
+            <div class="input-icon-wrap">
+              <i class="fa-solid fa-hashtag field-icon"></i>
+              <input type="tel" class="input-field" id="transfer-acct-input" placeholder="10-digit account number" maxlength="10" oninput="onTransferAcctInput(this.value)">
+            </div>
+          </div>
+
+          <div id="transfer-recipient-card" style="padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;background:var(--bg-white);border-radius:16px;box-shadow:var(--shadow-sm);opacity:0;transition:opacity .3s;pointer-events:none;">
+            <div class="avatar" id="tr-initials" style="flex-shrink:0;">AJ</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;" id="tr-name">Ada Joy Okafor</div>
+              <div style="font-size:12px;color:var(--text-secondary);" id="tr-bank">Antigravity Bank</div>
+            </div>
+            <i class="fa-solid fa-circle-check" style="margin-left:auto;color:var(--accent-green);font-size:20px;"></i>
+          </div>
+
+          <p class="section-title">Enter Amount</p>
+          <div class="amount-display" id="transfer-amount">&#8358; 0</div>
+          <div class="numpad">
+            <button class="numpad-key" onclick="numpadInput('1')">1</button>
+            <button class="numpad-key" onclick="numpadInput('2')">2</button>
+            <button class="numpad-key" onclick="numpadInput('3')">3</button>
+            <button class="numpad-key" onclick="numpadInput('4')">4</button>
+            <button class="numpad-key" onclick="numpadInput('5')">5</button>
+            <button class="numpad-key" onclick="numpadInput('6')">6</button>
+            <button class="numpad-key" onclick="numpadInput('7')">7</button>
+            <button class="numpad-key" onclick="numpadInput('8')">8</button>
+            <button class="numpad-key" onclick="numpadInput('9')">9</button>
+            <button class="numpad-key" onclick="numpadInput('.')">.</button>
+            <button class="numpad-key" onclick="numpadInput('0')">0</button>
+            <button class="numpad-key" onclick="numpadInput('del')"><i class="fa-solid fa-delete-left"></i></button>
+          </div>
+          <div class="input-group" style="margin-top:8px;">
+            <label class="input-label">Narration (optional)</label>
+            <input type="text" class="input-field" id="transfer-narration" placeholder="e.g. School fees payment">
+          </div>
+          <button class="btn btn-primary btn-full" onclick="doTransfer()"><i class="fa-solid fa-paper-plane"></i> Send Money</button>
+        </div>
+      </div>
+
+      <!-- ========== HISTORY ========== -->
+      <div id="screen-history" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Transaction History</h2>
+        </div>
+        <div style="max-width:640px;">
+          <div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search transactions…"></div>
+          <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+            <button style="background:var(--primary-blue);color:#fff;border:none;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;">All</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;">Credits</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;">Debits</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;">Bills</button>
+            <button style="background:var(--bg-white);color:var(--text-secondary);border:1.5px solid #e2e8f0;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;">Transfers</button>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">July 2026</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div><div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit Card · Jul 12 · 14:32</div></div></div><div><div class="tx-amount-debit">–₦8,400</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jul 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9 · 11:20</div></div></div><div><div class="tx-amount-debit">–₦15,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📲</div><div><div style="font-size:14px;font-weight:600;">MTN Airtime</div><div class="tx-meta">Recharge · Jul 8 · 09:05</div></div></div><div><div class="tx-amount-debit">–₦2,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💳</div><div><div style="font-size:14px;font-weight:600;">Transfer from Ada Joy</div><div class="tx-meta">Credit · Jul 7 · 16:48</div></div></div><div><div class="tx-amount-credit">+₦50,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;">June 2026</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🏠</div><div><div style="font-size:14px;font-weight:600;">Rent Payment</div><div class="tx-meta">Transfer · Jun 28 · 09:00</div></div></div><div><div class="tx-amount-debit">–₦250,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jun 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAY BILLS ========== -->
+      <div id="screen-bills" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Pay Bills</h2>
+        </div>
+        <p class="section-title">Bill Categories</p>
+        <div class="bill-grid">
+          <div class="bill-item" onclick="openBillPay('EKEDC / IKEDC','Electricity')"><div class="bill-icon">⚡</div><div class="bill-label">Electricity</div></div>
+          <div class="bill-item" onclick="openBillPay('DSTV / GoTV','Cable TV')"><div class="bill-icon">📺</div><div class="bill-label">Cable TV</div></div>
+          <div class="bill-item" onclick="openBillPay('LWC Water','Water Bill')"><div class="bill-icon">💧</div><div class="bill-label">Water</div></div>
+          <div class="bill-item" onclick="openBillPay('Spectranet','Internet')"><div class="bill-icon">📡</div><div class="bill-label">Internet</div></div>
+          <div class="bill-item" onclick="openBillPay('WAEC / JAMB','Education')"><div class="bill-icon">🎓</div><div class="bill-label">Education</div></div>
+          <div class="bill-item" onclick="openBillPay('Insurance Premium','Insurance')"><div class="bill-icon">🛡️</div><div class="bill-label">Insurance</div></div>
+          <div class="bill-item" onclick="openBillPay('Waste Management','Waste')"><div class="bill-icon">♻️</div><div class="bill-label">Waste</div></div>
+          <div class="bill-item" onclick="openBillPay('TV Licence','TV Licence')"><div class="bill-icon">📻</div><div class="bill-label">TV Licence</div></div>
+          <div class="bill-item" onclick="openBillPay('TollGate / e-Tag','Toll')"><div class="bill-icon">🚗</div><div class="bill-label">Toll</div></div>
+        </div>
+
+        <p class="section-title">Scheduled Bills</p>
+        <div class="card" style="padding:0 16px;max-width:560px;">
+          <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Auto-pay · Due Jul 15</div></div></div><span style="font-size:14px;font-weight:700;">₦15,000</span></div>
+          <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📺</div><div><div style="font-size:14px;font-weight:600;">DSTV Compact</div><div class="tx-meta">Auto-pay · Due Jul 20</div></div></div><span style="font-size:14px;font-weight:700;">₦9,900</span></div>
+        </div>
+        <div id="bill-panel" style="display:none;margin-top:8px;max-width:480px;">
+          <div style="background:var(--primary-blue-light);border-radius:14px;padding:14px 16px;margin-bottom:12px;">
+            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Paying for</div>
+            <div id="bill-title" style="font-size:16px;font-weight:700;color:var(--text-primary);"></div>
+          </div>
+          <div class="input-group"><label class="input-label">Customer ID / Meter No.</label><input type="text" class="input-field" placeholder="Enter meter / ID number"></div>
+          <div class="input-group"><label class="input-label">Amount (₦)</label><input type="number" class="input-field" placeholder="e.g. 5000"></div>
+          <button class="btn btn-success btn-full" onclick="showReceipt('bills')"><i class="fa-solid fa-circle-check"></i> Pay Bill Now</button>
+        </div>
+      </div>
+
+      <!-- ========== AIRTIME & DATA ========== -->
+      <div id="screen-airtime" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Airtime &amp; Data</h2>
+        </div>
+        <div style="max-width:520px;">
+          <div class="tab-bar">
+            <button class="tab-btn active" id="tab-airtime" onclick="switchAirtimeTab('airtime')">📲 Airtime</button>
+            <button class="tab-btn" id="tab-data" onclick="switchAirtimeTab('data')">📡 Data Bundle</button>
+          </div>
+          <div id="panel-airtime">
+            <p class="section-title">Select Network</p>
+            <div class="network-grid">
+              <div class="network-item selected" id="net-mtn" onclick="selectNet('mtn')"><div class="network-logo">🟡</div><div class="network-name">MTN</div></div>
+              <div class="network-item" id="net-airtel" onclick="selectNet('airtel')"><div class="network-logo">🔴</div><div class="network-name">Airtel</div></div>
+              <div class="network-item" id="net-glo" onclick="selectNet('glo')"><div class="network-logo">🟢</div><div class="network-name">Glo</div></div>
+              <div class="network-item" id="net-9mobile" onclick="selectNet('9mobile')"><div class="network-logo">🟤</div><div class="network-name">9mobile</div></div>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Phone Number</label>
+              <div class="input-icon-wrap"><i class="fa-solid fa-phone field-icon"></i><input type="tel" class="input-field" placeholder="08012345678" value="08012345678"></div>
+            </div>
+            <p class="section-title">Quick Amounts</p>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+              <button onclick="setAirtimeAmt(100)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦100</button>
+              <button onclick="setAirtimeAmt(200)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦200</button>
+              <button onclick="setAirtimeAmt(500)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦500</button>
+              <button onclick="setAirtimeAmt(1000)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦1,000</button>
+              <button onclick="setAirtimeAmt(2000)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦2,000</button>
+              <button onclick="setAirtimeAmt(5000)" style="height:44px;border-radius:10px;border:1.5px solid #e2e8f0;background:var(--bg-white);font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition-smooth);">₦5,000</button>
+            </div>
+            <div class="input-group"><label class="input-label">Or enter custom amount (₦)</label><input type="number" class="input-field" placeholder="e.g. 350" id="airtime-amount"></div>
+            <button class="btn btn-primary btn-full" onclick="showReceipt('airtime')"><i class="fa-solid fa-sim-card"></i> Buy Airtime</button>
+          </div>
+          <div id="panel-data" style="display:none;">
+            <p class="section-title">Select Network</p>
+            <div class="network-grid">
+              <div class="network-item selected" onclick="selectNet2(this)"><div class="network-logo">🟡</div><div class="network-name">MTN</div></div>
+              <div class="network-item" onclick="selectNet2(this)"><div class="network-logo">🔴</div><div class="network-name">Airtel</div></div>
+              <div class="network-item" onclick="selectNet2(this)"><div class="network-logo">🟢</div><div class="network-name">Glo</div></div>
+              <div class="network-item" onclick="selectNet2(this)"><div class="network-logo">🟤</div><div class="network-name">9mobile</div></div>
+            </div>
+            <div class="input-group">
+              <label class="input-label">Phone Number</label>
+              <div class="input-icon-wrap"><i class="fa-solid fa-phone field-icon"></i><input type="tel" class="input-field" placeholder="08012345678" value="08012345678"></div>
+            </div>
+            <p class="section-title">Select Data Plan</p>
+            <div class="data-plan-grid">
+              <div class="data-plan selected" onclick="selectPlan(this)"><div class="data-plan-size">1 GB</div><div class="data-plan-validity">1 Day</div><div class="data-plan-price">₦300</div></div>
+              <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">2 GB</div><div class="data-plan-validity">2 Days</div><div class="data-plan-price">₦500</div></div>
+              <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">5 GB</div><div class="data-plan-validity">7 Days</div><div class="data-plan-price">₦1,500</div></div>
+              <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">10 GB</div><div class="data-plan-validity">30 Days</div><div class="data-plan-price">₦3,000</div></div>
+              <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">20 GB</div><div class="data-plan-validity">30 Days</div><div class="data-plan-price">₦5,000</div></div>
+              <div class="data-plan" onclick="selectPlan(this)"><div class="data-plan-size">50 GB</div><div class="data-plan-validity">30 Days</div><div class="data-plan-price">₦10,000</div></div>
+            </div>
+            <button class="btn btn-success btn-full" onclick="showReceipt('data')"><i class="fa-solid fa-database"></i> Buy Data Bundle</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== CARDS ========== -->
+      <div id="screen-cards" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">My Cards</h2>
+        </div>
+        <div style="max-width:420px;">
+          <div class="virtual-card card-gradient-1">
+            <div>
+              <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Debit Card</div>
+              <div class="card-chip"><i class="fa-solid fa-microchip" style="font-size:18px;"></i></div>
+            </div>
+            <div>
+              <div class="card-number">•••• •••• •••• 4821</div>
+              <div class="card-info-row" style="margin-top:12px;">
+                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-expiry">Expires<strong>08/28</strong></div>
+                <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-mastercard"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+          </div>
+          <div class="virtual-card card-gradient-2" style="margin-top:24px;">
+            <div>
+              <div style="font-size:11px;opacity:.6;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Virtual Card</div>
+              <div class="card-chip"><i class="fa-solid fa-microchip" style="font-size:18px;"></i></div>
+            </div>
+            <div>
+              <div class="card-number">•••• •••• •••• 9034</div>
+              <div class="card-info-row" style="margin-top:12px;">
+                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-expiry">Expires<strong>03/27</strong></div>
+                <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-visa"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+          </div>
+          <button class="btn btn-secondary" style="margin-top:20px;border-radius:14px;"><i class="fa-solid fa-plus"></i> Add New Card</button>
+        </div>
+      </div>
+
+      <!-- ========== NOTIFICATIONS ========== -->
+      <div id="screen-notifications" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Notifications</h2>
+          <span onclick="markAllRead()" style="margin-left:auto;font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">Mark all read</span>
+        </div>
+        <div style="max-width:600px;">
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">New</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="notif-item"><div class="notif-icon-wrap" style="background:#f0fdf4;color:var(--accent-green);"><i class="fa-solid fa-arrow-down"></i></div><div style="flex:1;"><div class="notif-title">Credit Alert – ₦520,000</div><div class="notif-desc">Your account has been credited with ₦520,000.00 from PAYROLL SYSTEM.</div><div class="notif-time">5 mins ago</div></div><div class="notif-dot"></div></div>
+            <div class="notif-item"><div class="notif-icon-wrap" style="background:#fef2f2;color:#ef4444;"><i class="fa-solid fa-arrow-up"></i></div><div style="flex:1;"><div class="notif-title">Debit Alert – ₦8,400</div><div class="notif-desc">Your account has been debited ₦8,400.00 for SHOPRITE purchase.</div><div class="notif-time">2 hours ago</div></div><div class="notif-dot"></div></div>
+            <div class="notif-item" style="border:none;"><div class="notif-icon-wrap" style="background:#eff6ff;color:var(--primary-blue);"><i class="fa-solid fa-shield-halved"></i></div><div style="flex:1;"><div class="notif-title">Security Alert</div><div class="notif-desc">New login detected from Lagos, Nigeria. If this wasn't you, secure your account immediately.</div><div class="notif-time">1 day ago</div></div><div class="notif-dot"></div></div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin:16px 0 10px;">Earlier</div>
+          <div class="card" style="padding:0 16px;">
+            <div class="notif-item"><div class="notif-icon-wrap" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-credit-card"></i></div><div style="flex:1;"><div class="notif-title">Card Transaction</div><div class="notif-desc">Your virtual card was used for an online purchase of ₦15,000.00.</div><div class="notif-time">3 days ago</div></div></div>
+            <div class="notif-item" style="border:none;"><div class="notif-icon-wrap" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-bell"></i></div><div style="flex:1;"><div class="notif-title">Bill Due Reminder</div><div class="notif-desc">Your DSTV subscription is due for renewal on July 20. Avoid disconnection.</div><div class="notif-time">5 days ago</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PROFILE ========== -->
+      <div id="screen-profile" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">My Profile</h2>
+        </div>
+        <div style="max-width:560px;">
+          <div class="profile-hero">
+            <div class="profile-avatar-lg">Ok</div>
+            <div class="profile-name">Oyedele Kehinde</div>
+            <div class="profile-id">ACC: 0123 456 789 · Savings</div>
+            <div style="margin-top:12px;"><span style="background:rgba(255,255,255,.2);color:#fff;border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;">✓ Verified</span></div>
+          </div>
+          <div class="card" style="padding:0 16px;margin-bottom:20px;">
+            <div class="detail-row"><span class="detail-label"><i class="fa-regular fa-envelope" style="margin-right:6px;"></i>Email</span><span class="detail-value">james@example.com</span></div>
+            <div class="detail-row"><span class="detail-label"><i class="fa-solid fa-phone" style="margin-right:6px;"></i>Phone</span><span class="detail-value">+234 812 345 6789</span></div>
+            <div class="detail-row"><span class="detail-label"><i class="fa-solid fa-location-dot" style="margin-right:6px;"></i>Address</span><span class="detail-value">14 Adeola Odeku St., Lagos</span></div>
+            <div class="detail-row" style="border:none;"><span class="detail-label"><i class="fa-solid fa-cake-candles" style="margin-right:6px;"></i>D.O.B</span><span class="detail-value">Jan 15, 1992</span></div>
+          </div>
+          <div class="menu-section">
+            <div class="menu-item" onclick="navigate('account')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-building-columns"></i></div><div><div class="menu-item-label">Account Details</div><div class="menu-item-sub">View & share account info</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-pen-to-square"></i></div><div><div class="menu-item-label">Edit Profile</div><div class="menu-item-sub">Update personal information</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="navigate('settings')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#faf5ff;color:#6b21a8;"><i class="fa-solid fa-gear"></i></div><div><div class="menu-item-label">Settings</div><div class="menu-item-sub">Preferences & security</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+          </div>
+          <button class="btn" style="background:#fef2f2;color:#991b1b;height:48px;border-radius:14px;font-size:14px;width:100%;" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+        </div>
+      </div>
+
+      <!-- ========== SETTINGS ========== -->
+      <div id="screen-settings" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('profile')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Settings</h2>
+        </div>
+        <div style="max-width:560px;">
+          <div class="menu-section">
+            <div class="menu-section-title">Security</div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-lock"></i></div><div class="menu-item-label">Change PIN</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-fingerprint"></i></div><div><div class="menu-item-label">Biometric Login</div><div class="menu-item-sub">Fingerprint / Face ID</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-key"></i></div><div class="menu-item-label">Change Password</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#faf5ff;color:#6b21a8;"><i class="fa-solid fa-shield-halved"></i></div><div><div class="menu-item-label">Two-Factor Auth</div><div class="menu-item-sub">SMS / Authenticator</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
+          </div>
+          <div class="menu-section">
+            <div class="menu-section-title">Notifications</div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-bell"></i></div><div><div class="menu-item-label">Push Notifications</div><div class="menu-item-sub">Transaction alerts</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-regular fa-envelope"></i></div><div><div class="menu-item-label">Email Alerts</div><div class="menu-item-sub">Statements & receipts</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-comment-sms"></i></div><div><div class="menu-item-label">SMS Alerts</div><div class="menu-item-sub">Debit / Credit SMS</div></div></div><label class="toggle-switch"><input type="checkbox"><div class="toggle-track"></div></label></div>
+          </div>
+          <div class="menu-section">
+            <div class="menu-section-title">Preferences</div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-globe"></i></div><div><div class="menu-item-label">Language</div><div class="menu-item-sub">English (Nigeria)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#1a1a2e;color:#a78bfa;"><i class="fa-solid fa-moon"></i></div><div><div class="menu-item-label">Dark Mode</div><div class="menu-item-sub">App appearance</div></div></div><label class="toggle-switch"><input type="checkbox"><div class="toggle-track"></div></label></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-coins"></i></div><div><div class="menu-item-label">Currency Display</div><div class="menu-item-sub">NGN (₦)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+          </div>
+          <div class="menu-section">
+            <div class="menu-section-title">Account</div>
+            <div class="menu-item" onclick="navigate('help')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-circle-question"></i></div><div class="menu-item-label">Help &amp; Support</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fef2f2;color:#991b1b;"><i class="fa-solid fa-trash-can"></i></div><div><div class="menu-item-label" style="color:#991b1b;">Delete Account</div><div class="menu-item-sub">Permanently close account</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== HELP & SUPPORT ========== -->
+      <div id="screen-help" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('settings')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Help &amp; Support</h2>
+        </div>
+        <div style="max-width:600px;">
+          <div class="search-bar" style="margin-bottom:24px;"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for help…"></div>
+          <p class="section-title">Contact Us</p>
+          <div class="support-btn"><div class="support-icon" style="background:#dcfce7;color:#15803d;"><i class="fa-brands fa-whatsapp"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">WhatsApp Support</div><div style="font-size:12px;color:var(--text-secondary);">Chat with us · Avg. reply in 5 min</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
+          <div class="support-btn"><div class="support-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-phone"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Call Centre</div><div style="font-size:12px;color:var(--text-secondary);">0800-ANTIGRAVITY · 24/7</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
+          <div class="support-btn"><div class="support-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-comments"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Live Chat</div><div style="font-size:12px;color:var(--text-secondary);">In-app chat · Available 6am–10pm</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
+          <div class="support-btn"><div class="support-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-regular fa-envelope"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Email Us</div><div style="font-size:12px;color:var(--text-secondary);">support@antigravity.bank</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
+
+          <p class="section-title" style="margin-top:12px;">FAQs</p>
+          <div class="faq-item" id="faq1"><div class="faq-question" onclick="toggleFaq('faq1')"><span>How do I reset my PIN?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Go to Settings → Security → Change PIN. You'll need to verify via OTP sent to your registered phone number.</div></div>
+          <div class="faq-item" id="faq2"><div class="faq-question" onclick="toggleFaq('faq2')"><span>How long do transfers take?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Intra-bank transfers are instant. Inter-bank (NIBSS) transfers typically complete within 30 seconds to 5 minutes.</div></div>
+          <div class="faq-item" id="faq3"><div class="faq-question" onclick="toggleFaq('faq3')"><span>What are my daily transaction limits?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Daily transfer: ₦5,000,000. POS: ₦500,000. ATM: ₦150,000. Increase limits via Cards → Limits.</div></div>
+          <div class="faq-item" id="faq4"><div class="faq-question" onclick="toggleFaq('faq4')"><span>How do I block my card?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Navigate to Cards, select the card, and tap Block. You can also call our 24/7 hotline: 0800-ANTIGRAVITY.</div></div>
+          <div class="faq-item" id="faq5"><div class="faq-question" onclick="toggleFaq('faq5')"><span>How secure is Antigravity Bank?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">We use 256-bit AES encryption, 2FA, and biometric authentication. All data is stored on CBN-regulated servers with continuous fraud monitoring.</div></div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /dash-main -->
+
+</div><!-- /dash-layout -->
+
+<!-- ===== SUCCESS RECEIPT OVERLAY ===== -->
+<div class="receipt-overlay" id="receipt-overlay">
+  <div class="receipt-box">
+    <div class="success-badge"><i class="fa-solid fa-check"></i></div>
+    <h2 style="font-family:var(--font-display);font-size:22px;margin-bottom:8px;" id="receipt-title">Transfer Successful!</h2>
+    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:20px;" id="receipt-subtitle">Transaction completed successfully.</p>
+    <div class="card" style="width:100%;text-align:left;padding:0 16px;margin-bottom:16px;">
+      <div class="detail-row"><span class="detail-label">Amount</span><span class="detail-value" id="receipt-amount" style="font-size:17px;font-weight:800;color:hsl(216,85%,38%);">&#8358;5,000.00</span></div>
+      <div class="detail-row" id="receipt-row-to" style="display:none;"><span class="detail-label">To</span><span class="detail-value" id="receipt-to"></span></div>
+      <div class="detail-row" id="receipt-row-acct" style="display:none;"><span class="detail-label">Account</span><span class="detail-value" id="receipt-acct-val"></span></div>
+      <div class="detail-row" id="receipt-row-bank" style="display:none;"><span class="detail-label">Bank</span><span class="detail-value" id="receipt-bank-val"></span></div>
+      <div class="detail-row" id="receipt-row-narr" style="display:none;"><span class="detail-label">Narration</span><span class="detail-value" id="receipt-narration" style="font-style:italic;"></span></div>
+      <div class="detail-row"><span class="detail-label">Reference</span><span class="detail-value" id="receipt-ref" style="font-size:12px;">AGV202607134821</span></div>
+      <div class="detail-row"><span class="detail-label">Date &amp; Time</span><span class="detail-value" id="receipt-date"></span></div>
+      <div class="detail-row" style="border:none;"><span class="detail-label">Status</span><span class="detail-value" style="color:var(--accent-green);">&#10003; Successful</span></div>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="shareReceipt()" style="margin-bottom:10px;"><i class="fa-solid fa-share-nodes"></i> Share Receipt</button>
+    <button class="btn btn-secondary btn-full" onclick="closeReceipt()">Done</button>
+    <div id="receipt-share-toast" style="display:none;margin-top:12px;background:rgba(20,20,30,.9);color:#fff;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:600;text-align:center;">
+      <i class="fa-solid fa-clipboard-check" style="margin-right:6px;color:#4ade80;"></i>Receipt copied!
+    </div>
+  </div>
+</div>
+
+<!-- ===== MOBILE BOTTOM NAV ===== -->
+<nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+  <button class="mobile-nav-item active" id="mob-nav-home" onclick="navigate('home')"><i class="fa-solid fa-house"></i><span>Home</span></button>
+  <button class="mobile-nav-item" id="mob-nav-history" onclick="navigate('history')"><i class="fa-solid fa-clock-rotate-left"></i><span>History</span></button>
+  <button class="mobile-nav-item" id="mob-nav-transfer" onclick="navigate('transfer')"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transfer</span></button>
+  <button class="mobile-nav-item" id="mob-nav-cards" onclick="navigate('cards')"><i class="fa-solid fa-credit-card"></i><span>Cards</span></button>
+  <button class="mobile-nav-item" id="mob-nav-profile" onclick="navigate('profile')"><i class="fa-regular fa-circle-user"></i><span>Profile</span></button>
+</nav>
+
+<script>
+  // ===== SCREEN TITLES =====
+  const SCREEN_TITLES = {
+    home: 'Home', account: 'Account Details', transfer: 'Transfer Money',
+    history: 'Transaction History', bills: 'Pay Bills', airtime: 'Airtime & Data',
+    cards: 'My Cards', notifications: 'Notifications', profile: 'My Profile',
+    settings: 'Settings', help: 'Help & Support'
+  };
+
+  // ===== NAVIGATION =====
+  const NAV_SIDEBAR = { home: 'nav-home', history: 'nav-history', transfer: 'nav-transfer', bills: 'nav-bills', airtime: 'nav-airtime', cards: 'nav-cards', notifications: 'nav-notifications', profile: 'nav-profile', settings: 'nav-settings' };
+  const MOB_NAV = { home: 'mob-nav-home', history: 'mob-nav-history', transfer: 'mob-nav-transfer', cards: 'mob-nav-cards', profile: 'mob-nav-profile' };
+
+  function navigate(screenName) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('screen-' + screenName);
+    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+
+    document.querySelectorAll('.sidebar-item').forEach(n => n.classList.remove('active'));
+    const sideId = NAV_SIDEBAR[screenName];
+    if (sideId) document.getElementById(sideId).classList.add('active');
+
+    document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+    const mobId = MOB_NAV[screenName];
+    if (mobId) document.getElementById(mobId).classList.add('active');
+
+    const titleEl = document.getElementById('topbar-title');
+    if (titleEl) titleEl.textContent = SCREEN_TITLES[screenName] || screenName;
+  }
+
+  // ===== BALANCE TOGGLE =====
+  let balanceVisible = true;
+  function toggleBalance() {
+    const el = document.getElementById('home-balance');
+    const btn = document.getElementById('toggle-balance');
+    balanceVisible = !balanceVisible;
+    el.textContent = balanceVisible ? '₦ 2,847,500.00' : '₦ ••••••••';
+    btn.innerHTML = balanceVisible ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
+  }
+
+  // ===== ACCOUNT LOOKUP =====
+  const FAKE_ACCOUNTS = {
+    '0123456789': { name: 'Ada Joy Okafor', initials: 'AJ', bank: 'Antigravity Bank' },
+    '0987654321': { name: 'Mike Okonkwo', initials: 'MO', bank: 'GTBank' },
+    '1122334455': { name: 'Kemi Fashola', initials: 'KF', bank: 'Zenith Bank' },
+    '5566778899': { name: 'Tunde Kola', initials: 'TK', bank: 'First Bank' },
+    '9988776655': { name: 'Bisi Ibrahim', initials: 'BI', bank: 'Access Bank' },
+  };
+  let transferLookupTimer = null;
+  let resolvedTransferRecipient = null;
+
+  function onTransferAcctInput(val) {
+    clearTimeout(transferLookupTimer);
+    if (val.length === 10) { transferLookupTimer = setTimeout(() => resolveTransferAccount(val), 600); }
+    else { hideTransferRecipientCard(); }
+  }
+
+  function onTransferBankChange() {
+    const val = document.getElementById('transfer-acct-input').value;
+    if (val.length === 10) resolveTransferAccount(val);
+  }
+
+  function resolveTransferAccount(acct) {
+    const bankEl = document.getElementById('transfer-bank-select');
+    const bank = bankEl ? bankEl.value : 'Antigravity Bank';
+    const match = FAKE_ACCOUNTS[acct];
+    const data = match || { name: 'Account Holder', initials: acct.slice(0, 2).toUpperCase(), bank };
+    resolvedTransferRecipient = { ...data, acct };
+    document.getElementById('tr-initials').textContent = data.initials;
+    document.getElementById('tr-name').textContent = data.name;
+    document.getElementById('tr-bank').textContent = data.bank;
+    const card = document.getElementById('transfer-recipient-card');
+    card.style.opacity = '1';
+    card.style.pointerEvents = 'auto';
+  }
+
+  function hideTransferRecipientCard() {
+    resolvedTransferRecipient = null;
+    const card = document.getElementById('transfer-recipient-card');
+    card.style.opacity = '0';
+    card.style.pointerEvents = 'none';
+  }
+
+  function prefillContact(acct, bank) {
+    const input = document.getElementById('transfer-acct-input');
+    const sel = document.getElementById('transfer-bank-select');
+    if (input) input.value = acct;
+    if (sel) { for (let i = 0; i < sel.options.length; i++) { if (sel.options[i].text === bank) { sel.selectedIndex = i; break; } } }
+    resolveTransferAccount(acct);
+  }
+
+  // ===== NUMPAD =====
+  let numpadValue = '';
+  let accountBalance = 2847500;
+  function numpadInput(key) {
+    if (key === 'del') { numpadValue = numpadValue.slice(0, -1); }
+    else if (key === '.' && numpadValue.includes('.')) { return; }
+    else if (numpadValue.length >= 10) { return; }
+    else { numpadValue += key; }
+    const display = numpadValue ? '\u20A6 ' + parseFloat(numpadValue || 0).toLocaleString('en-NG') : '\u20A6 0';
+    document.getElementById('transfer-amount').textContent = display;
+  }
+
+  // ===== DO TRANSFER =====
+  function doTransfer() {
+    const amount = parseFloat(numpadValue);
+    if (!numpadValue || amount <= 0) {
+      const el = document.getElementById('transfer-amount');
+      el.style.color = 'var(--error-red)';
+      setTimeout(() => el.style.color = '', 600);
+      return;
+    }
+    if (amount > accountBalance) { alert('Insufficient funds. Your balance is \u20A6' + accountBalance.toLocaleString('en-NG')); return; }
+    accountBalance -= amount;
+    const fmtBalance = '\u20A6 ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+
+    const narration = (document.getElementById('transfer-narration').value || '').trim();
+    const ref = 'AGV' + Date.now().toString().slice(-10);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fmtAmt = '\u20A6' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    document.getElementById('receipt-title').textContent = 'Transfer Successful!';
+    document.getElementById('receipt-subtitle').textContent = resolvedTransferRecipient ? 'Money sent to ' + resolvedTransferRecipient.name + '.' : 'Transfer completed.';
+    document.getElementById('receipt-amount').textContent = fmtAmt;
+    document.getElementById('receipt-ref').textContent = ref;
+    document.getElementById('receipt-date').textContent = dateStr;
+
+    if (resolvedTransferRecipient) {
+      document.getElementById('receipt-to').textContent = resolvedTransferRecipient.name;
+      document.getElementById('receipt-acct-val').textContent = resolvedTransferRecipient.acct;
+      document.getElementById('receipt-bank-val').textContent = resolvedTransferRecipient.bank;
+      ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+    } else {
+      ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'none');
+    }
+    if (narration) { document.getElementById('receipt-narration').textContent = narration; document.getElementById('receipt-row-narr').style.display = 'flex'; }
+    else { document.getElementById('receipt-row-narr').style.display = 'none'; }
+
+    numpadValue = '';
+    document.getElementById('transfer-amount').textContent = '\u20A6 0';
+    document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  function closeReceipt() {
+    document.getElementById('receipt-overlay').classList.remove('active');
+    hideTransferRecipientCard();
+    const inp = document.getElementById('transfer-acct-input');
+    if (inp) inp.value = '';
+    const narr = document.getElementById('transfer-narration');
+    if (narr) narr.value = '';
+    navigate('home');
+  }
+
+  function shareReceipt() {
+    const amount = document.getElementById('receipt-amount').textContent;
+    const ref = document.getElementById('receipt-ref').textContent;
+    const date = document.getElementById('receipt-date').textContent;
+    const toShown = document.getElementById('receipt-row-to').style.display !== 'none';
+    let text = '\uD83C\uDFE6 Antigravity Bank \u2014 Transfer Receipt\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2705 Status: Successful\n\uD83D\uDCB0 Amount: ' + amount + '\n';
+    if (toShown) { text += '\uD83D\uDC64 Recipient: ' + document.getElementById('receipt-to').textContent + '\n'; }
+    text += '\uD83D\uDCCB Reference: ' + ref + '\n\uD83D\uDCC5 Date: ' + date + '\nPowered by Antigravity Bank';
+    if (navigator.share) { navigator.share({ title: 'Antigravity Bank Transfer Receipt', text }).catch(() => {}); }
+    else { navigator.clipboard.writeText(text).then(showReceiptToast).catch(() => { prompt('Copy receipt:', text); }); }
+  }
+
+  function showReceiptToast() {
+    const t = document.getElementById('receipt-share-toast');
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 2800);
+  }
+
+  // ===== BILLS =====
+  function openBillPay(provider, category) {
+    const panel = document.getElementById('bill-panel');
+    document.getElementById('bill-title').textContent = provider + ' (' + category + ')';
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ===== AIRTIME =====
+  function setAirtimeAmt(val) { document.getElementById('airtime-amount').value = val; }
+
+  function switchAirtimeTab(tab) {
+    document.getElementById('panel-airtime').style.display = tab === 'airtime' ? 'block' : 'none';
+    document.getElementById('panel-data').style.display = tab === 'data' ? 'block' : 'none';
+    document.getElementById('tab-airtime').classList.toggle('active', tab === 'airtime');
+    document.getElementById('tab-data').classList.toggle('active', tab === 'data');
+  }
+
+  function selectNet(id) { document.querySelectorAll('#panel-airtime .network-item').forEach(n => n.classList.remove('selected')); document.getElementById('net-' + id).classList.add('selected'); }
+  function selectNet2(el) { el.closest('.network-grid').querySelectorAll('.network-item').forEach(n => n.classList.remove('selected')); el.classList.add('selected'); }
+  function selectPlan(el) { el.closest('.data-plan-grid').querySelectorAll('.data-plan').forEach(p => p.classList.remove('selected')); el.classList.add('selected'); }
+
+  // ===== GENERIC RECEIPT =====
+  const receiptConfig = {
+    bills: { title: 'Bill Payment Successful!', subtitle: 'Your bill has been paid.' },
+    airtime: { title: 'Airtime Purchased!', subtitle: 'Airtime topped up successfully.' },
+    data: { title: 'Data Bundle Activated!', subtitle: 'Your data plan is now active.' },
+  };
+  function showReceipt(type) {
+    const cfg = receiptConfig[type] || { title: 'Success!', subtitle: 'Transaction completed.' };
+    document.getElementById('receipt-title').textContent = cfg.title;
+    document.getElementById('receipt-subtitle').textContent = cfg.subtitle;
+    const amt = type === 'airtime' ? (document.getElementById('airtime-amount').value || '200') : '5,000.00';
+    document.getElementById('receipt-amount').textContent = '\u20A6' + amt;
+    document.getElementById('receipt-ref').textContent = 'AGV' + Date.now().toString().slice(-10);
+    const now = new Date();
+    document.getElementById('receipt-date').textContent = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank', 'receipt-row-narr'].forEach(id => document.getElementById(id).style.display = 'none');
+    document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  // ===== NOTIFICATIONS =====
+  function markAllRead() { document.querySelectorAll('.notif-dot').forEach(d => d.remove()); }
+
+  // ===== COPY ACCOUNT =====
+  function copyAcctNum() {
+    navigator.clipboard && navigator.clipboard.writeText('0123456789');
+    const btn = document.getElementById('copy-btn-acct');
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy'; }, 2000);
+  }
+
+  // ===== FAQ =====
+  function toggleFaq(id) {
+    const item = document.getElementById(id);
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
