@@ -842,21 +842,21 @@
                 <p class="section-title" style="margin:0;">Recent Transactions</p>
                 <span onclick="navigate('history')" style="font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">See all</span>
               </div>
-              <div class="transaction-item">
+              <div class="transaction-item" onclick="showHistoricalReceipt('Shoprite', 'Debit Card', 'Jul 12, 2026 · 14:32', '–₦8,400', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div>
                   <div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit · Jul 12</div></div>
                 </div>
                 <div class="tx-amount-debit">–₦8,400</div>
               </div>
-              <div class="transaction-item">
+              <div class="transaction-item" onclick="showHistoricalReceipt('Salary Credit', 'Inflow', 'Jul 10, 2026 · 08:00', '+₦520,000', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div>
                   <div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Credit · Jul 10</div></div>
                 </div>
                 <div class="tx-amount-credit">+₦520,000</div>
               </div>
-              <div class="transaction-item" style="border:none;">
+              <div class="transaction-item" style="border:none;" onclick="showHistoricalReceipt('EKEDC Electric', 'Bill', 'Jul 9, 2026 · 11:20', '–₦15,000', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div>
                   <div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9</div></div>
@@ -1161,16 +1161,16 @@
           </div>
           <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">July 2026</div>
           <div class="card" style="padding:0 16px;">
-            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div><div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit Card · Jul 12 · 14:32</div></div></div><div><div class="tx-amount-debit">–₦8,400</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
-            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jul 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
-            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9 · 11:20</div></div></div><div><div class="tx-amount-debit">–₦15,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
-            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📲</div><div><div style="font-size:14px;font-weight:600;">MTN Airtime</div><div class="tx-meta">Recharge · Jul 8 · 09:05</div></div></div><div><div class="tx-amount-debit">–₦2,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
-            <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💳</div><div><div style="font-size:14px;font-weight:600;">Transfer from Ada Joy</div><div class="tx-meta">Credit · Jul 7 · 16:48</div></div></div><div><div class="tx-amount-credit">+₦50,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" onclick="showHistoricalReceipt('Shoprite', 'Debit Card', 'Jul 12, 2026 · 14:32', '–₦8,400', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div><div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit Card · Jul 12 · 14:32</div></div></div><div><div class="tx-amount-debit">–₦8,400</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" onclick="showHistoricalReceipt('Salary Credit', 'Inflow', 'Jul 10, 2026 · 08:00', '+₦520,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jul 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" onclick="showHistoricalReceipt('EKEDC Electric', 'Bill', 'Jul 9, 2026 · 11:20', '–₦15,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9 · 11:20</div></div></div><div><div class="tx-amount-debit">–₦15,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" onclick="showHistoricalReceipt('MTN Airtime', 'Recharge', 'Jul 8, 2026 · 09:05', '–₦2,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📲</div><div><div style="font-size:14px;font-weight:600;">MTN Airtime</div><div class="tx-meta">Recharge · Jul 8 · 09:05</div></div></div><div><div class="tx-amount-debit">–₦2,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" style="border:none;" onclick="showHistoricalReceipt('Transfer from Ada Joy', 'Credit', 'Jul 7, 2026 · 16:48', '+₦50,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💳</div><div><div style="font-size:14px;font-weight:600;">Transfer from Ada Joy</div><div class="tx-meta">Credit · Jul 7 · 16:48</div></div></div><div><div class="tx-amount-credit">+₦50,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
           </div>
           <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px;">June 2026</div>
           <div class="card" style="padding:0 16px;">
-            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🏠</div><div><div style="font-size:14px;font-weight:600;">Rent Payment</div><div class="tx-meta">Transfer · Jun 28 · 09:00</div></div></div><div><div class="tx-amount-debit">–₦250,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
-            <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jun 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" onclick="showHistoricalReceipt('Rent Payment', 'Transfer', 'Jun 28, 2026 · 09:00', '–₦250,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fef2f2;">🏠</div><div><div style="font-size:14px;font-weight:600;">Rent Payment</div><div class="tx-meta">Transfer · Jun 28 · 09:00</div></div></div><div><div class="tx-amount-debit">–₦250,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
+            <div class="transaction-item" style="border:none;" onclick="showHistoricalReceipt('Salary Credit', 'Inflow', 'Jun 10, 2026 · 08:00', '+₦520,000', 'Success')"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div><div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Inflow · Jun 10 · 08:00</div></div></div><div><div class="tx-amount-credit">+₦520,000</div><div style="font-size:11px;color:#94a3b8;text-align:right;">Success</div></div></div>
           </div>
         </div>
       </div>
@@ -1347,14 +1347,14 @@
         <div style="max-width:600px;">
           <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">New</div>
           <div class="card" style="padding:0 16px;">
-            <div class="notif-item"><div class="notif-icon-wrap" style="background:#f0fdf4;color:var(--accent-green);"><i class="fa-solid fa-arrow-down"></i></div><div style="flex:1;"><div class="notif-title">Credit Alert – ₦520,000</div><div class="notif-desc">Your account has been credited with ₦520,000.00 from PAYROLL SYSTEM.</div><div class="notif-time">5 mins ago</div></div><div class="notif-dot"></div></div>
-            <div class="notif-item"><div class="notif-icon-wrap" style="background:#fef2f2;color:#ef4444;"><i class="fa-solid fa-arrow-up"></i></div><div style="flex:1;"><div class="notif-title">Debit Alert – ₦8,400</div><div class="notif-desc">Your account has been debited ₦8,400.00 for SHOPRITE purchase.</div><div class="notif-time">2 hours ago</div></div><div class="notif-dot"></div></div>
-            <div class="notif-item" style="border:none;"><div class="notif-icon-wrap" style="background:#eff6ff;color:var(--primary-blue);"><i class="fa-solid fa-shield-halved"></i></div><div style="flex:1;"><div class="notif-title">Security Alert</div><div class="notif-desc">New login detected from Lagos, Nigeria. If this wasn't you, secure your account immediately.</div><div class="notif-time">1 day ago</div></div><div class="notif-dot"></div></div>
+            <div class="notif-item" onclick="clickNotification(this, 'PAYROLL SYSTEM', '+₦520,000', 'Jul 10, 2026 · 08:00', 'Credit Alert')"><div class="notif-icon-wrap" style="background:#f0fdf4;color:var(--accent-green);"><i class="fa-solid fa-arrow-down"></i></div><div style="flex:1;"><div class="notif-title">Credit Alert – ₦520,000</div><div class="notif-desc">Your account has been credited with ₦520,000.00 from PAYROLL SYSTEM.</div><div class="notif-time">5 mins ago</div></div><div class="notif-dot"></div></div>
+            <div class="notif-item" onclick="clickNotification(this, 'SHOPRITE', '–₦8,400', 'Jul 12, 2026 · 14:32', 'Debit Alert')"><div class="notif-icon-wrap" style="background:#fef2f2;color:#ef4444;"><i class="fa-solid fa-arrow-up"></i></div><div style="flex:1;"><div class="notif-title">Debit Alert – ₦8,400</div><div class="notif-desc">Your account has been debited ₦8,400.00 for SHOPRITE purchase.</div><div class="notif-time">2 hours ago</div></div><div class="notif-dot"></div></div>
+            <div class="notif-item" style="border:none;" onclick="clickNotification(this, 'Security Team', null, null, 'Security Alert')"><div class="notif-icon-wrap" style="background:#eff6ff;color:var(--primary-blue);"><i class="fa-solid fa-shield-halved"></i></div><div style="flex:1;"><div class="notif-title">Security Alert</div><div class="notif-desc">New login detected from Lagos, Nigeria. If this wasn't you, secure your account immediately.</div><div class="notif-time">1 day ago</div></div><div class="notif-dot"></div></div>
           </div>
           <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;margin:16px 0 10px;">Earlier</div>
           <div class="card" style="padding:0 16px;">
-            <div class="notif-item"><div class="notif-icon-wrap" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-credit-card"></i></div><div style="flex:1;"><div class="notif-title">Card Transaction</div><div class="notif-desc">Your virtual card was used for an online purchase of ₦15,000.00.</div><div class="notif-time">3 days ago</div></div></div>
-            <div class="notif-item" style="border:none;"><div class="notif-icon-wrap" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-bell"></i></div><div style="flex:1;"><div class="notif-title">Bill Due Reminder</div><div class="notif-desc">Your DSTV subscription is due for renewal on July 20. Avoid disconnection.</div><div class="notif-time">5 days ago</div></div></div>
+            <div class="notif-item" onclick="clickNotification(this, 'Virtual Card System', '–₦15,000', 'Jul 9, 2026 · 10:15', 'Card Transaction')"><div class="notif-icon-wrap" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-credit-card"></i></div><div style="flex:1;"><div class="notif-title">Card Transaction</div><div class="notif-desc">Your virtual card was used for an online purchase of ₦15,000.00.</div><div class="notif-time">3 days ago</div></div></div>
+            <div class="notif-item" style="border:none;" onclick="clickNotification(this, 'DSTV', '–₦9,900', 'Jul 20, 2026 · 12:00', 'Bill Due Reminder')"><div class="notif-icon-wrap" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-bell"></i></div><div style="flex:1;"><div class="notif-title">Bill Due Reminder</div><div class="notif-desc">Your DSTV subscription is due for renewal on July 20. Avoid disconnection.</div><div class="notif-time">5 days ago</div></div></div>
           </div>
         </div>
       </div>
@@ -1396,27 +1396,27 @@
         <div style="max-width:560px;">
           <div class="menu-section">
             <div class="menu-section-title">Security</div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-lock"></i></div><div class="menu-item-label">Change PIN</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-fingerprint"></i></div><div><div class="menu-item-label">Biometric Login</div><div class="menu-item-sub">Fingerprint / Face ID</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-key"></i></div><div class="menu-item-label">Change Password</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#faf5ff;color:#6b21a8;"><i class="fa-solid fa-shield-halved"></i></div><div><div class="menu-item-label">Two-Factor Auth</div><div class="menu-item-sub">SMS / Authenticator</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="changePIN()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-lock"></i></div><div class="menu-item-label">Change PIN</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-biometric')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-fingerprint"></i></div><div><div class="menu-item-label">Biometric Login</div><div class="menu-item-sub">Fingerprint / Face ID</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-biometric" checked onchange="alert('Biometric Login setting updated.')"><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="changePassword()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-key"></i></div><div class="menu-item-label">Change Password</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-2fa')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#faf5ff;color:#6b21a8;"><i class="fa-solid fa-shield-halved"></i></div><div><div class="menu-item-label">Two-Factor Auth</div><div class="menu-item-sub">SMS / Authenticator</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-2fa" checked onchange="alert('Two-Factor Authentication setting updated.')"><div class="toggle-track"></div></label></div>
           </div>
           <div class="menu-section">
             <div class="menu-section-title">Notifications</div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-bell"></i></div><div><div class="menu-item-label">Push Notifications</div><div class="menu-item-sub">Transaction alerts</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-regular fa-envelope"></i></div><div><div class="menu-item-label">Email Alerts</div><div class="menu-item-sub">Statements & receipts</div></div></div><label class="toggle-switch"><input type="checkbox" checked><div class="toggle-track"></div></label></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-comment-sms"></i></div><div><div class="menu-item-label">SMS Alerts</div><div class="menu-item-sub">Debit / Credit SMS</div></div></div><label class="toggle-switch"><input type="checkbox"><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-push')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-bell"></i></div><div><div class="menu-item-label">Push Notifications</div><div class="menu-item-sub">Transaction alerts</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-push" checked onchange="alert('Push Notifications setting updated.')"><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-email')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-regular fa-envelope"></i></div><div><div class="menu-item-label">Email Alerts</div><div class="menu-item-sub">Statements & receipts</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-email" checked onchange="alert('Email Alerts setting updated.')"><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-sms')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-solid fa-comment-sms"></i></div><div><div class="menu-item-label">SMS Alerts</div><div class="menu-item-sub">Debit / Credit SMS</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-sms" onchange="alert('SMS Alerts setting updated.')"><div class="toggle-track"></div></label></div>
           </div>
           <div class="menu-section">
             <div class="menu-section-title">Preferences</div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-globe"></i></div><div><div class="menu-item-label">Language</div><div class="menu-item-sub">English (Nigeria)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#1a1a2e;color:#a78bfa;"><i class="fa-solid fa-moon"></i></div><div><div class="menu-item-label">Dark Mode</div><div class="menu-item-sub">App appearance</div></div></div><label class="toggle-switch"><input type="checkbox"><div class="toggle-track"></div></label></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-coins"></i></div><div><div class="menu-item-label">Currency Display</div><div class="menu-item-sub">NGN (₦)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="changeLanguage()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-globe"></i></div><div><div class="menu-item-label">Language</div><div class="menu-item-sub" id="setting-lang-label">English (Nigeria)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="toggleSettingToggle(event, 'setting-dark-mode')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#1a1a2e;color:#a78bfa;"><i class="fa-solid fa-moon"></i></div><div><div class="menu-item-label">Dark Mode</div><div class="menu-item-sub">App appearance</div></div></div><label class="toggle-switch"><input type="checkbox" id="setting-dark-mode"><div class="toggle-track"></div></label></div>
+            <div class="menu-item" onclick="changeCurrency()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-coins"></i></div><div><div class="menu-item-label">Currency Display</div><div class="menu-item-sub" id="setting-curr-label">NGN (₦)</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
           </div>
           <div class="menu-section">
             <div class="menu-section-title">Account</div>
             <div class="menu-item" onclick="navigate('help')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-circle-question"></i></div><div class="menu-item-label">Help &amp; Support</div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fef2f2;color:#991b1b;"><i class="fa-solid fa-trash-can"></i></div><div><div class="menu-item-label" style="color:#991b1b;">Delete Account</div><div class="menu-item-sub">Permanently close account</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="deleteAccount()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#fef2f2;color:#991b1b;"><i class="fa-solid fa-trash-can"></i></div><div><div class="menu-item-label" style="color:#991b1b;">Delete Account</div><div class="menu-item-sub">Permanently close account</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
           </div>
         </div>
       </div>
@@ -1809,7 +1809,10 @@
       <div class="detail-row"><span class="detail-label">Date &amp; Time</span><span class="detail-value" id="receipt-date"></span></div>
       <div class="detail-row" style="border:none;"><span class="detail-label">Status</span><span class="detail-value" style="color:var(--accent-green);">&#10003; Successful</span></div>
     </div>
-    <button class="btn btn-primary btn-full" onclick="shareReceipt()" style="margin-bottom:10px;"><i class="fa-solid fa-share-nodes"></i> Share Receipt</button>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <button class="btn btn-primary" onclick="shareReceipt()" style="font-size:13px;height:44px;margin-bottom:0;"><i class="fa-solid fa-share-nodes"></i> Share</button>
+      <button class="btn btn-success" onclick="downloadReceipt()" style="font-size:13px;height:44px;background:var(--accent-green);border:none;color:#fff;"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
     <button class="btn btn-secondary btn-full" onclick="closeReceipt()">Done</button>
     <div id="receipt-share-toast" style="display:none;margin-top:12px;background:rgba(20,20,30,.9);color:#fff;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:600;text-align:center;">
       <i class="fa-solid fa-clipboard-check" style="margin-right:6px;color:#4ade80;"></i>Receipt copied!
@@ -2119,19 +2122,162 @@
   }
 
   function shareReceipt() {
+    const title = document.getElementById('receipt-title').textContent;
+    const subtitle = document.getElementById('receipt-subtitle').textContent;
     const amount = document.getElementById('receipt-amount').textContent;
     const ref = document.getElementById('receipt-ref').textContent;
     const date = document.getElementById('receipt-date').textContent;
+    const to = document.getElementById('receipt-to').textContent;
+    const acct = document.getElementById('receipt-acct-val').textContent;
+    const bank = document.getElementById('receipt-bank-val').textContent;
+    const narration = document.getElementById('receipt-narration').textContent;
     const toShown = document.getElementById('receipt-row-to').style.display !== 'none';
-    let text = '\uD83C\uDFE6 Antigravity Bank \u2014 Transfer Receipt\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2705 Status: Successful\n\uD83D\uDCB0 Amount: ' + amount + '\n';
-    if (toShown) { text += '\uD83D\uDC64 Recipient: ' + document.getElementById('receipt-to').textContent + '\n'; }
-    text += '\uD83D\uDCCB Reference: ' + ref + '\n\uD83D\uDCC5 Date: ' + date + '\nPowered by Antigravity Bank';
-    if (navigator.share) { navigator.share({ title: 'Antigravity Bank Transfer Receipt', text }).catch(() => {}); }
-    else { navigator.clipboard.writeText(text).then(showReceiptToast).catch(() => { prompt('Copy receipt:', text); }); }
+    const narrShown = document.getElementById('receipt-row-narr').style.display !== 'none';
+
+    // 1. Build a beautiful plain-text fallback formatted as a unicode box.
+    let boxText = '```\n';
+    boxText += '╔══════════════════════════════════════╗\n';
+    boxText += '║          ANTIGRAVITY BANK            ║\n';
+    boxText += '║        TRANSACTION RECEIPT           ║\n';
+    boxText += '╠══════════════════════════════════════╣\n';
+    boxText += '║ Status:    Successful                ║\n';
+    boxText += '║ Amount:    ' + amount.padEnd(26) + '║\n';
+    if (toShown) {
+      boxText += '║ Recipient: ' + to.substring(0,25).padEnd(26) + '║\n';
+      boxText += '║ Account:   ' + acct.substring(0,25).padEnd(26) + '║\n';
+      boxText += '║ Bank:      ' + bank.substring(0,25).padEnd(26) + '║\n';
+    }
+    if (narrShown && narration) {
+      boxText += '║ Narration: ' + narration.substring(0,25).padEnd(26) + '║\n';
+    }
+    boxText += '║ Reference: ' + ref.padEnd(26) + '║\n';
+    boxText += '║ Date:      ' + date.substring(0, 25).padEnd(26) + '║\n';
+    boxText += '╚══════════════════════════════════════╝\n';
+    boxText += '```';
+
+    // 2. Try to generate canvas image and share it
+    const canvas = document.createElement('canvas');
+    canvas.width = 480;
+    canvas.height = toShown ? (narrShown ? 680 : 640) : 520;
+    const ctx = canvas.getContext('2d');
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const grd = ctx.createLinearGradient(0, 0, canvas.width, 140);
+    grd.addColorStop(0, '#0f172a');
+    grd.addColorStop(1, '#1e3a8a');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, canvas.width, 140);
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('⚡ Antigravity Bank', canvas.width / 2, 45);
+    
+    ctx.fillStyle = '#93c5fd';
+    ctx.font = '12px "Inter", sans-serif';
+    ctx.fillText('OFFICIAL TRANSACTION RECEIPT', canvas.width / 2, 70);
+    
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, 140, 36, 0, 2 * Math.PI);
+    ctx.fillStyle = '#22c55e';
+    ctx.fill();
+    
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2 - 12, 140 - 2);
+    ctx.lineTo(canvas.width / 2 - 2, 140 + 8);
+    ctx.lineTo(canvas.width / 2 + 14, 140 - 8);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 18px "Outfit", "Inter", sans-serif';
+    ctx.fillText(title, canvas.width / 2, 205);
+    
+    ctx.fillStyle = '#64748b';
+    ctx.font = '13px "Inter", sans-serif';
+    ctx.fillText(subtitle, canvas.width / 2, 225);
+    
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(40, 250);
+    ctx.lineTo(canvas.width - 40, 250);
+    ctx.stroke();
+    
+    let currentY = 285;
+    function drawRow(label, value, isBoldVal = false) {
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '14px "Inter", sans-serif';
+      ctx.fillText(label, 40, currentY);
+      
+      ctx.textAlign = 'right';
+      ctx.fillStyle = isBoldVal ? '#1e3a8a' : '#0f172a';
+      ctx.font = isBoldVal ? 'bold 16px "Outfit", sans-serif' : '500 14px "Inter", sans-serif';
+      ctx.fillText(value, canvas.width - 40, currentY);
+      
+      currentY += 40;
+    }
+    
+    drawRow('Amount', amount, true);
+    if (toShown) {
+      drawRow('Recipient', to);
+      drawRow('Account Number', acct);
+      drawRow('Bank Name', bank);
+    }
+    if (narrShown && narration) {
+      drawRow('Narration', narration);
+    }
+    drawRow('Reference Number', ref);
+    drawRow('Date & Time', date);
+    drawRow('Status', 'Successful ✓');
+    
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = 'italic 11px "Inter", sans-serif';
+    ctx.fillText('Thank you for banking with Antigravity Bank.', canvas.width / 2, canvas.height - 45);
+    ctx.fillText('This is a computer generated receipt and requires no signature.', canvas.width / 2, canvas.height - 25);
+    
+    try {
+      canvas.toBlob(function(blob) {
+        if (!blob) {
+          fallbackShareText(boxText);
+          return;
+        }
+        const file = new File([blob], 'Receipt_' + ref + '.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({
+            files: [file],
+            title: 'Antigravity Bank Transaction Receipt',
+            text: 'Here is my transaction receipt from Antigravity Bank.'
+          }).catch(() => {
+            fallbackShareText(boxText);
+          });
+        } else {
+          fallbackShareText(boxText);
+        }
+      }, 'image/png');
+    } catch(e) {
+      fallbackShareText(boxText);
+    }
+  }
+
+  function fallbackShareText(boxText) {
+    if (navigator.share) {
+      navigator.share({ title: 'Antigravity Bank Transaction Receipt', text: boxText }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(boxText).then(showReceiptToast).catch(() => {
+        prompt('Copy receipt details:', boxText);
+      });
+    }
   }
 
   function showReceiptToast() {
     const t = document.getElementById('receipt-share-toast');
+    t.innerHTML = '<i class="fa-solid fa-clipboard-check" style="margin-right:6px;color:#4ade80;"></i>Receipt copied in box form!';
     t.style.display = 'block';
     setTimeout(() => { t.style.display = 'none'; }, 2800);
   }
@@ -2272,7 +2418,41 @@
   }
 
   // ===== NOTIFICATIONS =====
-  function markAllRead() { document.querySelectorAll('.notif-dot').forEach(d => d.remove()); }
+  let unreadNotificationsCount = 3;
+  function clickNotification(el, title, amount, date, type) {
+    const dot = el.querySelector('.notif-dot');
+    if (dot) {
+      dot.remove();
+      unreadNotificationsCount = Math.max(0, unreadNotificationsCount - 1);
+      updateNotifBadge();
+    }
+    if (amount) {
+      showHistoricalReceipt(title, type, date, amount, 'Success');
+    } else {
+      const desc = el.querySelector('.notif-desc').textContent;
+      const t = el.querySelector('.notif-title').textContent;
+      alert(`${t}\n\n${desc}`);
+    }
+  }
+
+  function updateNotifBadge() {
+    const badges = document.querySelectorAll('.notif-badge');
+    badges.forEach(b => {
+      if (unreadNotificationsCount === 0) {
+        b.style.display = 'none';
+      } else {
+        b.style.display = 'flex';
+        b.textContent = unreadNotificationsCount;
+      }
+    });
+  }
+
+  function markAllRead() {
+    document.querySelectorAll('.notif-dot').forEach(d => d.remove());
+    unreadNotificationsCount = 0;
+    updateNotifBadge();
+    alert('All notifications marked as read.');
+  }
 
   // ===== COPY ACCOUNT =====
   function copyAcctNum() {
@@ -2288,6 +2468,218 @@
     const wasOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
     if (!wasOpen) item.classList.add('open');
+  }
+
+  // ===== HISTORICAL RECEIPTS & CANVAS DOWNLOAD =====
+  function showHistoricalReceipt(title, typeText, dateText, amountText, statusText) {
+    const isCredit = amountText.includes('+');
+    const cleanAmount = amountText.replace(/[–+]/g, '');
+    
+    document.getElementById('receipt-title').textContent = isCredit ? 'Payment Received!' : 'Transaction Successful!';
+    document.getElementById('receipt-subtitle').textContent = isCredit ? 'Fund received from ' + title : 'Paid to ' + title + '.';
+    document.getElementById('receipt-amount').textContent = cleanAmount;
+    
+    // Generate a clean reference code
+    let hash = 0;
+    const refSeed = title + dateText + cleanAmount;
+    for (let i = 0; i < refSeed.length; i++) {
+      hash = refSeed.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const ref = 'AGV' + Math.abs(hash).toString().slice(0, 10).padStart(10, '0');
+    document.getElementById('receipt-ref').textContent = ref;
+    
+    document.getElementById('receipt-date').textContent = dateText;
+    
+    document.getElementById('receipt-to').textContent = title;
+    document.getElementById('receipt-acct-val').textContent = isCredit ? '0123 456 789' : '9988776655';
+    document.getElementById('receipt-bank-val').textContent = isCredit ? 'Antigravity Bank' : 'Access Bank';
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+    document.getElementById('receipt-row-narr').style.display = 'none';
+    
+    document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  function downloadReceipt() {
+    const title = document.getElementById('receipt-title').textContent;
+    const subtitle = document.getElementById('receipt-subtitle').textContent;
+    const amount = document.getElementById('receipt-amount').textContent;
+    const ref = document.getElementById('receipt-ref').textContent;
+    const date = document.getElementById('receipt-date').textContent;
+    
+    const to = document.getElementById('receipt-to').textContent;
+    const acct = document.getElementById('receipt-acct-val').textContent;
+    const bank = document.getElementById('receipt-bank-val').textContent;
+    const narration = document.getElementById('receipt-narration').textContent;
+    
+    const toShown = document.getElementById('receipt-row-to').style.display !== 'none';
+    const narrShown = document.getElementById('receipt-row-narr').style.display !== 'none';
+    
+    const canvas = document.createElement('canvas');
+    canvas.width = 480;
+    canvas.height = toShown ? (narrShown ? 680 : 640) : 520;
+    const ctx = canvas.getContext('2d');
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const grd = ctx.createLinearGradient(0, 0, canvas.width, 140);
+    grd.addColorStop(0, '#0f172a');
+    grd.addColorStop(1, '#1e3a8a');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, canvas.width, 140);
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('⚡ Antigravity Bank', canvas.width / 2, 45);
+    
+    ctx.fillStyle = '#93c5fd';
+    ctx.font = '12px "Inter", sans-serif';
+    ctx.fillText('OFFICIAL TRANSACTION RECEIPT', canvas.width / 2, 70);
+    
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, 140, 36, 0, 2 * Math.PI);
+    ctx.fillStyle = '#22c55e';
+    ctx.fill();
+    
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2 - 12, 140 - 2);
+    ctx.lineTo(canvas.width / 2 - 2, 140 + 8);
+    ctx.lineTo(canvas.width / 2 + 14, 140 - 8);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 18px "Outfit", "Inter", sans-serif';
+    ctx.fillText(title, canvas.width / 2, 205);
+    
+    ctx.fillStyle = '#64748b';
+    ctx.font = '13px "Inter", sans-serif';
+    ctx.fillText(subtitle, canvas.width / 2, 225);
+    
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(40, 250);
+    ctx.lineTo(canvas.width - 40, 250);
+    ctx.stroke();
+    
+    let currentY = 285;
+    function drawRow(label, value, isBoldVal = false) {
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '14px "Inter", sans-serif';
+      ctx.fillText(label, 40, currentY);
+      
+      ctx.textAlign = 'right';
+      ctx.fillStyle = isBoldVal ? '#1e3a8a' : '#0f172a';
+      ctx.font = isBoldVal ? 'bold 16px "Outfit", sans-serif' : '500 14px "Inter", sans-serif';
+      ctx.fillText(value, canvas.width - 40, currentY);
+      
+      currentY += 40;
+    }
+    
+    drawRow('Amount', amount, true);
+    if (toShown) {
+      drawRow('Recipient', to);
+      drawRow('Account Number', acct);
+      drawRow('Bank Name', bank);
+    }
+    if (narrShown && narration) {
+      drawRow('Narration', narration);
+    }
+    drawRow('Reference Number', ref);
+    drawRow('Date & Time', date);
+    drawRow('Status', 'Successful ✓');
+    
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = 'italic 11px "Inter", sans-serif';
+    ctx.fillText('Thank you for banking with Antigravity Bank.', canvas.width / 2, canvas.height - 45);
+    ctx.fillText('This is a computer generated receipt and requires no signature.', canvas.width / 2, canvas.height - 25);
+    
+    const link = document.createElement('a');
+    link.download = 'Receipt_' + ref + '.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }
+
+  // ===== SETTINGS FUNCTIONS =====
+  function toggleSettingToggle(event, checkboxId) {
+    const cb = document.getElementById(checkboxId);
+    if (!cb) return;
+    if (event.target !== cb) {
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event('change'));
+    }
+  }
+
+  // Dark Mode callback
+  document.getElementById('setting-dark-mode').addEventListener('change', function(e) {
+    if (e.target.checked) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  });
+
+  function changePIN() {
+    const cur = prompt('Enter Current PIN:');
+    if (cur === null) return;
+    if (cur.length !== 4 || isNaN(cur)) { alert('Invalid current PIN.'); return; }
+    const newPin = prompt('Enter New 4-digit PIN:');
+    if (newPin === null) return;
+    if (newPin.length !== 4 || isNaN(newPin)) { alert('Invalid new PIN. Must be 4 digits.'); return; }
+    alert('PIN changed successfully!');
+  }
+
+  function changePassword() {
+    const cur = prompt('Enter Current Password:');
+    if (cur === null) return;
+    if (!cur) { alert('Invalid password.'); return; }
+    const newPass = prompt('Enter New Password:');
+    if (newPass === null) return;
+    if (newPass.length < 6) { alert('New password must be at least 6 characters.'); return; }
+    alert('Password changed successfully!');
+  }
+
+  function changeLanguage() {
+    const langs = ['English (Nigeria)', 'Yoruba', 'Igbo', 'Hausa', 'French'];
+    let msg = 'Choose Language:\n';
+    langs.forEach((l, idx) => { msg += (idx+1) + '. ' + l + '\n'; });
+    const choice = prompt(msg, '1');
+    if (choice === null) return;
+    const idx = parseInt(choice) - 1;
+    if (langs[idx]) {
+      alert('Language updated to ' + langs[idx]);
+      document.getElementById('setting-lang-label').textContent = langs[idx];
+    } else {
+      alert('Invalid choice.');
+    }
+  }
+
+  function changeCurrency() {
+    const currs = ['NGN (₦)', 'USD ($)', 'GBP (£)', 'EUR (€)'];
+    let msg = 'Choose Currency:\n';
+    currs.forEach((c, idx) => { msg += (idx+1) + '. ' + c + '\n'; });
+    const choice = prompt(msg, '1');
+    if (choice === null) return;
+    const idx = parseInt(choice) - 1;
+    if (currs[idx]) {
+      alert('Preferred display currency updated to ' + currs[idx]);
+      document.getElementById('setting-curr-label').textContent = currs[idx];
+    } else {
+      alert('Invalid choice.');
+    }
+  }
+
+  function deleteAccount() {
+    const conf = confirm('WARNING: Are you sure you want to permanently close your account? This action cannot be undone.');
+    if (conf) {
+      alert('Account closed successfully. Redirecting you to login page...');
+      window.location.href = 'login.html';
+    }
   }
 </script>
 </body>

@@ -571,8 +571,15 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 0;
+  padding: 14px 8px;
   border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.transaction-item:hover {
+  background-color: var(--primary-blue-light);
 }
 
 .transaction-item:last-child {
@@ -719,3 +726,46 @@ h1, h2, h3, h4 {
     justify-content: center;
   }
 }
+
+/* ===================================================
+   Dark Theme Overrides
+=================================================== */
+body.dark-theme {
+  --bg-white: hsl(220, 20%, 15%);
+  --surface-off-white: hsl(220, 20%, 10%);
+  --text-primary: hsl(210, 20%, 98%);
+  --text-secondary: hsl(210, 10%, 70%);
+  --primary-blue-light: hsl(217, 30%, 22%);
+  --accent-green-light: hsl(160, 30%, 18%);
+}
+body.dark-theme .card,
+body.dark-theme .menu-item,
+body.dark-theme .numpad-key,
+body.dark-theme .bill-item,
+body.dark-theme .contact-item,
+body.dark-theme .notif-item {
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+}
+body.dark-theme input.input-field,
+body.dark-theme select.input-field {
+  background-color: hsl(220, 20%, 12%);
+  color: var(--text-primary);
+  border-color: hsl(220, 10%, 25%);
+}
+body.dark-theme .status-bar {
+  background-color: var(--surface-off-white) !important;
+  color: var(--text-primary);
+}
+body.dark-theme .dash-topbar,
+body.dark-theme .bottom-nav {
+  background-color: var(--bg-white);
+  border-color: hsl(220, 10%, 20%);
+}
+body.dark-theme .sub-screen-header {
+  border-color: hsl(220, 10%, 20%);
+}
+body.dark-theme .notif-badge {
+  border-color: var(--bg-white);
+}
+

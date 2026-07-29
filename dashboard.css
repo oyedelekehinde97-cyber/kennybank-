@@ -70,7 +70,8 @@
 .card-ctrl-btn.details { background: #faf5ff; color: #6b21a8; }
 .card-ctrl-btn.block  { background: #fef2f2; color: #991b1b; }
 .card-ctrl-btn:active { transform: scale(.96); }
-.notif-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #f1f5f9; }
+.notif-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 8px; border-bottom: 1px solid #f1f5f9; cursor: pointer; border-radius: var(--radius-sm); transition: var(--transition-smooth); }
+.notif-item:hover { background-color: var(--primary-blue-light); }
 .notif-icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .notif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-blue); margin-top: 6px; flex-shrink: 0; }
 .notif-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
