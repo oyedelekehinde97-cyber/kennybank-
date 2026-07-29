@@ -243,6 +243,256 @@
       border: 2px solid #fff;
     }
 
+    /* ===== CATEGORIZED SIDEBAR & DASHBOARD SPLIT CARDS ===== */
+    .sidebar-section-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      padding: 12px 14px 4px;
+      margin-top: 4px;
+    }
+    .sidebar-badge {
+      margin-left: auto;
+      background: #ef4444;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+
+    .dashboard-split-card {
+      background: var(--bg-white);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      transition: var(--transition-smooth);
+    }
+    .dashboard-split-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .dashboard-split-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .split-link {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .split-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== OPAY STYLE BALANCE CARD & TOPBAR ===== */
+    .dash-topbar-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding: 4px 8px 4px 0;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+    .dash-topbar-profile:hover {
+      background: var(--surface-off-white);
+    }
+    .topbar-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(15,82,186,0.25);
+    }
+    .topbar-user-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .topbar-user-sub {
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .opay-balance-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #0f52ba 100%);
+      border-radius: 24px;
+      padding: 24px 26px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .opay-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .opay-user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .opay-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00c896, #059669);
+      color: #fff;
+      font-weight: 800;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255,255,255,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .opay-user-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .opay-acct-row {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 3px;
+    }
+    .opay-copy-chip {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: #fff;
+      border-radius: 99px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .opay-copy-chip:hover {
+      background: rgba(255,255,255,0.32);
+    }
+    .opay-tier-badge {
+      background: rgba(16, 185, 129, 0.22);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #34d399;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .opay-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+      margin: 14px 0 16px;
+    }
+    .opay-balance-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .balance-label-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 4px;
+    }
+    .opay-history-btn {
+      background: rgba(255,255,255,0.12);
+      border: none;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .opay-history-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .opay-card-actions {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 10px;
+    }
+    .opay-act-btn {
+      height: 42px;
+      border-radius: 12px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.15s, background 0.2s;
+    }
+    .opay-act-btn:active {
+      transform: scale(0.97);
+    }
+    .opay-act-primary {
+      background: linear-gradient(135deg, #00c896, #059669);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+    }
+    .opay-act-primary:hover {
+      background: linear-gradient(135deg, #00e0a8, #047857);
+    }
+    .opay-act-secondary {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+    .opay-act-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
     .balance-card {
       background: linear-gradient(135deg, hsl(216,85%,28%) 0%, hsl(216,85%,44%) 60%, hsl(194,100%,38%) 100%);
       border-radius: 24px;
@@ -309,11 +559,47 @@
     .contact-avatar { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: #fff; box-shadow: var(--shadow-sm); }
     .contact-name { font-size: 11px; color: var(--text-secondary); text-align: center; }
 
-    .bill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 12px; margin-bottom: 20px; }
-    .bill-item { background: var(--bg-white); border-radius: 16px; padding: 16px 8px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
-    .bill-item:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .bill-category-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin: 18px 0 10px;
+      padding: 0 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .bill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .bill-item { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); text-align: center; }
+    .bill-item:hover { border-color: var(--primary-blue); transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .bill-icon { font-size: 26px; }
-    .bill-label { font-size: 11px; font-weight: 600; color: var(--text-primary); text-align: center; }
+    .bill-label { font-size: 11px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; }
+
+    @media (max-width: 640px) {
+      .bill-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .bill-item { padding: 12px 6px; }
+      .bill-icon { font-size: 22px; }
+      .bill-label { font-size: 10.5px; }
+    }
+
+    .cs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .cs-item { background: var(--bg-white); border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); text-align: center; }
+    .cs-item:hover { border-color: var(--primary-blue); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .cs-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .cs-label { font-size: 11px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; }
+
+    .help-tabs-header { display: flex; border-bottom: 2px solid #e2e8f0; margin-bottom: 16px; gap: 8px; }
+    .help-tab { padding: 10px 16px; font-size: 14px; font-weight: 600; color: var(--text-secondary); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: var(--transition-smooth); }
+    .help-tab.active { color: var(--primary-blue); border-bottom-color: var(--primary-blue); }
+    .help-list-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg-white); border-radius: 14px; margin-bottom: 8px; cursor: pointer; border: 1px solid #f1f5f9; box-shadow: var(--shadow-sm); transition: var(--transition-smooth); }
+    .help-list-item:hover { border-color: var(--primary-blue-light); box-shadow: var(--shadow-md); transform: translateX(3px); }
+
+    @media (max-width: 640px) {
+      .cs-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .cs-item { padding: 12px 6px; }
+    }
 
     .virtual-card { border-radius: 20px; padding: 24px 20px; color: #fff; position: relative; overflow: hidden; margin-bottom: 14px; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 24px rgba(0,0,0,.22); max-width: 380px; }
     .card-gradient-1 { background: linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); }
@@ -424,9 +710,8 @@
     @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
     /* Dashboard home grid */
-    .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .home-grid { display: flex; flex-direction: column; max-width: 640px; }
     .home-grid-left { display: flex; flex-direction: column; }
-    .home-grid-right { display: flex; flex-direction: column; }
 
     /* Mobile bottom nav (hidden on desktop) */
     .mobile-bottom-nav {
@@ -709,12 +994,24 @@
       Antigravity
     </a>
     <nav class="sidebar-nav">
+      <div class="sidebar-section-label" onclick="navigate('cat-main')" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;" title="Open Main Category Page">
+        <span>MAIN</span>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:.6;"></i>
+      </div>
       <button class="sidebar-item active" id="nav-home" onclick="navigate('home')">
         <i class="fa-solid fa-house"></i> Home
       </button>
       <button class="sidebar-item" id="nav-history" onclick="navigate('history')">
         <i class="fa-solid fa-clock-rotate-left"></i> History
       </button>
+      <button class="sidebar-item" id="nav-cards" onclick="navigate('cards')">
+        <i class="fa-solid fa-credit-card"></i> Cards
+      </button>
+
+      <div class="sidebar-section-label" onclick="navigate('cat-transfers')" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-top:14px;" title="Open Transfers & Payments Category Page">
+        <span>TRANSFERS &amp; PAYMENTS</span>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:.6;"></i>
+      </div>
       <button class="sidebar-item" id="nav-transfer" onclick="navigate('transfer')">
         <i class="fa-solid fa-arrow-right-arrow-left"></i> Transfer
       </button>
@@ -722,14 +1019,27 @@
         <i class="fa-solid fa-file-invoice-dollar"></i> Pay Bills
       </button>
       <button class="sidebar-item" id="nav-airtime" onclick="navigate('airtime')">
-        <i class="fa-solid fa-sim-card"></i> Airtime & Data
+        <i class="fa-solid fa-sim-card"></i> Airtime &amp; Data
       </button>
-      <button class="sidebar-item" id="nav-cards" onclick="navigate('cards')">
-        <i class="fa-solid fa-credit-card"></i> Cards
+
+      <div class="sidebar-section-label" onclick="navigate('cat-finance')" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-top:14px;" title="Open Finance & Growth Category Page">
+        <span>FINANCE &amp; GROWTH</span>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:.6;"></i>
+      </div>
+      <button class="sidebar-item" onclick="navigate('safebox')">
+        <i class="fa-solid fa-vault"></i> Safe Box
       </button>
-      <div class="sidebar-divider"></div>
+      <button class="sidebar-item" onclick="navigate('loan')">
+        <i class="fa-solid fa-hand-holding-dollar"></i> Loan
+      </button>
+
+      <div class="sidebar-section-label" onclick="navigate('cat-account')" style="cursor:pointer;display:flex;justify-content:space-between;align-items:center;margin-top:14px;" title="Open Account & Security Category Page">
+        <span>ACCOUNT &amp; SECURITY</span>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;opacity:.6;"></i>
+      </div>
       <button class="sidebar-item" id="nav-notifications" onclick="navigate('notifications')">
         <i class="fa-regular fa-bell"></i> Notifications
+        <span class="sidebar-badge">3</span>
       </button>
       <button class="sidebar-item" id="nav-profile" onclick="navigate('profile')">
         <i class="fa-regular fa-circle-user"></i> Profile
@@ -750,18 +1060,25 @@
 
     <!-- Top Bar -->
     <header class="dash-topbar">
-      <div class="dash-topbar-title" id="topbar-title">Home</div>
+      <div id="topbar-left-area" class="dash-topbar-profile" onclick="navigate('profile')" title="View Profile">
+        <div class="topbar-avatar">OK</div>
+        <div>
+          <div class="topbar-user-title">
+            <span id="topbar-title-text">Hi, Oyedele K.</span>
+            <i class="fa-solid fa-circle-check" style="color:var(--accent-green);font-size:14px;" title="Verified Customer"></i>
+          </div>
+        </div>
+      </div>
       <div class="dash-topbar-right">
         <div class="notif-btn" onclick="navigate('scan-qr')" title="Scan QR Code" style="background:hsl(328,100%,96%);color:hsl(328,80%,45%);border-color:hsl(328,80%,90%);">
           <i class="fa-solid fa-qrcode" style="font-size:18px;"></i>
         </div>
+        <div class="notif-btn" onclick="navigate('help')" title="Help & Support" style="background:hsl(204,100%,96%);color:hsl(204,80%,40%);border-color:hsl(204,80%,90%);">
+          <i class="fa-solid fa-headset" style="font-size:17px;"></i>
+        </div>
         <div class="notif-btn" onclick="navigate('notifications')" title="Notifications">
           <i class="fa-regular fa-bell" style="font-size:18px;color:var(--text-primary);"></i>
           <span class="notif-badge">3</span>
-        </div>
-        <div class="user-pill">
-          <div class="avatar">Ok</div>
-          <span style="font-size:13px;font-weight:600;">Oyedele K.</span>
         </div>
       </div>
     </header>
@@ -773,71 +1090,45 @@
       <div id="screen-home" class="screen active">
         <div class="home-grid">
           <div class="home-grid-left">
-            <div class="balance-card" style="padding-bottom:20px;margin-bottom:20px;">
-              <div class="card-chip"><i class="fa-solid fa-microchip"></i></div>
-              <div class="balance-label">Total Balance</div>
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;">
-                <div class="balance-amount" id="home-balance">₦ 2,847,500.00</div>
-                <button class="balance-eye" id="toggle-balance" onclick="toggleBalance()"><i class="fa-regular fa-eye"></i></button>
+            <!-- OPay Style Customer & Balance Card -->
+            <div class="opay-balance-card">
+              <div class="opay-card-header">
+                <div class="opay-user-info" onclick="navigate('profile')" style="cursor:pointer;">
+                  <div class="opay-avatar">OK</div>
+                  <div>
+                    <div class="opay-user-name">
+                      Oyedele Kehinde
+                      <i class="fa-solid fa-circle-check" style="color:#4ade80;font-size:14px;" title="Verified Customer"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <button class="btn" style="background:rgba(255,255,255,0.18);color:#fff;border:none;border-radius:12px;height:40px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;transition:background 0.2s;" onclick="navigate('add-money')">
-                <i class="fa-solid fa-circle-plus"></i> Add Money
-              </button>
-            </div>
 
-            <p class="section-title">Quick Actions</p>
-            <div class="quick-action-grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
-              <div class="quick-action-btn" onclick="navigate('transfer'); prefillContact('0123456789','Antigravity Bank')">
-                <div class="quick-action-icon" style="background:var(--primary-blue-light);color:var(--primary-blue);"><i class="fa-solid fa-building-columns"></i></div>
-                <span>To Antigravity</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('transfer')">
-                <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                <span>To Other Bank</span>
-              </div>
-              <div class="quick-action-btn" onclick="alert('Withdraw simulation: Go to any ATM and use cardless withdrawal or use cash-out at agent points.')">
-                <div class="quick-action-icon" style="background:hsl(0,100%,96%);color:#dc2626;"><i class="fa-solid fa-money-bill-transfer"></i></div>
-                <span>Withdraw</span>
-              </div>
-            </div>
+              <div class="opay-divider"></div>
 
-            <p class="section-title">Services</p>
-            <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
-              <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('airtime')">
-                <div class="quick-action-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-sim-card"></i></div>
-                <span>Airtime</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('data')">
-                <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-wifi"></i></div>
-                <span>Data</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('betting')">
-                <div class="quick-action-icon" style="background:hsl(142,70%,93%);color:#15803d;"><i class="fa-solid fa-dice"></i></div>
-                <span>Betting</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('tv')">
-                <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-tv"></i></div>
-                <span>TV</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('safebox')">
-                <div class="quick-action-icon" style="background:hsl(180,60%,93%);color:#0f766e;"><i class="fa-solid fa-vault"></i></div>
-                <span>Safe Box</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('loan')">
-                <div class="quick-action-icon" style="background:hsl(328,100%,95%);color:hsl(328,80%,45%);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                <span>Loan</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('invitation')">
-                <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-user-plus"></i></div>
-                <span>Invitation</span>
-              </div>
-              <div class="quick-action-btn" onclick="navigate('more-services')">
-                <div class="quick-action-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-ellipsis"></i></div>
-                <span>More</span>
+              <div class="opay-balance-row" style="margin-bottom:0;">
+                <div>
+                  <div class="balance-label-row">
+                    <span>Total Balance</span>
+                    <button class="balance-eye" id="toggle-balance" onclick="toggleBalance()" title="Hide/Show Balance">
+                      <i class="fa-regular fa-eye"></i>
+                    </button>
+                  </div>
+                  <div class="balance-amount" id="home-balance">₦ 2,847,500.00</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+                  <button class="opay-history-btn" onclick="navigate('history')">
+                    History <i class="fa-solid fa-chevron-right" style="font-size:11px;"></i>
+                  </button>
+                  <button class="opay-history-btn" style="background:linear-gradient(135deg, #00c896, #059669);color:#fff;font-weight:700;box-shadow:0 3px 10px rgba(5,150,105,0.35);" onclick="navigate('add-money')">
+                    <i class="fa-solid fa-circle-plus"></i> Add Money
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div class="card" style="padding:0 16px;">
+            <!-- RECENT TRANSACTIONS (MOVED BEFORE SERVICES) -->
+            <div class="card" style="padding:0 16px;margin-bottom:20px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-top:16px;">
                 <p class="section-title" style="margin:0;">Recent Transactions</p>
                 <span onclick="navigate('history')" style="font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">See all</span>
@@ -864,52 +1155,60 @@
                 <div class="tx-amount-debit">–₦15,000</div>
               </div>
             </div>
-          </div>
 
-          <div class="home-grid-right">
-            <div class="card" style="margin-bottom:24px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-                <p class="section-title" style="margin:0;">Spending Overview</p>
-                <span class="chip">July 2026</span>
-              </div>
-              <div class="mini-chart">
-                <div class="chart-bar" style="height:45%;"></div>
-                <div class="chart-bar" style="height:65%;"></div>
-                <div class="chart-bar" style="height:30%;"></div>
-                <div class="chart-bar highlight" style="height:90%;"></div>
-                <div class="chart-bar" style="height:50%;"></div>
-                <div class="chart-bar" style="height:70%;"></div>
-                <div class="chart-bar" style="height:40%;"></div>
-                <div class="chart-bar" style="height:60%;"></div>
-                <div class="chart-bar" style="height:25%;"></div>
-                <div class="chart-bar" style="height:80%;"></div>
-                <div class="chart-bar" style="height:35%;"></div>
-                <div class="chart-bar" style="height:55%;"></div>
-                <div class="chart-bar highlight" style="height:95%;"></div>
-              </div>
-            </div>
-
-            <p class="section-title">Savings Goals</p>
-            <div class="card">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                  <div style="font-size:14px;font-weight:700;">🏠 New Apartment</div>
-                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">₦340,000 of ₦1,000,000</div>
+            <!-- UNIFIED COMBINED SERVICES CARD -->
+            <div class="dashboard-split-card">
+              <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;">
+                <!-- Transfer Actions -->
+                <div class="quick-action-btn" onclick="navigate('transfer'); prefillContact('0123456789','Antigravity Bank')">
+                  <div class="quick-action-icon" style="background:var(--primary-blue-light);color:var(--primary-blue);"><i class="fa-solid fa-building-columns"></i></div>
+                  <span>To Antigravity</span>
                 </div>
-                <span style="font-size:20px;font-weight:800;color:var(--accent-green);">34%</span>
-              </div>
-              <div class="goal-bar-bg"><div class="goal-bar-fill" style="width:34%;"></div></div>
-            </div>
-
-            <div class="card" style="margin-top:8px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                  <div style="font-size:14px;font-weight:700;">✈️ Travel Fund</div>
-                  <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">₦120,000 of ₦500,000</div>
+                <div class="quick-action-btn" onclick="navigate('transfer')">
+                  <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                  <span>To Other Bank</span>
                 </div>
-                <span style="font-size:20px;font-weight:800;color:var(--primary-blue);">24%</span>
+                <div class="quick-action-btn" onclick="alert('Withdraw simulation: Cash out via ATM cardless withdrawal or nearby OPay Agent point.')">
+                  <div class="quick-action-icon" style="background:hsl(0,100%,96%);color:#dc2626;"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                  <span>Withdraw</span>
+                </div>
+
+                <!-- Recharge & Bills -->
+                <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('airtime')">
+                  <div class="quick-action-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-sim-card"></i></div>
+                  <span>Airtime</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('data')">
+                  <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-wifi"></i></div>
+                  <span>Data</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('betting')">
+                  <div class="quick-action-icon" style="background:hsl(142,70%,93%);color:#15803d;"><i class="fa-solid fa-dice"></i></div>
+                  <span>Betting</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('tv')">
+                  <div class="quick-action-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-tv"></i></div>
+                  <span>TV</span>
+                </div>
+
+                <!-- Finance & Growth -->
+                <div class="quick-action-btn" onclick="navigate('safebox')">
+                  <div class="quick-action-icon" style="background:hsl(180,60%,93%);color:#0f766e;"><i class="fa-solid fa-vault"></i></div>
+                  <span>Safe Box</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('loan')">
+                  <div class="quick-action-icon" style="background:hsl(328,100%,95%);color:hsl(328,80%,45%);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                  <span>Loan</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('invitation')">
+                  <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-user-plus"></i></div>
+                  <span>Invitation</span>
+                </div>
+                <div class="quick-action-btn" onclick="navigate('more-services')">
+                  <div class="quick-action-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-ellipsis"></i></div>
+                  <span>More</span>
+                </div>
               </div>
-              <div class="goal-bar-bg"><div class="goal-bar-fill" style="width:24%;background:linear-gradient(90deg,var(--primary-blue),hsl(194,100%,38%));"></div></div>
             </div>
           </div>
         </div>
@@ -1181,47 +1480,97 @@
           <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
           <h2 style="font-size:20px;">Pay Bills</h2>
         </div>
-        <p class="section-title">Bill Categories</p>
-        <div class="bill-grid" style="grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));">
-          <!-- Existing & Requested Categories -->
-          <div class="bill-item" onclick="openBillPay('Utility Co.','Electricity')"><div class="bill-icon">⚡</div><div class="bill-label">Electricity</div></div>
-          <div class="bill-item" onclick="openBillPay('DSTV / GOTV / StarTimes','Cable TV')"><div class="bill-icon">📺</div><div class="bill-label">Cable TV</div></div>
-          <div class="bill-item" onclick="openBillPay('Water Board','Water Bill')"><div class="bill-icon">💧</div><div class="bill-label">Water</div></div>
-          <div class="bill-item" onclick="openBillPay('WAEC / JAMB / Universities','School & Exams')"><div class="bill-icon">🎓</div><div class="bill-label">School &amp; Exams</div></div>
-          <div class="bill-item" onclick="openBillPay('Spectranet / Smile / Fiber','Internet Service')"><div class="bill-icon">📡</div><div class="bill-label">Internet Service</div></div>
-          <div class="bill-item" onclick="openBillPay('Fintech / Investment Partner','Financial Services')"><div class="bill-icon">🏦</div><div class="bill-label">Financial Services</div></div>
-          <div class="bill-item" onclick="openBillPay('Corporate Invoicing','Invoice Payment')"><div class="bill-icon">📄</div><div class="bill-label">Invoice Payment</div></div>
-          <div class="bill-item" onclick="openBillPay('Non-profit Partner','Aid, Grant & Donation')"><div class="bill-icon">❤️</div><div class="bill-label">Aid, Grant &amp; Donation</div></div>
-          <div class="bill-item" onclick="openBillPay('Faith Ministry / Organization','Religion')"><div class="bill-icon">⛪</div><div class="bill-label">Religion</div></div>
-          <div class="bill-item" onclick="openBillPay('LIRS / FIRS / Government','Government Payments')"><div class="bill-icon">🏛️</div><div class="bill-label">Government Payments</div></div>
-          <div class="bill-item" onclick="openBillPay('Embassy Visa Handling','Embassies')"><div class="bill-icon">🛂</div><div class="bill-label">Embassies</div></div>
-          <div class="bill-item" onclick="openBillPay('Netflix / Prime / Others','TV (Others)')"><div class="bill-icon">🍿</div><div class="bill-label">TV (Others)</div></div>
-          <div class="bill-item" onclick="openBillPay('Retailer Checkout','Online Shopping')"><div class="bill-icon">🛒</div><div class="bill-label">Online Shopping</div></div>
-          <div class="bill-item" onclick="openBillPay('POS Merchant Settlement','Merchant Payments')"><div class="bill-icon">🏪</div><div class="bill-label">Merchant Payments</div></div>
-          <div class="bill-item" onclick="openBillPay('Blackberry Services','Blackberry')"><div class="bill-icon">🍇</div><div class="bill-label">Blackberry</div></div>
-          <div class="bill-item" onclick="openBillPay('Paychoice Platform','Paychoice')"><div class="bill-icon">💳</div><div class="bill-label">Paychoice</div></div>
-          <div class="bill-item" onclick="openBillPay('Local Retail / Franchise','Commerce Retail Trade')"><div class="bill-icon">🏬</div><div class="bill-label">Commerce Retail Trade</div></div>
-          <div class="bill-item" onclick="openBillPay('Prepaid Card Topup','Prepaid Card Services')"><div class="bill-icon">🎟️</div><div class="bill-label">Prepaid Card Services</div></div>
-          <div class="bill-item" onclick="openBillPay('Global Roaming Topup','International Airtime')"><div class="bill-icon">🌍</div><div class="bill-label">International Airtime</div></div>
-          <div class="bill-item" onclick="openBillPay('Uber / Bolt / Railway','Transport')"><div class="bill-icon">🚗</div><div class="bill-label">Transport</div></div>
-          <div class="bill-item" onclick="openBillPay('Wakanow / Booking.com','Travel &amp; Hotel')"><div class="bill-icon">✈️</div><div class="bill-label">Travel &amp; Hotel</div></div>
-          <div class="bill-item" onclick="openBillPay('LASG Licence','TV Licence')"><div class="bill-icon">📻</div><div class="bill-label">TV Licence</div></div>
-          <div class="bill-item" onclick="openBillPay('LCC Tollgate','Toll')"><div class="bill-icon">🛣️</div><div class="bill-label">Toll</div></div>
-        </div>
 
-        <p class="section-title">Scheduled Bills</p>
-        <div class="card" style="padding:0 16px;max-width:560px;">
-          <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Auto-pay · Due Jul 15</div></div></div><span style="font-size:14px;font-weight:700;">₦15,000</span></div>
-          <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📺</div><div><div style="font-size:14px;font-weight:600;">DSTV Compact</div><div class="tx-meta">Auto-pay · Due Jul 20</div></div></div><span style="font-size:14px;font-weight:700;">₦9,900</span></div>
-        </div>
-        <div id="bill-panel" style="display:none;margin-top:8px;max-width:480px;">
-          <div style="background:var(--primary-blue-light);border-radius:14px;padding:14px 16px;margin-bottom:12px;">
-            <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Paying for</div>
-            <div id="bill-title" style="font-size:16px;font-weight:700;color:var(--text-primary);"></div>
+        <div style="max-width:680px;">
+          <!-- Biller Search Bar (OPay Style) -->
+          <div class="search-bar" style="margin-bottom:20px;max-width:100%;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="biller-search-input" placeholder="Search any biller, utility, exam, subscription…" oninput="filterBillerCategories(this.value)">
           </div>
-          <div class="input-group"><label class="input-label">Customer ID / Meter No.</label><input type="text" class="input-field" placeholder="Enter meter / ID number"></div>
-          <div class="input-group"><label class="input-label">Amount (₦)</label><input type="number" class="input-field" placeholder="e.g. 5000"></div>
-          <button class="btn btn-success btn-full" onclick="showReceipt('bills')"><i class="fa-solid fa-circle-check"></i> Pay Bill Now</button>
+
+          <div id="biller-no-results" style="display:none;text-align:center;padding:32px;color:var(--text-secondary);font-size:14px;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size:32px;margin-bottom:8px;opacity:.4;display:block;"></i>
+            No biller found matching your search.
+          </div>
+
+          <!-- GROUP 1: UTILITIES, TELECOM & BROADBAND -->
+          <div class="biller-group">
+            <div class="bill-category-title">⚡ Utilities &amp; Broadband</div>
+            <div class="bill-grid">
+              <div class="bill-item" onclick="openBillPay('EKEDC / IKEDC / AEDC / IBEDC / EEDC','Electricity Meter')"><div class="bill-icon">⚡</div><div class="bill-label">Electricity</div></div>
+              <div class="bill-item" onclick="openBillPay('State Water Board','Water Bill')"><div class="bill-icon">💧</div><div class="bill-label">Water</div></div>
+              <div class="bill-item" onclick="openBillPay('LAWMA / PSP Waste Management','Waste Bill')"><div class="bill-icon">🗑️</div><div class="bill-label">Waste Mgmt</div></div>
+              <div class="bill-item" onclick="openBillPay('Spectranet / Smile / Fiber / Broadband','Internet Service')"><div class="bill-icon">📡</div><div class="bill-label">Internet Service</div></div>
+              <div class="bill-item" onclick="openBillPay('Blackberry Subscription Service','Blackberry')"><div class="bill-icon">🍇</div><div class="bill-label">Blackberry</div></div>
+              <div class="bill-item" onclick="openBillPay('Global Roaming &amp; Foreign Topup','International Airtime')"><div class="bill-icon">🌍</div><div class="bill-label">Intl Airtime</div></div>
+            </div>
+          </div>
+
+          <!-- GROUP 2: TV & ENTERTAINMENT -->
+          <div class="biller-group">
+            <div class="bill-category-title">📺 TV &amp; Entertainment</div>
+            <div class="bill-grid">
+              <div class="bill-item" onclick="openBillPay('DSTV / GOTV / StarTimes','Cable TV')"><div class="bill-icon">📺</div><div class="bill-label">DSTV / GOTV</div></div>
+              <div class="bill-item" onclick="openBillPay('StarTimes Direct','StarTimes')"><div class="bill-icon">📡</div><div class="bill-label">StarTimes</div></div>
+              <div class="bill-item" onclick="openBillPay('Showmax Subscription','Showmax')"><div class="bill-icon">🎬</div><div class="bill-label">Showmax</div></div>
+              <div class="bill-item" onclick="openBillPay('Showmax / Netflix / Prime / Spotify','TV (Others)')"><div class="bill-icon">🍿</div><div class="bill-label">TV (Others)</div></div>
+            </div>
+          </div>
+
+          <!-- GROUP 3: EDUCATION, GOVERNMENT & EMBASSIES -->
+          <div class="biller-group">
+            <div class="bill-category-title">🎓 Education, Tax &amp; Embassies</div>
+            <div class="bill-grid">
+              <div class="bill-item" onclick="openBillPay('WAEC / JAMB / University Tuition','School &amp; Exams')"><div class="bill-icon">🎓</div><div class="bill-label">School &amp; Exams</div></div>
+              <div class="bill-item" onclick="openBillPay('LIRS Tax / FIRS Revenue / Remita RRR','Government Payment')"><div class="bill-icon">🏛️</div><div class="bill-label">Government Payment</div></div>
+              <div class="bill-item" onclick="openBillPay('Embassy Visa &amp; Appointment Handling','Embassies')"><div class="bill-icon">🛂</div><div class="bill-label">Embassies</div></div>
+              <div class="bill-item" onclick="openBillPay('Church Tithe &amp; Mosque Offering','Religion')"><div class="bill-icon">⛪</div><div class="bill-label">Religion</div></div>
+              <div class="bill-item" onclick="openBillPay('Non-profit Partner / NGO Pool','Aid, Grant &amp; Donation')"><div class="bill-icon">❤️</div><div class="bill-label">Aid &amp; Donations</div></div>
+            </div>
+          </div>
+
+          <!-- GROUP 4: FINANCIAL, COMMERCE & MERCHANTS -->
+          <div class="biller-group">
+            <div class="bill-category-title">🏦 Financial, Shopping &amp; Merchants</div>
+            <div class="bill-grid">
+              <div class="bill-item" onclick="openBillPay('Loan Repayment / Insurance Premium / MFB','Financial Service')"><div class="bill-icon">🏦</div><div class="bill-label">Financial Service</div></div>
+              <div class="bill-item" onclick="openBillPay('Corporate / Merchant Product Invoice','Product &amp; Service')"><div class="bill-icon">📦</div><div class="bill-label">Product &amp; Service</div></div>
+              <div class="bill-item" onclick="openBillPay('Shopping Outlet &amp; Merchant Checkout','Shopping')"><div class="bill-icon">🛍️</div><div class="bill-label">Shopping</div></div>
+              <div class="bill-item" onclick="openBillPay('AliExpress / Jumia E-Commerce Checkout','Online Shopping')"><div class="bill-icon">🛒</div><div class="bill-label">Online Shopping</div></div>
+              <div class="bill-item" onclick="openBillPay('POS Merchant Settlement &amp; Paycode','Merchant Payments')"><div class="bill-icon">🏪</div><div class="bill-label">Merchant Payments</div></div>
+              <div class="bill-item" onclick="openBillPay('Local Retail &amp; Franchise Settlement','Commerce Retail Trade')"><div class="bill-icon">🏬</div><div class="bill-label">Commerce Trade</div></div>
+              <div class="bill-item" onclick="openBillPay('Paychoice Platform Checkout','Paychoice')"><div class="bill-icon">💳</div><div class="bill-label">Paychoice</div></div>
+              <div class="bill-item" onclick="openBillPay('Prepaid Card Topup &amp; Reload','Prepaid Card Service')"><div class="bill-icon">🎟️</div><div class="bill-label">Prepaid Card</div></div>
+            </div>
+          </div>
+
+          <!-- GROUP 5: BETTING, TRAVEL & TRANSPORT -->
+          <div class="biller-group">
+            <div class="bill-category-title">✈️ Betting, Travel &amp; Transport</div>
+            <div class="bill-grid">
+              <div class="bill-item" onclick="openBillPay('SportyBet / Bet9ja / 1xBet','Betting &amp; Gaming')"><div class="bill-icon">🎲</div><div class="bill-label">Betting</div></div>
+              <div class="bill-item" onclick="openBillPay('Uber / Bolt / Railway Train / LCC Tollgate','Transport &amp; Toll')"><div class="bill-icon">🚗</div><div class="bill-label">Transport &amp; Toll</div></div>
+              <div class="bill-item" onclick="openBillPay('Air Peace / Ibom Air Flight &amp; Hotel Booking','Travel &amp; Hotel')"><div class="bill-icon">✈️</div><div class="bill-label">Travel &amp; Hotel</div></div>
+            </div>
+          </div>
+
+          <!-- Scheduled Bills -->
+          <p class="section-title" style="margin-top:28px;">Scheduled Auto-Pay Bills</p>
+          <div class="card" style="padding:0 16px;max-width:100%;margin-bottom:24px;">
+            <div class="transaction-item"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div><div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Auto-pay · Due Jul 15</div></div></div><span style="font-size:14px;font-weight:700;">₦15,000</span></div>
+            <div class="transaction-item" style="border:none;"><div class="transaction-left"><div class="tx-icon-wrapper" style="background:#fff7ed;">📺</div><div><div style="font-size:14px;font-weight:600;">DSTV Compact</div><div class="tx-meta">Auto-pay · Due Jul 20</div></div></div><span style="font-size:14px;font-weight:700;">₦9,900</span></div>
+          </div>
+
+          <!-- Interactive Bill Payment Form Modal/Panel -->
+          <div id="bill-panel" style="display:none;margin-top:16px;max-width:100%;">
+            <div style="background:var(--primary-blue-light);border-radius:14px;padding:14px 16px;margin-bottom:14px;">
+              <div style="font-size:12px;color:var(--text-secondary);margin-bottom:4px;">Paying Biller</div>
+              <div id="bill-title" style="font-size:16px;font-weight:700;color:var(--primary-blue);"></div>
+            </div>
+            <div class="input-group"><label class="input-label">Customer ID / Meter No. / SmartCard No.</label><input type="text" class="input-field" placeholder="Enter meter, phone, or customer ID"></div>
+            <div class="input-group"><label class="input-label">Amount (₦)</label><input type="number" class="input-field" placeholder="e.g. 5000"></div>
+            <button class="btn btn-success btn-full" onclick="showReceipt('bills')"><i class="fa-solid fa-circle-check"></i> Complete Payment</button>
+          </div>
         </div>
       </div>
 
@@ -1421,26 +1770,303 @@
         </div>
       </div>
 
-      <!-- ========== HELP & SUPPORT ========== -->
+      <!-- ========== HELP & SUPPORT (CUSTOMER SERVICE) ========== -->
       <div id="screen-help" class="screen">
         <div class="sub-screen-header">
-          <button class="back-btn" onclick="navigate('settings')"><i class="fa-solid fa-arrow-left"></i></button>
-          <h2 style="font-size:20px;">Help &amp; Support</h2>
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Customer Service</h2>
         </div>
-        <div style="max-width:600px;">
-          <div class="search-bar" style="margin-bottom:24px;"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search for help…"></div>
-          <p class="section-title">Contact Us</p>
-          <div class="support-btn"><div class="support-icon" style="background:#dcfce7;color:#15803d;"><i class="fa-brands fa-whatsapp"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">WhatsApp Support</div><div style="font-size:12px;color:var(--text-secondary);">Chat with us · Avg. reply in 5 min</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
-          <div class="support-btn"><div class="support-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-phone"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Call Centre</div><div style="font-size:12px;color:var(--text-secondary);">0800-ANTIGRAVITY · 24/7</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
-          <div class="support-btn"><div class="support-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-comments"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Live Chat</div><div style="font-size:12px;color:var(--text-secondary);">In-app chat · Available 6am–10pm</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
-          <div class="support-btn"><div class="support-icon" style="background:#fff7ed;color:#c2410c;"><i class="fa-regular fa-envelope"></i></div><div><div style="font-size:14px;font-weight:700;color:var(--text-primary);">Email Us</div><div style="font-size:12px;color:var(--text-secondary);">support@antigravity.bank</div></div><i class="fa-solid fa-chevron-right menu-chevron" style="margin-left:auto;"></i></div>
+        <div style="max-width:680px;">
 
-          <p class="section-title" style="margin-top:12px;">FAQs</p>
-          <div class="faq-item" id="faq1"><div class="faq-question" onclick="toggleFaq('faq1')"><span>How do I reset my PIN?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Go to Settings → Security → Change PIN. You'll need to verify via OTP sent to your registered phone number.</div></div>
-          <div class="faq-item" id="faq2"><div class="faq-question" onclick="toggleFaq('faq2')"><span>How long do transfers take?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Intra-bank transfers are instant. Inter-bank (NIBSS) transfers typically complete within 30 seconds to 5 minutes.</div></div>
-          <div class="faq-item" id="faq3"><div class="faq-question" onclick="toggleFaq('faq3')"><span>What are my daily transaction limits?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Daily transfer: ₦5,000,000. POS: ₦500,000. ATM: ₦150,000. Increase limits via Cards → Limits.</div></div>
-          <div class="faq-item" id="faq4"><div class="faq-question" onclick="toggleFaq('faq4')"><span>How do I block my card?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">Navigate to Cards, select the card, and tap Block. You can also call our 24/7 hotline: 0800-ANTIGRAVITY.</div></div>
-          <div class="faq-item" id="faq5"><div class="faq-question" onclick="toggleFaq('faq5')"><span>How secure is Antigravity Bank?</span><i class="fa-solid fa-chevron-down faq-chevron"></i></div><div class="faq-answer">We use 256-bit AES encryption, 2FA, and biometric authentication. All data is stored on CBN-regulated servers with continuous fraud monitoring.</div></div>
+          <!-- SECTION 1: CUSTOMER SERVICE SHORTCUTS -->
+          <p class="section-title" style="margin-top:0;">Customer Service</p>
+          <div class="cs-grid">
+            <div class="cs-item" onclick="openHelpModal('Transaction Dispute','Log a dispute for pending, failed, or uncredited debit transactions.')">
+              <div class="cs-icon" style="background:#fef2f2;color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="cs-label">Transaction Dispute</div>
+            </div>
+            <div class="cs-item" onclick="openHelpModal('Erroneous Transfer','Request recall or report an accidental transfer to wrong recipient.')">
+              <div class="cs-icon" style="background:#fff7ed;color:#f97316;"><i class="fa-solid fa-arrows-rotate"></i></div>
+              <div class="cs-label">Erroneous Transfer</div>
+            </div>
+            <div class="cs-item" onclick="openHelpModal('Account Limit','View daily transfer limits and submit Tier 3 upgrade documents.')">
+              <div class="cs-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-gauge-high"></i></div>
+              <div class="cs-label">Account Limit</div>
+            </div>
+            <div class="cs-item" onclick="navigate('settings')">
+              <div class="cs-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-lock"></i></div>
+              <div class="cs-label">Password and PIN</div>
+            </div>
+            <div class="cs-item" onclick="openHelpModal('Phone Number Change','Update registered phone number with OTP SMS verification.')">
+              <div class="cs-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-mobile-retro"></i></div>
+              <div class="cs-label">Phone Number Change</div>
+            </div>
+            <div class="cs-item" onclick="openHelpModal('Report Scam','Freeze account instantly or report fraudulent activity.')">
+              <div class="cs-icon" style="background:#fef2f2;color:#dc2626;"><i class="fa-solid fa-shield-virus"></i></div>
+              <div class="cs-label">Report Scam</div>
+            </div>
+            <div class="cs-item" onclick="navigate('settings')">
+              <div class="cs-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-comment-sms"></i></div>
+              <div class="cs-label">SMS Alert Settings</div>
+            </div>
+            <div class="cs-item" onclick="openHelpModal('More Support Services','Browse additional customer care tools and agent assistance.')">
+              <div class="cs-icon" style="background:#f8fafc;color:#64748b;"><i class="fa-solid fa-ellipsis"></i></div>
+              <div class="cs-label">And More</div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: MY FEEDBACK -->
+          <p class="section-title" style="margin-top:24px;">My Feedback</p>
+          <div class="card" style="padding:18px;margin-bottom:24px;background:linear-gradient(135deg, #f0fdf4, #ecfdf5);border:1px solid #bbf7d0;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:#16a34a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-regular fa-comment-dots"></i></div>
+              <div>
+                <div style="font-size:15px;font-weight:700;color:var(--text-primary);">We Value Your Thoughts</div>
+                <div style="font-size:12px;color:var(--text-secondary);">Tell us about your experience or report an issue directly to product leads.</div>
+              </div>
+            </div>
+            <button class="btn btn-success btn-full" onclick="openFeedbackModal()" style="height:44px;font-weight:700;border-radius:12px;"><i class="fa-solid fa-pen"></i> Enter My Feedback</button>
+          </div>
+
+          <!-- SECTION 3: HELP YOU MAY NEED -->
+          <p class="section-title" style="margin-top:24px;">Help You May Need</p>
+          
+          <!-- Tabs Header: Hot Issues | Transaction | Account -->
+          <div class="help-tabs-header">
+            <div id="tab-btn-hot-issues" class="help-tab active" onclick="switchHelpTab('hot-issues')">Hot Issues</div>
+            <div id="tab-btn-transaction" class="help-tab" onclick="switchHelpTab('transaction')">Transaction</div>
+            <div id="tab-btn-account" class="help-tab" onclick="switchHelpTab('account')">Account</div>
+          </div>
+
+          <!-- Tab Content 1: Hot Issues -->
+          <div id="help-panel-hot-issues">
+            <div class="help-list-item" onclick="openHelpModal('Office Address', '🏢 Antigravity Bank Headquarters:\n14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria.\n\nBranch Hours: Mon – Fri (8:00 AM – 4:00 PM)\nHotline: 0800-ANTIGRAVITY')">
+              <span style="font-size:14px;font-weight:600;">1. Office address</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('How to increase the limit', '📈 How to Increase Transfer Limit:\n1. Go to Profile → Account Details.\n2. Upload valid Government ID (NIN/Passport/Voters Card).\n3. Link verified BVN to upgrade to Tier 3 (Unlimited Daily Limit).')">
+              <span style="font-size:14px;font-weight:600;">2. How to increase the limit</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('How to change mobile number', '📱 How to Change Mobile Number:\n1. Go to Settings → Security.\n2. Tap Mobile Number Update.\n3. Enter your new number and verify via instant SMS OTP code.')">
+              <span style="font-size:14px;font-weight:600;">3. How to change mobile number</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('How to download account statement', '📄 How to Download Account Statement:\n1. Go to Account Details or History.\n2. Tap \"Statement\" button.\n3. Select date range (e.g., 1 Month, 6 Months, Custom) and download official PDF receipt.')">
+              <span style="font-size:14px;font-weight:600;">4. How to download account statement</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('What is stamp duty', '💡 What is Stamp Duty?\nStamp Duty is a CBN regulatory charge of ₦50 levied on electronic bank deposits and inflows of ₦10,000 and above, remitted directly to the Federal Inland Revenue Service (FIRS).')">
+              <span style="font-size:14px;font-weight:600;">5. What is stamp duty</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+
+          <!-- Tab Content 2: Transaction -->
+          <div id="help-panel-transaction" style="display:none;">
+            <div class="help-list-item" onclick="openHelpModal('Debited for failed card transaction', '💳 Debited for Failed Card Transaction:\nIf your card was debited for a failed transaction, CBN rules require auto-reversal within 24 hours. If delayed, tap \"Log Dispute\" to resolve instantly.')">
+              <span style="font-size:14px;font-weight:600;">1. Debited for failed card transaction</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('Why is the transfer still pending', '⏳ Why is Transfer Still Pending?\nTransfers may stay pending due to interbank network congestion (NIBSS switch delays). Most pending transfers settle within 15 minutes or automatically revert if rejected.')">
+              <span style="font-size:14px;font-weight:600;">2. Why is the transfer still pending</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('Transfer successful but not credited', '🔄 Transfer Successful But Not Credited:\nIf your transfer was successful but the recipient hasn\'t received funds, share the Transaction Reference Code / Session ID with receiving bank support to credit recipient.')">
+              <span style="font-size:14px;font-weight:600;">3. Transfer successful but not credited</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('How to recall erroneous transfer', '🚨 How to Recall Erroneous Transfer:\nTap \"Erroneous Transfer\" in Customer Care shortcuts immediately. Provide destination account & timestamp so our fraud operations team flags recipient bank for recall.')">
+              <span style="font-size:14px;font-weight:600;">4. How to recall erroneous transfer</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="navigate('settings')">
+              <span style="font-size:14px;font-weight:600;">5. How to manage PIN</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+
+          <!-- Tab Content 3: Account -->
+          <div id="help-panel-account" style="display:none;">
+            <div class="help-list-item" onclick="openHelpModal('What is upgrade progress', '📊 What is Upgrade Progress?\nUpgrade progress measures your KYC compliance level (Tier 1 to Tier 3). Completing BVN, NIN, and utility bill verification unlocks maximum transaction privileges.')">
+              <span style="font-size:14px;font-weight:600;">1. What is upgrade progress</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="navigate('settings')">
+              <span style="font-size:14px;font-weight:600;">2. How to change PIN</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('Can\'t receive verification code', '📩 Can\'t Receive Verification Code?\n1. Check network signal & SMS spam box.\n2. Ensure your phone isn\'t on DND (Do-Not-Disturb).\n3. Tap \"Resend Code via WhatsApp\" if available.')">
+              <span style="font-size:14px;font-weight:600;">3. Can\'t receive the verification code</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="openHelpModal('How to upgrade BVN/NIN name', '🆔 How to Upgrade BVN/NIN Name:\nIf your name on BVN/NIN differs from account registration, upload a marriage certificate, court affidavit, or newspaper publication under Profile → Edit Profile.')">
+              <span style="font-size:14px;font-weight:600;">4. How to upgrade BVN/NIN name</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="help-list-item" onclick="navigate('settings')">
+              <span style="font-size:14px;font-weight:600;">5. How to enable biometric payment</span>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+
+          <!-- SECTION 4: LIVE CHAT ACTION BUTTON -->
+          <div style="margin-top:28px;margin-bottom:12px;">
+            <button class="btn btn-primary btn-full" onclick="openLiveChatModal()" style="height:52px;font-size:15px;font-weight:700;border-radius:14px;background:linear-gradient(135deg, var(--primary-blue), #2563eb);box-shadow:0 4px 14px rgba(37,99,235,0.35);">
+              <i class="fa-solid fa-headset" style="font-size:18px;"></i> Live Chat Customer Care
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========== CATEGORY PAGE 1: MAIN ========== -->
+      <div id="screen-cat-main" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Main Overview</h2>
+        </div>
+        <div style="max-width:640px;">
+          <div class="services-section-title">📌 Main Navigation</div>
+          <div class="menu-section">
+            <div class="menu-item" onclick="navigate('home')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-house"></i></div>
+                <div><div class="menu-item-label">Dashboard Home</div><div class="menu-item-sub">Account balance &amp; quick services</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('history')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div><div class="menu-item-label">Transaction History</div><div class="menu-item-sub">View recent credits, debits &amp; receipts</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('cards')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-credit-card"></i></div>
+                <div><div class="menu-item-label">My Cards</div><div class="menu-item-sub">Manage physical &amp; virtual debit cards</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('notifications')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#fff7ed;color:#ea580c;"><i class="fa-regular fa-bell"></i></div>
+                <div><div class="menu-item-label">Notifications</div><div class="menu-item-sub">Read recent activity alerts &amp; updates</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== CATEGORY PAGE 2: TRANSFERS & PAYMENTS ========== -->
+      <div id="screen-cat-transfers" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Transfers &amp; Payments</h2>
+        </div>
+        <div style="max-width:640px;">
+          <div class="services-section-title">💸 Transfers &amp; Bill Payments</div>
+          <div class="menu-section">
+            <div class="menu-item" onclick="navigate('transfer')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                <div><div class="menu-item-label">Transfer Money</div><div class="menu-item-sub">Send money to any bank instantly</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('bills')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <div><div class="menu-item-label">Pay Bills</div><div class="menu-item-sub">Electricity, TV, Internet, Exams, Taxes &amp; more</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('airtime')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-sim-card"></i></div>
+                <div><div class="menu-item-label">Airtime &amp; Data</div><div class="menu-item-sub">Top up mobile airtime and data bundles</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('add-money')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#ecfdf5;color:#10b981;"><i class="fa-solid fa-circle-plus"></i></div>
+                <div><div class="menu-item-label">Add Money</div><div class="menu-item-sub">Fund account via bank transfer or card</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== CATEGORY PAGE 3: FINANCE & GROWTH ========== -->
+      <div id="screen-cat-finance" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Finance &amp; Growth</h2>
+        </div>
+        <div style="max-width:640px;">
+          <div class="services-section-title">📈 Savings, Investment &amp; Loans</div>
+          <div class="menu-section">
+            <div class="menu-item" onclick="navigate('safebox')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#ecfdf5;color:#10b981;"><i class="fa-solid fa-vault"></i></div>
+                <div><div class="menu-item-label">Safe Box Savings</div><div class="menu-item-sub">Earn up to 15% annual returns on savings</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('loan')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#fdf2f8;color:#db2777;"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div><div class="menu-item-label">Request Loan</div><div class="menu-item-sub">Instant low-interest personal &amp; business loans</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('invitation')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-user-plus"></i></div>
+                <div><div class="menu-item-label">Invite &amp; Earn</div><div class="menu-item-sub">Earn ₦500 bonus for every active referral</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== CATEGORY PAGE 4: ACCOUNT & SECURITY ========== -->
+      <div id="screen-cat-account" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:20px;">Account &amp; Security</h2>
+        </div>
+        <div style="max-width:640px;">
+          <div class="services-section-title">🔒 Account, Security &amp; Care</div>
+          <div class="menu-section">
+            <div class="menu-item" onclick="navigate('profile')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-regular fa-circle-user"></i></div>
+                <div><div class="menu-item-label">My Profile</div><div class="menu-item-sub">View account details &amp; tier status</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('settings')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-gear"></i></div>
+                <div><div class="menu-item-label">Settings &amp; Security</div><div class="menu-item-sub">PIN, password, biometrics &amp; preferences</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+            <div class="menu-item" onclick="navigate('help')">
+              <div class="menu-item-left">
+                <div class="menu-item-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-headset"></i></div>
+                <div><div class="menu-item-label">Customer Service</div><div class="menu-item-sub">Disputes, FAQs, feedback &amp; live chat</div></div>
+              </div>
+              <i class="fa-solid fa-chevron-right menu-chevron"></i>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1540,19 +2166,19 @@
           <!-- Recently Used -->
           <div class="services-section-title">🕒 Recently Used</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="navigate('bills'); openBillPay('EKEDC / IKEDC','Electricity')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('EKEDC / IKEDC / AEDC / IBEDC / EEDC','Electricity Meter')">
               <div class="service-card-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-bolt"></i></div>
               <div class="service-card-label">Electricity</div>
             </div>
-            <div class="service-card-item" onclick="alert('Product & Service: Browse and purchase partner business offerings.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Corporate / Merchant Product Invoice','Merchant Invoicing')">
               <div class="service-card-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-cubes"></i></div>
               <div class="service-card-label">Product &amp; Service</div>
             </div>
-            <div class="service-card-item" onclick="alert('Embassies: Pay visa fees, appointment fees and document handling charges.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Embassy Visa &amp; Appointment Fees','Embassies')">
               <div class="service-card-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-passport"></i></div>
               <div class="service-card-label">Embassies</div>
             </div>
-            <div class="service-card-item" onclick="alert('Fixed Deposit: Lock funds for fixed durations with higher returns.')">
+            <div class="service-card-item" onclick="navigate('safebox')">
               <div class="service-card-icon" style="background:hsl(272,100%,93%);color:hsl(272,55%,45%);"><i class="fa-solid fa-clock"></i></div>
               <div class="service-card-label">Fixed</div>
             </div>
@@ -1561,15 +2187,15 @@
           <!-- E-Commerce -->
           <div class="services-section-title">🛒 E-Commerce</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="alert('AliExpress: Search products and pay securely with local currency.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('AliExpress Checkout Partner','AliExpress Shopping')">
               <div class="service-card-icon" style="background:#fff1f2;color:#f43f5e;"><i class="fa-solid fa-bag-shopping"></i></div>
               <div class="service-card-label">AliExpress</div>
             </div>
-            <div class="service-card-item" onclick="alert('Gift Card: Purchase iTunes, Amazon, Google Play, and PlayStation cards.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Apple / Amazon / Google Play Gift Card','Gift Card Purchase')">
               <div class="service-card-icon" style="background:#faf5ff;color:#a855f7;"><i class="fa-solid fa-gift"></i></div>
               <div class="service-card-label">Gift Card</div>
             </div>
-            <div class="service-card-item" onclick="alert('Chowdeck: Order meals and pay directly from your bank account.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Chowdeck Food Delivery Partner','Chowdeck Wallet')">
               <div class="service-card-icon" style="background:#f0fdf4;color:#22c55e;"><i class="fa-solid fa-utensils"></i></div>
               <div class="service-card-label">Chowdeck</div>
             </div>
@@ -1578,7 +2204,7 @@
           <!-- International Services -->
           <div class="services-section-title">🌐 International Services</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="alert('Remit: Send international money transfers at friendly exchange rates.')">
+            <div class="service-card-item" onclick="navigate('transfer')">
               <div class="service-card-icon" style="background:#eff6ff;color:#3b82f6;"><i class="fa-solid fa-globe"></i></div>
               <div class="service-card-label">Remit</div>
             </div>
@@ -1587,15 +2213,15 @@
           <!-- Bills Section -->
           <div class="services-section-title">🧾 Bills</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="navigate('bills'); openBillPay('EKEDC / IKEDC','Electricity')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('EKEDC / IKEDC / AEDC / IBEDC / EEDC','Electricity Meter')">
               <div class="service-card-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-bolt"></i></div>
               <div class="service-card-label">Electricity</div>
             </div>
-            <div class="service-card-item" onclick="alert('Solar: Pay for solar energy subscriptions and green energy setups.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Solar Power &amp; Green Energy Subscription','Solar Subscription')">
               <div class="service-card-icon" style="background:#fff7ed;color:#f97316;"><i class="fa-solid fa-sun"></i></div>
               <div class="service-card-label">Solar</div>
             </div>
-            <div class="service-card-item" onclick="alert('Product & Service: Browse and purchase partner business offerings.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Corporate / Merchant Product Invoice','Merchant Invoicing')">
               <div class="service-card-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-cubes"></i></div>
               <div class="service-card-label">Product &amp; Service</div>
             </div>
@@ -1604,23 +2230,23 @@
           <!-- Finance -->
           <div class="services-section-title">💰 Finance</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="alert('OWealth: Save and earn daily returns up to 15% per annum.')">
+            <div class="service-card-item" onclick="navigate('safebox')">
               <div class="service-card-icon" style="background:#ecfdf5;color:#10b981;"><i class="fa-solid fa-chart-line"></i></div>
               <div class="service-card-label">OWealth</div>
             </div>
-            <div class="service-card-item" onclick="alert('Fixed Safebox: Safely lock away money for personal targets.')">
+            <div class="service-card-item" onclick="navigate('safebox')">
               <div class="service-card-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-lock"></i></div>
               <div class="service-card-label">Fixed Safebox</div>
             </div>
-            <div class="service-card-item" onclick="alert('Target: Create group or individual target savings goals.')">
+            <div class="service-card-item" onclick="navigate('safebox')">
               <div class="service-card-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-bullseye"></i></div>
               <div class="service-card-label">Target</div>
             </div>
-            <div class="service-card-item" onclick="alert('Spend & Save: Automatically save a percentage whenever you buy or pay.')">
+            <div class="service-card-item" onclick="navigate('safebox')">
               <div class="service-card-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-percent"></i></div>
               <div class="service-card-label">Spend &amp; Save</div>
             </div>
-            <div class="service-card-item" onclick="alert('BNPL (Buy Now Pay Later): Get credit for purchases and pay back in flexible installments.')">
+            <div class="service-card-item" onclick="navigate('loan')">
               <div class="service-card-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-credit-card"></i></div>
               <div class="service-card-label">BNPL</div>
             </div>
@@ -1629,15 +2255,15 @@
           <!-- Rewards -->
           <div class="services-section-title">🎁 Rewards</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="alert('Daily Check-in: Claim free points and cash rewards every day.')">
+            <div class="service-card-item" onclick="claimDailyCheckin()">
               <div class="service-card-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-calendar-check"></i></div>
               <div class="service-card-label">Daily Check-in</div>
             </div>
-            <div class="service-card-item" onclick="alert('Play4aChild: Join games and quizzes to donate to children charity pools.')">
+            <div class="service-card-item" onclick="navigate('bills'); openBillPay('Play4aChild Charity Donation Pool','Children Charity')">
               <div class="service-card-icon" style="background:#fdf2f8;color:#db2777;"><i class="fa-solid fa-child"></i></div>
               <div class="service-card-label">Play4aChild</div>
             </div>
-            <div class="service-card-item" onclick="alert('Refer & Earn: Share your code and earn ₦500 for every active referral.')">
+            <div class="service-card-item" onclick="navigate('invitation')">
               <div class="service-card-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-users"></i></div>
               <div class="service-card-label">Refer &amp; Earn</div>
             </div>
@@ -1646,7 +2272,7 @@
           <!-- Others -->
           <div class="services-section-title">🛠️ Others</div>
           <div class="services-grid-list">
-            <div class="service-card-item" onclick="alert('SMS Alert: Turn real-time transactions alerts on/off.')">
+            <div class="service-card-item" onclick="navigate('settings')">
               <div class="service-card-icon" style="background:#f8fafc;color:#64748b;"><i class="fa-solid fa-comment-sms"></i></div>
               <div class="service-card-label">SMS Alert</div>
             </div>
@@ -1885,6 +2511,73 @@
     }
   }
 
+  // ===== BILLER SEARCH FILTER =====
+  function filterBillerCategories(query) {
+    query = query.toLowerCase().trim();
+    let hasMatches = false;
+
+    document.querySelectorAll('.biller-group').forEach(group => {
+      let groupHasMatches = false;
+      group.querySelectorAll('.bill-item').forEach(item => {
+        const label = item.querySelector('.bill-label').textContent.toLowerCase();
+        if (!query || label.includes(query)) {
+          item.style.display = 'flex';
+          groupHasMatches = true;
+          hasMatches = true;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      group.style.display = groupHasMatches ? 'block' : 'none';
+    });
+
+    const noRes = document.getElementById('biller-no-results');
+    if (noRes) noRes.style.display = hasMatches || !query ? 'none' : 'block';
+  }
+
+  // ===== DAILY CHECK-IN REWARD =====
+  function claimDailyCheckin() {
+    accountBalance += 250;
+    const fmtBalance = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+    alert('🎉 Daily Check-in Success!\nYou claimed +₦250.00 daily reward bonus! Added to your total balance.');
+    if (cameFromMoreServices) navigate('more-services');
+  }
+
+  // ===== HELP & SUPPORT (CUSTOMER CARE) =====
+  function switchHelpTab(tab) {
+    ['hot-issues', 'transaction', 'account'].forEach(t => {
+      const panel = document.getElementById('help-panel-' + t);
+      const btn = document.getElementById('tab-btn-' + t);
+      if (panel) panel.style.display = (t === tab) ? 'block' : 'none';
+      if (btn) btn.classList.toggle('active', t === tab);
+    });
+  }
+
+  function openHelpModal(title, text) {
+    alert(`📌 ${title}\n\n${text}`);
+  }
+
+  function openFeedbackModal() {
+    const feedbackText = prompt("📝 We'd love your feedback!\nPlease share your comments or feature requests below:");
+    if (feedbackText && feedbackText.trim().length > 0) {
+      alert("✅ Thank you for your feedback!\nYour message has been received by our Customer Care Team.");
+    }
+  }
+
+  function openLiveChatModal() {
+    alert("💬 Antigravity Live Support Chat\n\nConnecting you to a Live Customer Care Specialist...\n\n[Agent Connected]: Hello Oyedele! How can I assist you with your account today?");
+  }
+
+  function copyAcctNum() {
+    navigator.clipboard.writeText('0123456789').then(() => {
+      alert('Account number copied to clipboard: 0123456789');
+    }).catch(() => {
+      alert('Account Number: 0123456789');
+    });
+  }
+
   // ===== SCREEN TITLES =====
   const SCREEN_TITLES = {
     home: 'Home', account: 'Account Details', transfer: 'Transfer Money',
@@ -1894,7 +2587,11 @@
     'scan-qr': 'Scan QR Code', 'more-services': 'More Services',
     betting: 'Fund Betting Account', tv: 'Pay TV Subscription',
     safebox: 'Safe Box Savings', loan: 'Request Personal Loan',
-    invitation: 'Invite Friends & Earn'
+    invitation: 'Invite Friends & Earn',
+    'cat-main': 'Main Overview',
+    'cat-transfers': 'Transfers & Payments',
+    'cat-finance': 'Finance & Growth',
+    'cat-account': 'Account & Security'
   };
 
   // ===== ADD MONEY FUNCTIONS =====
@@ -1919,7 +2616,7 @@
 
     alert(`Successfully added ₦${amount.toLocaleString('en-NG')} to your account balance!`);
     document.getElementById('card-funding-amount').value = '';
-    navigate('home');
+    navigate(cameFromMoreServices ? 'more-services' : 'home');
   }
 
   // ===== QR CODE FUNCTIONS =====
@@ -1938,11 +2635,31 @@
   // ===== NAVIGATION =====
   const NAV_SIDEBAR = { home: 'nav-home', history: 'nav-history', transfer: 'nav-transfer', bills: 'nav-bills', airtime: 'nav-airtime', cards: 'nav-cards', notifications: 'nav-notifications', profile: 'nav-profile', settings: 'nav-settings' };
   const MOB_NAV = { home: 'mob-nav-home', history: 'mob-nav-history', transfer: 'mob-nav-transfer', cards: 'mob-nav-cards', profile: 'mob-nav-profile' };
+  let cameFromMoreServices = false;
 
   function navigate(screenName) {
+    if (screenName === 'more-services') {
+      cameFromMoreServices = true;
+    } else if (screenName === 'home') {
+      cameFromMoreServices = false;
+    }
+
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     const target = document.getElementById('screen-' + screenName);
-    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+    if (target) { 
+      target.classList.add('active'); 
+      window.scrollTo(0, 0); 
+
+      // Dynamic back button redirection
+      const backBtn = target.querySelector('.back-btn');
+      if (backBtn) {
+        if (cameFromMoreServices && screenName !== 'more-services' && screenName !== 'home') {
+          backBtn.setAttribute('onclick', "navigate('more-services')");
+        } else if (!cameFromMoreServices && screenName !== 'home') {
+          backBtn.setAttribute('onclick', "navigate('home')");
+        }
+      }
+    }
 
     document.querySelectorAll('.sidebar-item').forEach(n => n.classList.remove('active'));
     const sideId = NAV_SIDEBAR[screenName];
@@ -1952,8 +2669,10 @@
     const mobId = MOB_NAV[screenName];
     if (mobId) document.getElementById(mobId).classList.add('active');
 
-    const titleEl = document.getElementById('topbar-title');
-    if (titleEl) titleEl.textContent = SCREEN_TITLES[screenName] || screenName;
+    const titleText = document.getElementById('topbar-title-text');
+    if (titleText) {
+      titleText.textContent = screenName === 'home' ? 'Hi, Oyedele K.' : (SCREEN_TITLES[screenName] || screenName);
+    }
   }
 
   // ===== BALANCE TOGGLE =====
@@ -2118,7 +2837,7 @@
     if (inp) inp.value = '';
     const narr = document.getElementById('transfer-narration');
     if (narr) narr.value = '';
-    navigate('home');
+    navigate(cameFromMoreServices ? 'more-services' : 'home');
   }
 
   function shareReceipt() {
@@ -2280,6 +2999,22 @@
     t.innerHTML = '<i class="fa-solid fa-clipboard-check" style="margin-right:6px;color:#4ade80;"></i>Receipt copied in box form!';
     t.style.display = 'block';
     setTimeout(() => { t.style.display = 'none'; }, 2800);
+  }
+
+  // ===== HISTORICAL RECEIPT =====
+  function showHistoricalReceipt(merchant, type, date, amount, status) {
+    document.getElementById('receipt-title').textContent = type + ' Successful!';
+    document.getElementById('receipt-subtitle').textContent = merchant + ' transaction details';
+    document.getElementById('receipt-amount').textContent = amount;
+    document.getElementById('receipt-date').textContent = date;
+    
+    document.getElementById('receipt-to').textContent = merchant;
+    document.getElementById('receipt-acct-val').textContent = '0123 456 789';
+    document.getElementById('receipt-bank-val').textContent = 'Antigravity Bank';
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+    document.getElementById('receipt-row-narr').style.display = 'none';
+
+    document.getElementById('receipt-overlay').classList.add('active');
   }
 
   // ===== BILLS =====
