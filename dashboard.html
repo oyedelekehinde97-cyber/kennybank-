@@ -1234,7 +1234,7 @@
             <button class="copy-btn" id="copy-btn-acct" onclick="copyAcctNum()"><i class="fa-regular fa-copy"></i> Copy</button>
           </div>
           <div class="card" style="padding:0 16px;">
-            <div class="detail-row"><span class="detail-label">Account Name</span><span class="detail-value">James Emeka Doe</span></div>
+            <div class="detail-row"><span class="detail-label">Account Name</span><span class="detail-value profile-name">Oyedele Kehinde</span></div>
             <div class="detail-row"><span class="detail-label">Bank Name</span><span class="detail-value">Antigravity Bank</span></div>
             <div class="detail-row"><span class="detail-label">Account Type</span><span class="detail-value">Savings Account</span></div>
             <div class="detail-row"><span class="detail-label">BVN</span><span class="detail-value">••••••••123</span></div>
@@ -1243,8 +1243,8 @@
             <div class="detail-row" style="border:none;"><span class="detail-label">Date Opened</span><span class="detail-value">March 15, 2022</span></div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;">
-            <button class="btn btn-secondary" style="height:46px;font-size:14px;border-radius:12px;"><i class="fa-solid fa-share-nodes"></i> Share</button>
-            <button class="btn btn-primary" style="height:46px;font-size:14px;border-radius:12px;"><i class="fa-solid fa-download"></i> Statement</button>
+            <button class="btn btn-secondary" style="height:46px;font-size:14px;border-radius:12px;" onclick="shareAccountDetails()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+            <button class="btn btn-primary" style="height:46px;font-size:14px;border-radius:12px;" onclick="downloadAccountStatement()"><i class="fa-solid fa-download"></i> Statement</button>
           </div>
         </div>
       </div>
@@ -1273,7 +1273,7 @@
             <div class="contact-item" onclick="prefillContact('9988776655','Access Bank')">
               <div class="contact-avatar" style="background:#ef4444;">BI</div><span class="contact-name">Bisi I.</span>
             </div>
-            <div class="contact-item">
+            <div class="contact-item" onclick="addNewContact()">
               <div class="contact-avatar" style="background:#0d9488;">+</div><span class="contact-name">New</span>
             </div>
           </div>
@@ -1286,7 +1286,7 @@
               <input type="text" id="bank-search-input" placeholder="Search bank name…" oninput="filterBanks(this.value)" autocomplete="off">
             </div>
             <!-- Selected bank display -->
-            <div id="selected-bank-display" style="display:none;background:var(--primary-blue-light);border-radius:12px;padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;">
+            <div id="selected-bank-display" style="display:none;background:var(--primary-blue-light);border-radius:12px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;">
               <div id="selected-bank-icon" style="width:36px;height:36px;border-radius:8px;background:var(--primary-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;"></div>
               <div style="flex:1;">
                 <div style="font-size:13px;color:var(--text-secondary);">Selected Bank</div>
@@ -1650,17 +1650,17 @@
             <div>
               <div class="card-number">•••• •••• •••• 4821</div>
               <div class="card-info-row" style="margin-top:12px;">
-                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-holder">Card Holder<strong class="card-holder-name">Oyedele Kehinde</strong></div>
                 <div class="card-expiry">Expires<strong>08/28</strong></div>
                 <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-mastercard"></i></div>
               </div>
             </div>
           </div>
           <div class="card-controls">
-            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
-            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
-            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
-            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+            <button class="card-ctrl-btn freeze" onclick="freezeCard(this, 'Mastercard Debit')"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits" onclick="setCardLimits('Mastercard Debit')"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details" onclick="viewCardDetails('4821 9802 3411 4821', '842', '****')"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block" onclick="blockCard('Mastercard Debit')"><i class="fa-solid fa-ban"></i> Block</button>
           </div>
           <div class="virtual-card card-gradient-2" style="margin-top:24px;">
             <div>
@@ -1670,19 +1670,19 @@
             <div>
               <div class="card-number">•••• •••• •••• 9034</div>
               <div class="card-info-row" style="margin-top:12px;">
-                <div class="card-holder">Card Holder<strong>James E. Doe</strong></div>
+                <div class="card-holder">Card Holder<strong class="card-holder-name">Oyedele Kehinde</strong></div>
                 <div class="card-expiry">Expires<strong>03/27</strong></div>
                 <div style="font-size:30px;opacity:.9;"><i class="fa-brands fa-cc-visa"></i></div>
               </div>
             </div>
           </div>
           <div class="card-controls">
-            <button class="card-ctrl-btn freeze"><i class="fa-solid fa-snowflake"></i> Freeze</button>
-            <button class="card-ctrl-btn limits"><i class="fa-solid fa-gauge"></i> Limits</button>
-            <button class="card-ctrl-btn details"><i class="fa-regular fa-eye"></i> Details</button>
-            <button class="card-ctrl-btn block"><i class="fa-solid fa-ban"></i> Block</button>
+            <button class="card-ctrl-btn freeze" onclick="freezeCard(this, 'Visa Virtual Card')"><i class="fa-solid fa-snowflake"></i> Freeze</button>
+            <button class="card-ctrl-btn limits" onclick="setCardLimits('Visa Virtual Card')"><i class="fa-solid fa-gauge"></i> Limits</button>
+            <button class="card-ctrl-btn details" onclick="viewCardDetails('9034 5100 8921 9034', '319', '****')"><i class="fa-regular fa-eye"></i> Details</button>
+            <button class="card-ctrl-btn block" onclick="blockCard('Visa Virtual Card')"><i class="fa-solid fa-ban"></i> Block</button>
           </div>
-          <button class="btn btn-secondary" style="margin-top:20px;border-radius:14px;"><i class="fa-solid fa-plus"></i> Add New Card</button>
+          <button class="btn btn-secondary" style="margin-top:20px;border-radius:14px;" onclick="addNewCard()"><i class="fa-solid fa-plus"></i> Add New Card</button>
         </div>
       </div>
 
@@ -1722,14 +1722,14 @@
             <div style="margin-top:12px;"><span style="background:rgba(255,255,255,.2);color:#fff;border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600;">✓ Verified</span></div>
           </div>
           <div class="card" style="padding:0 16px;margin-bottom:20px;">
-            <div class="detail-row"><span class="detail-label"><i class="fa-regular fa-envelope" style="margin-right:6px;"></i>Email</span><span class="detail-value">james@example.com</span></div>
+            <div class="detail-row"><span class="detail-label"><i class="fa-regular fa-envelope" style="margin-right:6px;"></i>Email</span><span class="detail-value">oyedele@example.com</span></div>
             <div class="detail-row"><span class="detail-label"><i class="fa-solid fa-phone" style="margin-right:6px;"></i>Phone</span><span class="detail-value">+234 812 345 6789</span></div>
             <div class="detail-row"><span class="detail-label"><i class="fa-solid fa-location-dot" style="margin-right:6px;"></i>Address</span><span class="detail-value">14 Adeola Odeku St., Lagos</span></div>
             <div class="detail-row" style="border:none;"><span class="detail-label"><i class="fa-solid fa-cake-candles" style="margin-right:6px;"></i>D.O.B</span><span class="detail-value">Jan 15, 1992</span></div>
           </div>
           <div class="menu-section">
             <div class="menu-item" onclick="navigate('account')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-building-columns"></i></div><div><div class="menu-item-label">Account Details</div><div class="menu-item-sub">View & share account info</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
-            <div class="menu-item"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-pen-to-square"></i></div><div><div class="menu-item-label">Edit Profile</div><div class="menu-item-sub">Update personal information</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
+            <div class="menu-item" onclick="editProfile()"><div class="menu-item-left"><div class="menu-item-icon" style="background:#f0fdf4;color:#166534;"><i class="fa-solid fa-pen-to-square"></i></div><div><div class="menu-item-label">Edit Profile</div><div class="menu-item-sub">Update personal information</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
             <div class="menu-item" onclick="navigate('settings')"><div class="menu-item-left"><div class="menu-item-icon" style="background:#faf5ff;color:#6b21a8;"><i class="fa-solid fa-gear"></i></div><div><div class="menu-item-label">Settings</div><div class="menu-item-sub">Preferences & security</div></div></div><i class="fa-solid fa-chevron-right menu-chevron"></i></div>
           </div>
           <button class="btn" style="background:#fef2f2;color:#991b1b;height:48px;border-radius:14px;font-size:14px;width:100%;" onclick="window.location.href='login.html'"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
@@ -2408,7 +2408,7 @@
                 <div class="acct-num-label">Your Referral Code</div>
                 <div class="acct-num-value" style="letter-spacing:1px;font-size:24px;">OYED-KEHI</div>
               </div>
-              <button class="copy-btn" onclick="alert('Referral link copied!')"><i class="fa-regular fa-copy"></i> Copy</button>
+              <button class="copy-btn" onclick="copyReferralCode()"><i class="fa-regular fa-copy"></i> Copy</button>
             </div>
           </div>
         </div>
@@ -2570,12 +2570,20 @@
     alert("💬 Antigravity Live Support Chat\n\nConnecting you to a Live Customer Care Specialist...\n\n[Agent Connected]: Hello Oyedele! How can I assist you with your account today?");
   }
 
-  function copyAcctNum() {
-    navigator.clipboard.writeText('0123456789').then(() => {
-      alert('Account number copied to clipboard: 0123456789');
-    }).catch(() => {
-      alert('Account Number: 0123456789');
-    });
+  function copyAcctNum(btnId) {
+    const num = '0123456789';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(num);
+    }
+    const targetId = btnId || 'copy-btn-acct';
+    const btn = document.getElementById(targetId) || document.getElementById('copy-btn-funding') || document.getElementById('copy-btn-acct');
+    if (btn) {
+      const origText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+      setTimeout(() => { btn.innerHTML = origText; }, 2000);
+    } else {
+      alert('Account Number copied to clipboard: ' + num);
+    }
   }
 
   // ===== SCREEN TITLES =====
@@ -3002,18 +3010,29 @@
   }
 
   // ===== HISTORICAL RECEIPT =====
-  function showHistoricalReceipt(merchant, type, date, amount, status) {
-    document.getElementById('receipt-title').textContent = type + ' Successful!';
-    document.getElementById('receipt-subtitle').textContent = merchant + ' transaction details';
-    document.getElementById('receipt-amount').textContent = amount;
-    document.getElementById('receipt-date').textContent = date;
+  function showHistoricalReceipt(title, typeText, dateText, amountText, statusText) {
+    const isCredit = (amountText || '').includes('+');
+    const cleanAmount = (amountText || '').replace(/[–+]/g, '');
     
-    document.getElementById('receipt-to').textContent = merchant;
-    document.getElementById('receipt-acct-val').textContent = '0123 456 789';
-    document.getElementById('receipt-bank-val').textContent = 'Antigravity Bank';
+    document.getElementById('receipt-title').textContent = isCredit ? 'Payment Received!' : (typeText && typeText.includes('Successful') ? typeText : typeText + ' Successful!');
+    document.getElementById('receipt-subtitle').textContent = isCredit ? 'Fund received from ' + title : title + ' transaction details';
+    document.getElementById('receipt-amount').textContent = cleanAmount;
+    
+    let hash = 0;
+    const refSeed = (title || '') + (dateText || '') + cleanAmount;
+    for (let i = 0; i < refSeed.length; i++) {
+      hash = refSeed.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const ref = 'AGV' + Math.abs(hash).toString().slice(0, 10).padStart(10, '0');
+    document.getElementById('receipt-ref').textContent = ref;
+    document.getElementById('receipt-date').textContent = dateText || '';
+    
+    document.getElementById('receipt-to').textContent = title || '';
+    document.getElementById('receipt-acct-val').textContent = isCredit ? '0123 456 789' : '9988776655';
+    document.getElementById('receipt-bank-val').textContent = isCredit ? 'Antigravity Bank' : 'Access Bank';
     ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
     document.getElementById('receipt-row-narr').style.display = 'none';
-
+    
     document.getElementById('receipt-overlay').classList.add('active');
   }
 
@@ -3189,14 +3208,6 @@
     alert('All notifications marked as read.');
   }
 
-  // ===== COPY ACCOUNT =====
-  function copyAcctNum() {
-    navigator.clipboard && navigator.clipboard.writeText('0123456789');
-    const btn = document.getElementById('copy-btn-acct');
-    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-    setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy'; }, 2000);
-  }
-
   // ===== FAQ =====
   function toggleFaq(id) {
     const item = document.getElementById(id);
@@ -3205,33 +3216,100 @@
     if (!wasOpen) item.classList.add('open');
   }
 
-  // ===== HISTORICAL RECEIPTS & CANVAS DOWNLOAD =====
-  function showHistoricalReceipt(title, typeText, dateText, amountText, statusText) {
-    const isCredit = amountText.includes('+');
-    const cleanAmount = amountText.replace(/[–+]/g, '');
-    
-    document.getElementById('receipt-title').textContent = isCredit ? 'Payment Received!' : 'Transaction Successful!';
-    document.getElementById('receipt-subtitle').textContent = isCredit ? 'Fund received from ' + title : 'Paid to ' + title + '.';
-    document.getElementById('receipt-amount').textContent = cleanAmount;
-    
-    // Generate a clean reference code
-    let hash = 0;
-    const refSeed = title + dateText + cleanAmount;
-    for (let i = 0; i < refSeed.length; i++) {
-      hash = refSeed.charCodeAt(i) + ((hash << 5) - hash);
+  // ===== CARD MANAGEMENT & AUXILIARY FUNCTIONS =====
+  function freezeCard(btn, cardName) {
+    const isFrozen = btn.classList.contains('frozen');
+    if (isFrozen) {
+      btn.classList.remove('frozen');
+      btn.style.background = '#eff6ff';
+      btn.style.color = '#1d4ed8';
+      btn.innerHTML = '<i class="fa-solid fa-snowflake"></i> Freeze';
+      alert(`❄️ ${cardName} unfrozen and ready for transactions.`);
+    } else {
+      btn.classList.add('frozen');
+      btn.style.background = '#fef3c7';
+      btn.style.color = '#d97706';
+      btn.innerHTML = '<i class="fa-solid fa-fire"></i> Unfreeze';
+      alert(`🔒 ${cardName} is now frozen. Card transactions disabled.`);
     }
-    const ref = 'AGV' + Math.abs(hash).toString().slice(0, 10).padStart(10, '0');
-    document.getElementById('receipt-ref').textContent = ref;
-    
-    document.getElementById('receipt-date').textContent = dateText;
-    
-    document.getElementById('receipt-to').textContent = title;
-    document.getElementById('receipt-acct-val').textContent = isCredit ? '0123 456 789' : '9988776655';
-    document.getElementById('receipt-bank-val').textContent = isCredit ? 'Antigravity Bank' : 'Access Bank';
-    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
-    document.getElementById('receipt-row-narr').style.display = 'none';
-    
-    document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  function setCardLimits(cardName) {
+    const limit = prompt(`Set daily online transaction limit for ${cardName} (₦):`, '500000');
+    if (limit !== null && !isNaN(limit) && limit > 0) {
+      alert(`✅ Daily limit for ${cardName} updated to ₦${parseFloat(limit).toLocaleString('en-NG')}.`);
+    }
+  }
+
+  function viewCardDetails(cardNumber, cvv, pin) {
+    alert(`💳 Card Details:\nCard Number: ${cardNumber}\nCVV: ${cvv}\nExpiry: 08/28\nPIN: **** (Protected)`);
+  }
+
+  function blockCard(cardName) {
+    const confirmBlock = confirm(`⚠️ Are you sure you want to permanently block ${cardName}? This card will be deactivated immediately.`);
+    if (confirmBlock) {
+      alert(`🚫 ${cardName} has been blocked. You can order a replacement card.`);
+    }
+  }
+
+  function addNewCard() {
+    const cardType = prompt("Choose card type to add:\n1. Virtual Card (Instant)\n2. Physical Card (Delivered in 3 days)", "1");
+    if (cardType === "1") {
+      alert("🎉 New Virtual Card generated successfully!");
+    } else if (cardType === "2") {
+      alert("🚚 Physical Debit Card requested! It will be dispatched to your registered address.");
+    }
+  }
+
+  function shareAccountDetails() {
+    const details = "🏦 Antigravity Bank Account Details:\nAccount Name: Oyedele Kehinde\nAccount Number: 0123456789\nBank Name: Antigravity Bank";
+    if (navigator.share) {
+      navigator.share({ title: 'Antigravity Bank Details', text: details }).catch(() => {});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(details);
+      alert("📋 Account details copied to clipboard!\n\n" + details);
+    } else {
+      alert("Account Details:\n" + details);
+    }
+  }
+
+  function downloadAccountStatement() {
+    const range = prompt("Choose statement period:\n1. Last 1 Month\n2. Last 3 Months\n3. Last 6 Months\n4. Custom Date Range", "1");
+    if (range) {
+      alert("📄 Account Statement (PDF) generated!\nDownloading official bank statement...");
+    }
+  }
+
+  function editProfile() {
+    const newName = prompt("Edit Full Name:", "Oyedele Kehinde");
+    if (newName && newName.trim()) {
+      document.querySelectorAll('.profile-name, .opay-user-name, .topbar-user-title span, .card-holder-name').forEach(el => {
+        if (el.id === 'topbar-title-text') el.textContent = 'Hi, ' + newName.split(' ')[0] + '.';
+        else if (el.classList.contains('opay-user-name')) el.childNodes[0].nodeValue = newName + ' ';
+        else el.textContent = newName;
+      });
+      alert("✅ Profile updated successfully!");
+    }
+  }
+
+  function addNewContact() {
+    const acct = prompt("Enter 10-digit account number for new contact:");
+    if (acct && acct.length === 10) {
+      const bank = prompt("Enter bank name:", "Antigravity Bank");
+      if (bank) {
+        prefillContact(acct, bank);
+      }
+    } else if (acct) {
+      alert("Account number must be 10 digits.");
+    }
+  }
+
+  function copyReferralCode() {
+    const code = 'OYED-KEHI';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(code);
+    }
+    alert('🎉 Referral code copied: ' + code + '\nShare with your friends to earn ₦500 bonus!');
   }
 
   function downloadReceipt() {
