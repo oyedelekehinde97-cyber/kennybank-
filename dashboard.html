@@ -827,14 +827,28 @@
 
     .bank-card-name {
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
-      line-height: 1.3;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .bank-card-owner {
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      line-height: 1.1;
+      margin-top: 1px;
       word-break: break-word;
     }
 
     .bank-card.selected .bank-card-name {
       color: var(--primary-blue);
+    }
+
+    .bank-card.selected .bank-card-owner {
+      color: var(--primary-blue);
+      font-weight: 600;
     }
 
     /* ===== QR SCANNER ===== */
@@ -981,6 +995,220 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
+
+    /* ===== HELP & SUPPORT INTERACTIVE MODALS ===== */
+    .help-modal-overlay, .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 47, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 800;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .help-modal-overlay.active, .modal-overlay.active { display: flex !important; }
+    .help-modal-box {
+      background: var(--bg-white);
+      border-radius: 24px;
+      padding: 28px 24px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      animation: popIn 0.35s cubic-bezier(.34,1.56,.64,1);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .help-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .help-modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .help-modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-off-white);
+      border: 1px solid #e2e8f0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+    .help-modal-close:hover {
+      background: #fef2f2;
+      color: #ef4444;
+    }
+
+    /* Rating Stars */
+    .star-rating {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      font-size: 28px;
+      color: #cbd5e1;
+      margin: 14px 0 20px;
+    }
+    .star-rating i {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .star-rating i.active, .star-rating i:hover {
+      color: #f59e0b;
+    }
+
+    /* Category Chips */
+    .category-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .cat-chip {
+      background: var(--surface-off-white);
+      border: 1.5px solid #e2e8f0;
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .cat-chip.selected {
+      background: var(--primary-blue-light);
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    /* Live Chat Window */
+    .chat-modal-box {
+      max-width: 440px;
+      height: 600px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: #ffffff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .chat-agent-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-agent-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00c896, #059669);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .msg-bubble {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 13px;
+      line-height: 1.45;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .msg-agent {
+      background: #ffffff;
+      color: var(--text-primary);
+      border-bottom-left-radius: 4px;
+      border: 1px solid #e2e8f0;
+      align-self: flex-start;
+    }
+    .msg-user {
+      background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+      align-self: flex-end;
+    }
+    .msg-time {
+      font-size: 10px;
+      opacity: 0.65;
+      margin-top: 4px;
+      display: block;
+      text-align: right;
+    }
+    .chat-input-bar {
+      padding: 14px 16px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .chat-input-field {
+      flex: 1;
+      height: 42px;
+      border-radius: 99px;
+      border: 1.5px solid #e2e8f0;
+      padding: 0 16px;
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input-field:focus {
+      border-color: var(--primary-blue);
+    }
+    .chat-send-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary-blue);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: var(--transition-smooth);
+    }
+    .chat-send-btn:hover {
+      background: #1d4ed8;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -1090,26 +1318,13 @@
       <div id="screen-home" class="screen active">
         <div class="home-grid">
           <div class="home-grid-left">
-            <!-- OPay Style Customer & Balance Card -->
-            <div class="opay-balance-card">
-              <div class="opay-card-header">
-                <div class="opay-user-info" onclick="navigate('profile')" style="cursor:pointer;">
-                  <div class="opay-avatar">OK</div>
-                  <div>
-                    <div class="opay-user-name">
-                      Oyedele Kehinde
-                      <i class="fa-solid fa-circle-check" style="color:#4ade80;font-size:14px;" title="Verified Customer"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="opay-divider"></div>
-
+            
+            <!-- 1. ACCOUNT & BALANCE HEADER CARD -->
+            <div class="opay-balance-card" style="padding: 24px 28px;">
               <div class="opay-balance-row" style="margin-bottom:0;">
                 <div>
                   <div class="balance-label-row">
-                    <span>Total Balance</span>
+                    <span>Available Balance</span>
                     <button class="balance-eye" id="toggle-balance" onclick="toggleBalance()" title="Hide/Show Balance">
                       <i class="fa-regular fa-eye"></i>
                     </button>
@@ -1127,44 +1342,44 @@
               </div>
             </div>
 
-            <!-- RECENT TRANSACTIONS (MOVED BEFORE SERVICES) -->
+            <!-- 2. RECENT TRANSACTIONS (Directly Under Account Balance) -->
             <div class="card" style="padding:0 16px;margin-bottom:20px;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-top:16px;">
                 <p class="section-title" style="margin:0;">Recent Transactions</p>
-                <span onclick="navigate('history')" style="font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">See all</span>
+                <span onclick="navigate('history')" style="font-size:13px;color:var(--primary-blue);font-weight:600;cursor:pointer;">See all <i class="fa-solid fa-arrow-right" style="font-size:11px;"></i></span>
               </div>
-              <div class="transaction-item" onclick="showHistoricalReceipt('Shoprite', 'Debit Card', 'Jul 12, 2026 · 14:32', '–₦8,400', 'Success')">
+              <div class="transaction-item" onclick="showHistoricalReceipt('Shoprite Supermarket', 'Debit Card', 'Jul 12, 2026 · 14:32', '–₦8,400', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#fef2f2;">🛒</div>
-                  <div><div style="font-size:14px;font-weight:600;">Shoprite</div><div class="tx-meta">Debit · Jul 12</div></div>
+                  <div><div style="font-size:14px;font-weight:600;">Shoprite Supermarket</div><div class="tx-meta">Debit Card · Jul 12</div></div>
                 </div>
                 <div class="tx-amount-debit">–₦8,400</div>
               </div>
-              <div class="transaction-item" onclick="showHistoricalReceipt('Salary Credit', 'Inflow', 'Jul 10, 2026 · 08:00', '+₦520,000', 'Success')">
+              <div class="transaction-item" onclick="showHistoricalReceipt('Salary Credit Inflow', 'Inflow', 'Jul 10, 2026 · 08:00', '+₦520,000', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#f0fdf4;">💸</div>
-                  <div><div style="font-size:14px;font-weight:600;">Salary Credit</div><div class="tx-meta">Credit · Jul 10</div></div>
+                  <div><div style="font-size:14px;font-weight:600;">Salary Credit Inflow</div><div class="tx-meta">Credit Inflow · Jul 10</div></div>
                 </div>
                 <div class="tx-amount-credit">+₦520,000</div>
               </div>
-              <div class="transaction-item" style="border:none;" onclick="showHistoricalReceipt('EKEDC Electric', 'Bill', 'Jul 9, 2026 · 11:20', '–₦15,000', 'Success')">
+              <div class="transaction-item" style="border:none;" onclick="showHistoricalReceipt('EKEDC Electricity Bill', 'Bill Payment', 'Jul 9, 2026 · 11:20', '–₦15,000', 'Success')">
                 <div class="transaction-left">
                   <div class="tx-icon-wrapper" style="background:#faf5ff;">⚡</div>
-                  <div><div style="font-size:14px;font-weight:600;">EKEDC Electric</div><div class="tx-meta">Bill · Jul 9</div></div>
+                  <div><div style="font-size:14px;font-weight:600;">EKEDC Electricity Bill</div><div class="tx-meta">Utility Bill · Jul 9</div></div>
                 </div>
                 <div class="tx-amount-debit">–₦15,000</div>
               </div>
             </div>
 
-            <!-- UNIFIED COMBINED SERVICES CARD -->
-            <div class="dashboard-split-card">
-              <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;">
-                <!-- Transfer Actions -->
-                <div class="quick-action-btn" onclick="navigate('transfer'); prefillContact('0123456789','Antigravity Bank')">
+            <!-- 3. TRANSFERS & WITHDRAWALS SEGMENT (To Antigravity, To Other Bank, Withdraw) -->
+            <div class="card" style="padding:16px;margin-bottom:20px;">
+              <p class="section-title" style="margin:0 0 14px;font-size:14px;color:var(--text-secondary);">Transfers &amp; Withdrawals</p>
+              <div class="quick-action-grid" style="grid-template-columns:repeat(3,1fr);gap:14px;">
+                <div class="quick-action-btn" onclick="navigate('transfer')">
                   <div class="quick-action-icon" style="background:var(--primary-blue-light);color:var(--primary-blue);"><i class="fa-solid fa-building-columns"></i></div>
                   <span>To Antigravity</span>
                 </div>
-                <div class="quick-action-btn" onclick="navigate('transfer')">
+                <div class="quick-action-btn" onclick="navigate('transfer-other')">
                   <div class="quick-action-icon" style="background:hsl(160,100%,93%);color:var(--accent-green);"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
                   <span>To Other Bank</span>
                 </div>
@@ -1172,8 +1387,13 @@
                   <div class="quick-action-icon" style="background:hsl(0,100%,96%);color:#dc2626;"><i class="fa-solid fa-money-bill-transfer"></i></div>
                   <span>Withdraw</span>
                 </div>
+              </div>
+            </div>
 
-                <!-- Recharge & Bills -->
+            <!-- 4. RECHARGE & OTHER SERVICES SEGMENT -->
+            <div class="card" style="padding:16px;margin-bottom:20px;">
+              <p class="section-title" style="margin:0 0 14px;font-size:14px;color:var(--text-secondary);">Recharge &amp; Services</p>
+              <div class="quick-action-grid" style="grid-template-columns:repeat(4,1fr);gap:14px;">
                 <div class="quick-action-btn" onclick="navigate('airtime'); switchAirtimeTab('airtime')">
                   <div class="quick-action-icon" style="background:hsl(39,100%,93%);color:hsl(39,100%,35%);"><i class="fa-solid fa-sim-card"></i></div>
                   <span>Airtime</span>
@@ -1191,7 +1411,6 @@
                   <span>TV</span>
                 </div>
 
-                <!-- Finance & Growth -->
                 <div class="quick-action-btn" onclick="navigate('safebox')">
                   <div class="quick-action-icon" style="background:hsl(180,60%,93%);color:#0f766e;"><i class="fa-solid fa-vault"></i></div>
                   <span>Safe Box</span>
@@ -1200,9 +1419,9 @@
                   <div class="quick-action-icon" style="background:hsl(328,100%,95%);color:hsl(328,80%,45%);"><i class="fa-solid fa-hand-holding-dollar"></i></div>
                   <span>Loan</span>
                 </div>
-                <div class="quick-action-btn" onclick="navigate('invitation')">
-                  <div class="quick-action-icon" style="background:hsl(204,100%,93%);color:hsl(204,100%,35%);"><i class="fa-solid fa-user-plus"></i></div>
-                  <span>Invitation</span>
+                <div class="quick-action-btn" onclick="navigate('cards')">
+                  <div class="quick-action-icon" style="background:hsl(260,100%,93%);color:#7c3aed;"><i class="fa-solid fa-credit-card"></i></div>
+                  <span>Cards</span>
                 </div>
                 <div class="quick-action-btn" onclick="navigate('more-services')">
                   <div class="quick-action-icon" style="background:#f1f5f9;color:var(--text-secondary);"><i class="fa-solid fa-ellipsis"></i></div>
@@ -1210,6 +1429,32 @@
                 </div>
               </div>
             </div>
+
+            <!-- 5. OWEALTH / FIXED SAVINGS SNAPSHOT -->
+            <div class="card" style="padding:16px;margin-bottom:20px;background:linear-gradient(135deg, rgba(16,185,129,0.08), rgba(2,132,199,0.08));border:1px solid rgba(16,185,129,0.2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;" onclick="navigate('safebox')">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg, #10b981, #059669);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 12px rgba(16,185,129,0.3);"><i class="fa-solid fa-piggy-bank"></i></div>
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:var(--text-primary);">OWealth Savings · 15% Annual Yield</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Daily interest accrued: <strong style="color:#10b981;">+₦1,170.13</strong></div>
+                </div>
+              </div>
+              <button class="btn btn-sm" style="background:#10b981;color:#fff;font-weight:700;border-radius:10px;padding:8px 14px;">Grow Money</button>
+            </div>
+
+            <!-- 6. START FIXED SAVINGS WITH ANTIGRAVITY -->
+            <div class="card" style="padding:18px;background:linear-gradient(135deg, #0284c7, #0f172a);color:#fff;border-radius:20px;border:1px solid rgba(56,189,248,0.3);box-shadow:0 8px 24px rgba(2,132,199,0.25);">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                <span style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#38bdf8;"><i class="fa-solid fa-lock"></i> Fixed Savings Plan</span>
+                <span style="font-size:11px;background:rgba(56,189,248,0.2);color:#38bdf8;padding:3px 10px;border-radius:99px;font-weight:600;">Up to 18% p.a.</span>
+              </div>
+              <h3 style="font-size:16px;font-weight:800;font-family:'Outfit',sans-serif;margin-bottom:6px;">Start Fixed Savings with Antigravity</h3>
+              <p style="font-size:13px;line-height:1.45;opacity:0.9;margin-bottom:14px;">Lock funds for 30, 90, or 365 days to earn guaranteed high yield returns with zero risk. Paid out upfront or monthly.</p>
+              <button class="btn btn-sm" style="background:linear-gradient(135deg, #00c896, #059669);color:#fff;font-weight:700;font-size:13px;border-radius:12px;padding:10px 18px;box-shadow:0 4px 14px rgba(0,200,150,0.35);" onclick="navigate('safebox')">
+                <i class="fa-solid fa-vault"></i> Start Fixed Savings Now
+              </button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -1249,197 +1494,326 @@
         </div>
       </div>
 
-      <!-- ========== TRANSFER ========== -->
+      <!-- ========== TRANSFER TO ANTIGRAVITY ACCOUNT ========== -->
       <div id="screen-transfer" class="screen">
-        <div class="sub-screen-header">
-          <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
-          <h2 style="font-size:20px;">Transfer Money</h2>
+        <div class="sub-screen-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 style="font-size:18px;font-family:'Outfit',sans-serif;font-weight:700;">Transfer to Antigravity Account</h2>
+          </div>
+          <!-- 1. RIGHT SIDE: HISTORY BUTTON -->
+          <button class="opay-history-btn" onclick="navigate('history')" style="background:rgba(2,132,199,0.1);color:#0284c7;border:1px solid rgba(2,132,199,0.25);padding:7px 16px;border-radius:99px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-clock-rotate-left"></i> History
+          </button>
         </div>
-        <div style="max-width:520px;">
-          <p class="section-title">Recent Contacts</p>
-          <div class="contacts-row" style="margin-bottom:24px;">
-            <div class="contact-item" onclick="prefillContact('0123456789','Antigravity Bank')">
-              <div class="contact-avatar" style="background:#3b82f6;">AJ</div><span class="contact-name">Ada Joy</span>
-            </div>
-            <div class="contact-item" onclick="prefillContact('0987654321','GTBank')">
-              <div class="contact-avatar" style="background:#10b981;">MO</div><span class="contact-name">Mike O.</span>
-            </div>
-            <div class="contact-item" onclick="prefillContact('1122334455','Zenith Bank')">
-              <div class="contact-avatar" style="background:#f59e0b;">KF</div><span class="contact-name">Kemi F.</span>
-            </div>
-            <div class="contact-item" onclick="prefillContact('5566778899','First Bank')">
-              <div class="contact-avatar" style="background:#8b5cf6;">TK</div><span class="contact-name">Tunde K.</span>
-            </div>
-            <div class="contact-item" onclick="prefillContact('9988776655','Access Bank')">
-              <div class="contact-avatar" style="background:#ef4444;">BI</div><span class="contact-name">Bisi I.</span>
-            </div>
-            <div class="contact-item" onclick="addNewContact()">
-              <div class="contact-avatar" style="background:#0d9488;">+</div><span class="contact-name">New</span>
-            </div>
+
+        <div style="max-width:540px;">
+          
+          <!-- 2. UNDER IT: INSTANT ZERO ISSUES, FREE BADGE -->
+          <div style="background:linear-gradient(135deg, rgba(16,185,129,0.12), rgba(0,200,150,0.06));border:1px solid rgba(16,185,129,0.3);border-radius:14px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#10b981;font-size:13.5px;font-weight:700;">
+            <i class="fa-solid fa-bolt" style="font-size:16px;"></i>
+            <span>Instant, zero issues, free</span>
           </div>
 
-          <!-- Bank Search -->
-          <div class="input-group">
-            <label class="input-label">Select Bank</label>
-            <div class="search-bar" style="margin-bottom:10px;max-width:100%;">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" id="bank-search-input" placeholder="Search bank name…" oninput="filterBanks(this.value)" autocomplete="off">
+          <!-- 3. UNDER IT: RECENT ACCOUNT INPUT CARD -->
+          <div class="card" style="padding:20px;margin-bottom:20px;">
+            <div class="input-group" style="margin-bottom:14px;">
+              <label class="input-label">Recipient Antigravity Account Number</label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-hashtag field-icon"></i>
+                <input type="tel" class="input-field" id="transfer-acct-input" placeholder="Enter 10-digit account number" maxlength="10" oninput="onTransferAcctInput(this.value)">
+              </div>
             </div>
-            <!-- Selected bank display -->
-            <div id="selected-bank-display" style="display:none;background:var(--primary-blue-light);border-radius:12px;padding:10px 14px;margin-bottom:10px;align-items:center;gap:10px;">
-              <div id="selected-bank-icon" style="width:36px;height:36px;border-radius:8px;background:var(--primary-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;"></div>
+
+            <!-- Recipient verification display card -->
+            <div id="transfer-recipient-card" style="padding:12px 14px;margin-bottom:16px;display:flex;align-items:center;gap:12px;background:#f0fdf4;border-radius:14px;border:1.5px solid #86efac;opacity:0;transition:all .3s;pointer-events:none;cursor:pointer;" onclick="doAntigravityTransferStep()">
+              <div class="avatar" id="tr-initials" style="flex-shrink:0;background:#0d9488;color:#fff;">AJ</div>
               <div style="flex:1;">
-                <div style="font-size:13px;color:var(--text-secondary);">Selected Bank</div>
-                <div id="selected-bank-name" style="font-size:15px;font-weight:700;color:var(--primary-blue);"></div>
+                <div style="font-size:14.5px;font-weight:800;color:var(--text-primary);" id="tr-name">Ada Joy Okafor</div>
+                <div style="font-size:12px;color:#0d9488;font-weight:600;" id="tr-bank">Antigravity Bank · Tap to send money</div>
               </div>
-              <i class="fa-solid fa-circle-check" style="color:var(--primary-blue);font-size:18px;"></i>
+              <i class="fa-solid fa-circle-check" style="margin-left:auto;color:#10b981;font-size:22px;"></i>
+            </div>
+
+            <!-- BUTTON UNDER RECENT ACCOUNT -->
+            <button class="btn btn-primary btn-full" style="height:50px;font-size:15px;font-weight:700;border-radius:14px;background:linear-gradient(135deg, #0284c7, #2563eb);" onclick="doAntigravityTransferStep()">
+              Next <i class="fa-solid fa-chevron-right" style="font-size:12px;margin-left:4px;"></i>
+            </button>
+
+            <!-- 4. UNDER BUTTON WRITE UP: Don't know recipient's account number? Ask them -->
+            <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--text-secondary);">
+              Don't know the recipient's Antigravity account number? 
+              <a href="#" onclick="event.preventDefault(); shareAccountRequestLink()" style="color:#0284c7;font-weight:700;text-decoration:underline;">Ask them</a>
             </div>
           </div>
 
-          <!-- Hidden select for JS compatibility -->
-          <select id="transfer-bank-select" style="display:none;" onchange="onTransferBankChange()">
-            <option value="Antigravity Bank">Antigravity Bank</option>
-            <option>Access Bank</option><option>Citibank Nigeria</option><option>Ecobank Nigeria</option>
-            <option>Fidelity Bank</option><option>First Bank of Nigeria</option><option>First City Monument Bank (FCMB)</option>
-            <option>Globus Bank</option><option>GTBank (Guaranty Trust Bank)</option><option>Heritage Bank</option>
-            <option>Jaiz Bank</option><option>Keystone Bank</option><option>Lotus Bank</option>
-            <option>Parallex Bank</option><option>Polaris Bank</option><option>Providus Bank</option>
-            <option>Stanbic IBTC Bank</option><option>Standard Chartered Bank</option><option>Sterling Bank</option>
-            <option>SunTrust Bank</option><option>Titan Trust Bank</option><option>UBA (United Bank for Africa)</option>
-            <option>Union Bank of Nigeria</option><option>Unity Bank</option><option>Wema Bank</option><option>Zenith Bank</option>
-            <option>Carbon (One Finance)</option><option>Eyowo</option><option>FairMoney MFB</option>
-            <option>Kuda Bank</option><option>Moniepoint MFB</option><option>OPay (OPay Digital Services)</option>
-            <option>PalmPay</option><option>Paga</option><option>Rubies Bank</option>
-            <option>Sparkle MFB</option><option>VFD Microfinance Bank</option><option>Zeptobank</option>
-            <option>Coronation Merchant Bank</option><option>FBNQuest Merchant Bank</option><option>FSDH Merchant Bank</option>
-            <option>Greenwich Merchant Bank</option><option>Nova Merchant Bank</option><option>Rand Merchant Bank Nigeria</option>
-            <option>AB Microfinance Bank</option><option>Accion MFB</option><option>Advans MFB</option>
-            <option>LAPO Microfinance Bank</option><option>NPF Microfinance Bank</option>
-            <option>Page Financials MFB</option><option>Petra Microfinance Bank</option><option>Mutual Trust MFB</option>
-          </select>
+          <!-- 5. RECENT AND FAVOURITE -->
+          <div class="card" style="padding:18px;margin-bottom:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <span style="font-size:14.5px;font-weight:700;color:var(--text-primary);">Recent and Favourite</span>
+              <span style="font-size:12.5px;color:#0284c7;font-weight:700;cursor:pointer;" onclick="showAllRecentContacts()">View all <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></span>
+            </div>
 
-          <!-- Visible Bank Grid -->
-          <div id="bank-grid-wrapper" style="margin-bottom:20px;">
-            <div id="bank-category-commercial" class="bank-category">
-              <div class="bank-category-label">🏦 Commercial Banks</div>
-              <div class="bank-card-grid">
-                <div class="bank-card selected" onclick="selectBankCard(this,'Antigravity Bank')"><div class="bank-card-icon" style="background:hsl(216,85%,39%);">AG</div><div class="bank-card-name">Antigravity Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Access Bank')"><div class="bank-card-icon" style="background:#b91c1c;">AC</div><div class="bank-card-name">Access Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Citibank Nigeria')"><div class="bank-card-icon" style="background:#1d4ed8;">CI</div><div class="bank-card-name">Citibank Nigeria</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Ecobank Nigeria')"><div class="bank-card-icon" style="background:#166534;">EC</div><div class="bank-card-name">Ecobank Nigeria</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Fidelity Bank')"><div class="bank-card-icon" style="background:#0e7490;">FI</div><div class="bank-card-name">Fidelity Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'First Bank of Nigeria')"><div class="bank-card-icon" style="background:#92400e;">FB</div><div class="bank-card-name">First Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'First City Monument Bank (FCMB)')"><div class="bank-card-icon" style="background:#7c3aed;">FC</div><div class="bank-card-name">FCMB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Globus Bank')"><div class="bank-card-icon" style="background:#0f766e;">GL</div><div class="bank-card-name">Globus Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'GTBank (Guaranty Trust Bank)')"><div class="bank-card-icon" style="background:#f97316;">GT</div><div class="bank-card-name">GTBank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Heritage Bank')"><div class="bank-card-icon" style="background:#15803d;">HE</div><div class="bank-card-name">Heritage Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Jaiz Bank')"><div class="bank-card-icon" style="background:#065f46;">JZ</div><div class="bank-card-name">Jaiz Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Keystone Bank')"><div class="bank-card-icon" style="background:#9f1239;">KS</div><div class="bank-card-name">Keystone Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Lotus Bank')"><div class="bank-card-icon" style="background:#4d7c0f;">LO</div><div class="bank-card-name">Lotus Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Parallex Bank')"><div class="bank-card-icon" style="background:#5b21b6;">PX</div><div class="bank-card-name">Parallex Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Polaris Bank')"><div class="bank-card-icon" style="background:#0369a1;">PL</div><div class="bank-card-name">Polaris Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Providus Bank')"><div class="bank-card-icon" style="background:#b45309;">PR</div><div class="bank-card-name">Providus Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Stanbic IBTC Bank')"><div class="bank-card-icon" style="background:#1e40af;">SI</div><div class="bank-card-name">Stanbic IBTC</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Standard Chartered Bank')"><div class="bank-card-icon" style="background:#065f46;">SC</div><div class="bank-card-name">Standard Chartered</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Sterling Bank')"><div class="bank-card-icon" style="background:#be185d;">ST</div><div class="bank-card-name">Sterling Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'SunTrust Bank')"><div class="bank-card-icon" style="background:#b45309;">SU</div><div class="bank-card-name">SunTrust Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Titan Trust Bank')"><div class="bank-card-icon" style="background:#7c3aed;">TT</div><div class="bank-card-name">Titan Trust</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'UBA (United Bank for Africa)')"><div class="bank-card-icon" style="background:#b91c1c;">UB</div><div class="bank-card-name">UBA</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Union Bank of Nigeria')"><div class="bank-card-icon" style="background:#1d4ed8;">UN</div><div class="bank-card-name">Union Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Unity Bank')"><div class="bank-card-icon" style="background:#15803d;">UT</div><div class="bank-card-name">Unity Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Wema Bank')"><div class="bank-card-icon" style="background:#6d28d9;">WE</div><div class="bank-card-name">Wema Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Zenith Bank')"><div class="bank-card-icon" style="background:#dc2626;">ZE</div><div class="bank-card-name">Zenith Bank</div></div>
+            <!-- Names of people you send transfer to -->
+            <div class="contacts-row" style="margin-bottom:16px;">
+              <div class="contact-item" onclick="prefillContact('0123456789','Antigravity Bank')">
+                <div class="contact-avatar" style="background:#3b82f6;">AJ</div><span class="contact-name">Ada Joy</span>
+              </div>
+              <div class="contact-item" onclick="prefillContact('0987654321','Antigravity Bank')">
+                <div class="contact-avatar" style="background:#10b981;">MO</div><span class="contact-name">Mike Okonkwo</span>
+              </div>
+              <div class="contact-item" onclick="prefillContact('1122334455','Antigravity Bank')">
+                <div class="contact-avatar" style="background:#f59e0b;">KF</div><span class="contact-name">Kemi Fashola</span>
+              </div>
+              <div class="contact-item" onclick="prefillContact('5566778899','Antigravity Bank')">
+                <div class="contact-avatar" style="background:#8b5cf6;">TK</div><span class="contact-name">Tunde Kola</span>
+              </div>
+              <div class="contact-item" onclick="prefillContact('9988776655','Antigravity Bank')">
+                <div class="contact-avatar" style="background:#ef4444;">BI</div><span class="contact-name">Bisi Ibrahim</span>
               </div>
             </div>
 
-            <div id="bank-category-digital" class="bank-category">
-              <div class="bank-category-label">📱 Digital & Fintech Banks</div>
-              <div class="bank-card-grid">
-                <div class="bank-card" onclick="selectBankCard(this,'Carbon (One Finance)')"><div class="bank-card-icon" style="background:#1c1c1e;">CA</div><div class="bank-card-name">Carbon</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Eyowo')"><div class="bank-card-icon" style="background:#0ea5e9;">EY</div><div class="bank-card-name">Eyowo</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'FairMoney MFB')"><div class="bank-card-icon" style="background:#16a34a;">FM</div><div class="bank-card-name">FairMoney</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Kuda Bank')"><div class="bank-card-icon" style="background:#7c3aed;">KD</div><div class="bank-card-name">Kuda Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Moniepoint MFB')"><div class="bank-card-icon" style="background:#0f172a;">MP</div><div class="bank-card-name">Moniepoint</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'OPay (OPay Digital Services)')"><div class="bank-card-icon" style="background:#16a34a;">OP</div><div class="bank-card-name">OPay</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'PalmPay')"><div class="bank-card-icon" style="background:#15803d;">PP</div><div class="bank-card-name">PalmPay</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Paga')"><div class="bank-card-icon" style="background:#b45309;">PG</div><div class="bank-card-name">Paga</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Rubies Bank')"><div class="bank-card-icon" style="background:#be123c;">RB</div><div class="bank-card-name">Rubies Bank</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Sparkle MFB')"><div class="bank-card-icon" style="background:#7c3aed;">SP</div><div class="bank-card-name">Sparkle</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'VFD Microfinance Bank')"><div class="bank-card-icon" style="background:#0369a1;">VF</div><div class="bank-card-name">VFD MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Zeptobank')"><div class="bank-card-icon" style="background:#1d4ed8;">ZP</div><div class="bank-card-name">Zeptobank</div></div>
+            <!-- 6. BUTTON: See who else is using Antigravity -->
+            <button class="btn btn-secondary btn-full" style="height:46px;font-size:13.5px;font-weight:700;border-radius:12px;border:1.5px solid #0284c7;color:#0284c7;background:#eff6ff;" onclick="seeWhoElseIsUsingAntigravity()">
+              <i class="fa-solid fa-user-plus"></i> See who else is using Antigravity
+            </button>
+          </div>
+
+          <!-- 7. MORE EVENTS -->
+          <div style="margin-bottom:24px;">
+            <p class="section-title" style="margin:0 0 10px;font-size:14px;">More Events</p>
+            
+            <!-- BUTTON / CARD BANNER: Super voucher & claim 15 discount with #99 on any bill -->
+            <div class="card" style="padding:16px;background:linear-gradient(135deg, #fff7ed, #fff1f2);border:1.5px solid #fed7aa;border-radius:18px;cursor:pointer;transition:transform 0.2s;" onclick="claimSuperVoucher()">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg, #f97316, #ea580c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(249,115,22,0.35);flex-shrink:0;">
+                  <i class="fa-solid fa-ticket"></i>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="font-size:15px;font-weight:800;color:#c2410c;font-family:'Outfit',sans-serif;">Super Voucher</span>
+                    <span style="font-size:10px;background:#ea580c;color:#fff;padding:2px 8px;border-radius:99px;font-weight:700;text-transform:uppercase;">Limited Offer</span>
+                  </div>
+                  <div style="font-size:13px;color:#9a3412;margin-top:3px;font-weight:600;">
+                    Claim 15% discount with ₦99 on any bill
+                  </div>
+                </div>
+                <button class="btn btn-sm" style="background:#ea580c;color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:7px 16px;box-shadow:0 3px 10px rgba(234,88,12,0.3);">
+                  Claim Now
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <!-- ========== TRANSFER STEP 2: CONFIRM & AUTHENTICATE ========== -->
+      <div id="screen-transfer-confirm" class="screen">
+        <div class="sub-screen-header">
+          <button class="back-btn" onclick="navigate('transfer')"><i class="fa-solid fa-arrow-left"></i></button>
+          <h2 style="font-size:18px;font-family:'Outfit',sans-serif;font-weight:700;">Transfer to Antigravity Account</h2>
+        </div>
+
+        <div style="max-width:520px;">
+          <div class="card" style="padding:24px;margin-bottom:20px;box-shadow:var(--shadow-md);">
+            
+            <!-- 1. NAME OF THE PERSON -->
+            <div style="text-align:center;margin-bottom:18px;">
+              <div id="step2-recipient-avatar" style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg, #0284c7, #2563eb);color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 4px 14px rgba(2,132,199,0.35);">AJ</div>
+              <h3 id="step2-recipient-name" style="font-size:19px;font-weight:800;color:var(--text-primary);margin:0;font-family:'Outfit',sans-serif;">Ada Joy Okafor</h3>
+              
+              <!-- 2. UNDER IT IS THE ACCOUNT NUMBER -->
+              <div id="step2-recipient-acct" style="font-size:13.5px;color:var(--text-secondary);margin-top:4px;font-weight:600;">Account No: <strong style="color:var(--text-primary);letter-spacing:0.5px;">0123 456 789</strong></div>
+            </div>
+
+            <div class="opay-divider" style="margin-bottom:20px;"></div>
+
+            <!-- 3. BUTTON / INPUT TO ENTER AMOUNT -->
+            <div class="input-group" style="margin-bottom:16px;">
+              <label class="input-label" style="font-weight:700;">Amount (₦)</label>
+              <div class="input-icon-wrap" style="height:52px;border-color:#0284c7;background:#f0f9ff;">
+                <span style="position:absolute;left:16px;font-size:20px;font-weight:800;color:#0284c7;">₦</span>
+                <input type="number" id="step2-amount-input" class="input-field" placeholder="0.00" style="padding-left:40px;font-size:20px;font-weight:800;color:#0284c7;height:50px;background:transparent;">
               </div>
             </div>
 
-            <div id="bank-category-merchant" class="bank-category">
-              <div class="bank-category-label">🏢 Merchant Banks</div>
-              <div class="bank-card-grid">
-                <div class="bank-card" onclick="selectBankCard(this,'Coronation Merchant Bank')"><div class="bank-card-icon" style="background:#78350f;">CO</div><div class="bank-card-name">Coronation</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'FBNQuest Merchant Bank')"><div class="bank-card-icon" style="background:#1e3a5f;">FQ</div><div class="bank-card-name">FBNQuest</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'FSDH Merchant Bank')"><div class="bank-card-icon" style="background:#065f46;">FS</div><div class="bank-card-name">FSDH</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Greenwich Merchant Bank')"><div class="bank-card-icon" style="background:#1d4ed8;">GR</div><div class="bank-card-name">Greenwich</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Nova Merchant Bank')"><div class="bank-card-icon" style="background:#6d28d9;">NV</div><div class="bank-card-name">Nova</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Rand Merchant Bank Nigeria')"><div class="bank-card-icon" style="background:#9f1239;">RM</div><div class="bank-card-name">Rand Merchant</div></div>
+            <!-- 4. UNDER IT IS REMARK -->
+            <div class="input-group" style="margin-bottom:18px;">
+              <label class="input-label">Remark (optional)</label>
+              <input type="text" id="step2-remark-input" class="input-field" placeholder="Enter transfer remark (e.g. Payment for goods)">
+            </div>
+
+            <!-- 5. PURCHASE | PERSONAL TOGGLE PILLS -->
+            <div style="margin-bottom:24px;">
+              <label class="input-label">Transfer Purpose</label>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <button type="button" id="pill-purchase" class="purpose-pill active" onclick="selectTransferPurpose('Purchase')" style="height:46px;border-radius:12px;border:1.5px solid #0284c7;background:#eff6ff;color:#0284c7;font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                  <i class="fa-solid fa-bag-shopping"></i> Purchase
+                </button>
+                <button type="button" id="pill-personal" class="purpose-pill" onclick="selectTransferPurpose('Personal')" style="height:46px;border-radius:12px;border:1.5px solid #cbd5e1;background:var(--bg-white);color:var(--text-secondary);font-weight:700;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+                  <i class="fa-solid fa-user"></i> Personal
+                </button>
               </div>
             </div>
 
-            <div id="bank-category-mfb" class="bank-category">
-              <div class="bank-category-label">🏘️ Microfinance Banks</div>
-              <div class="bank-card-grid">
-                <div class="bank-card" onclick="selectBankCard(this,'AB Microfinance Bank')"><div class="bank-card-icon" style="background:#0f766e;">AB</div><div class="bank-card-name">AB MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Accion MFB')"><div class="bank-card-icon" style="background:#0369a1;">AC</div><div class="bank-card-name">Accion MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Advans MFB')"><div class="bank-card-icon" style="background:#1d4ed8;">AD</div><div class="bank-card-name">Advans MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'LAPO Microfinance Bank')"><div class="bank-card-icon" style="background:#166534;">LP</div><div class="bank-card-name">LAPO MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'NPF Microfinance Bank')"><div class="bank-card-icon" style="background:#1e3a5f;">NP</div><div class="bank-card-name">NPF MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Page Financials MFB')"><div class="bank-card-icon" style="background:#7c3aed;">PF</div><div class="bank-card-name">Page Financials</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Petra Microfinance Bank')"><div class="bank-card-icon" style="background:#be185d;">PE</div><div class="bank-card-name">Petra MFB</div></div>
-                <div class="bank-card" onclick="selectBankCard(this,'Mutual Trust MFB')"><div class="bank-card-icon" style="background:#b45309;">MT</div><div class="bank-card-name">Mutual Trust</div></div>
+            <!-- 6. CONFIRM BUTTON -->
+            <button class="btn btn-primary btn-full" style="height:52px;font-size:16px;font-weight:800;border-radius:14px;background:linear-gradient(135deg, #0284c7, #1d4ed8);box-shadow:0 4px 14px rgba(2,132,199,0.35);" onclick="openBiometricAuthModal()">
+              Confirm Transfer <i class="fa-solid fa-shield-halved" style="margin-left:6px;"></i>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TRANSFER TO OTHER BANK ACCOUNT ========== -->
+      <div id="screen-transfer-other" class="screen">
+        <!-- 1. HEADING LEFT, HISTORY RIGHT -->
+        <div class="sub-screen-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 style="font-size:18px;font-family:'Outfit',sans-serif;font-weight:700;">Transfer to Bank Account</h2>
+          </div>
+          <button class="opay-history-btn" onclick="navigate('history')" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.25);padding:7px 16px;border-radius:99px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;">
+            <i class="fa-solid fa-clock-rotate-left"></i> History
+          </button>
+        </div>
+
+        <div style="max-width:540px;">
+          
+          <!-- 2. UNDER IT: CLAIM 15 DISCOUNT WITH #99 ON ANY BILL WRITE UP BANNER -->
+          <div class="card" style="padding:14px 16px;background:linear-gradient(135deg, #fff7ed, #fff1f2);border:1.5px solid #fed7aa;border-radius:16px;margin-bottom:16px;cursor:pointer;" onclick="claimSuperVoucher()">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:36px;height:36px;border-radius:10px;background:#ea580c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                  <i class="fa-solid fa-ticket"></i>
+                </div>
+                <span style="font-size:13.5px;font-weight:700;color:#c2410c;">Claim 15% discount with ₦99 on any bill</span>
+              </div>
+              <span style="font-size:11px;background:#ea580c;color:#fff;padding:3px 10px;border-radius:99px;font-weight:700;">Claim</span>
+            </div>
+          </div>
+
+          <!-- 3. UNDER IT IS A BUTTON: WRITE UP INSIDE: free transfer for the day: 3 -->
+          <button class="btn btn-full" style="height:44px;background:linear-gradient(135deg, #dcfce7, #f0fdf4);border:1.5px solid #86efac;color:#166534;font-size:13.5px;font-weight:800;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:none;" onclick="alert('⚡ You have 3 free transfers remaining today!')">
+            <i class="fa-solid fa-gift" style="color:#16a34a;"></i> Free transfer for the day: 3
+          </button>
+
+          <!-- 4. RECIPIENT ACCOUNT CARD & SELECT BANK -->
+          <div class="card" style="padding:20px;margin-bottom:20px;">
+            <p class="section-title" style="margin:0 0 12px;font-size:14px;color:var(--text-secondary);">Recipient Account</p>
+            
+            <!-- 1. Enter account number input -->
+            <div class="input-group" style="margin-bottom:14px;">
+              <label class="input-label">Recipient Account Number</label>
+              <div class="input-icon-wrap">
+                <i class="fa-solid fa-hashtag field-icon"></i>
+                <input type="tel" class="input-field" id="other-acct-input" placeholder="Enter 10-digit account number" maxlength="10" oninput="onOtherAcctInput(this.value)">
               </div>
             </div>
 
-            <div id="bank-no-results" style="display:none;text-align:center;padding:24px;color:var(--text-secondary);font-size:14px;">
-              <i class="fa-solid fa-magnifying-glass" style="font-size:28px;margin-bottom:8px;opacity:.4;display:block;"></i>
-              No bank found. Try a different name.
+            <!-- 2. SELECT BANK BUTTON (Under Recipient Number) -->
+            <div class="input-group" style="margin-bottom:16px;">
+              <label class="input-label">Select Bank</label>
+              <div class="select-bank-box" onclick="openAllBanksModal()" style="display:flex;align-items:center;justify-content:space-between;background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:14px;padding:12px 16px;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow-sm);">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div id="select-bank-icon-badge" style="width:36px;height:36px;border-radius:10px;background:#00b875;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;font-family:var(--font-display);"><i class="fa-solid fa-bolt" style="font-size:16px;"></i></div>
+                  <div>
+                    <div id="select-bank-label" style="font-size:14.5px;font-weight:800;color:var(--text-primary);">OPay</div>
+                    <div style="font-size:11.5px;color:var(--text-secondary);margin-top:1px;">Tap to select from all banks in Nigeria</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;color:#0284c7;font-weight:700;font-size:13px;background:#eff6ff;padding:6px 12px;border-radius:99px;">
+                  <span>Change Bank</span>
+                  <i class="fa-solid fa-chevron-right" style="font-size:11px;"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Verified recipient & bank popup display card -->
+            <div id="other-recipient-card" style="display:none;background:#f0fdf4;border:1.5px solid #86efac;border-radius:14px;padding:14px 16px;margin-bottom:16px;align-items:center;gap:12px;cursor:pointer;" onclick="doOtherBankNextStep()">
+              <div id="other-tr-initials" style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg, #10b981, #059669);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;">PA</div>
+              <div style="flex:1;">
+                <div id="other-tr-name" style="font-size:15px;font-weight:800;color:var(--text-primary);">Precious Adeleke</div>
+                <div id="other-tr-bank" style="font-size:12.5px;color:#15803d;font-weight:600;margin-top:2px;">OPay · Verified Account (Tap to send)</div>
+              </div>
+              <i class="fa-solid fa-circle-check" style="color:#16a34a;font-size:22px;"></i>
+            </div>
+
+            <!-- 4. NEXT BUTTON (Under Select Bank to continue transaction) -->
+            <button class="btn btn-primary btn-full" style="height:50px;font-size:15px;font-weight:700;border-radius:14px;background:linear-gradient(135deg, #10b981, #059669);box-shadow:0 4px 14px rgba(16,185,129,0.3);" onclick="doOtherBankNextStep()">
+              Next <i class="fa-solid fa-chevron-right" style="font-size:12px;margin-left:4px;"></i>
+            </button>
+          </div>
+
+          <!-- 5. BANK TRANSFER SUCCESS RATE MONITOR -->
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,0.2);display:inline-block;"></span>
+              <span style="font-size:13px;font-weight:700;color:var(--text-primary);">Bank Transfer Success Rate Monitor</span>
+            </div>
+            <span style="font-size:12px;color:#16a34a;font-weight:700;background:#dcfce7;padding:3px 10px;border-radius:99px;">99.9% High</span>
+          </div>
+
+          <!-- 6. RECENT AND FAVOURITE -->
+          <div class="card" style="padding:18px;margin-bottom:20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <span style="font-size:14.5px;font-weight:700;color:var(--text-primary);">Recent and Favourite</span>
+              <span style="font-size:12.5px;color:#10b981;font-weight:700;cursor:pointer;" onclick="showAllRecentContacts()">View all <i class="fa-solid fa-chevron-right" style="font-size:10px;"></i></span>
+            </div>
+
+            <!-- Names of people you sent money to -->
+            <div class="contacts-row" style="margin-bottom:12px;">
+              <div class="contact-item" onclick="prefillOtherBankContact('7012345678','OPay','Precious Adeleke')">
+                <div class="contact-avatar" style="background:#00b875;">PA</div><span class="contact-name">Precious (OPay)</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('8012345678','PalmPay','Samuel Oladipo')">
+                <div class="contact-avatar" style="background:#6d28d9;">SO</div><span class="contact-name">Samuel (PalmPay)</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('0123456789','GTBank','Ada Joy Okafor')">
+                <div class="contact-avatar" style="background:#3b82f6;">AJ</div><span class="contact-name">Ada Joy</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('0987654321','Access Bank','Mike Okonkwo')">
+                <div class="contact-avatar" style="background:#10b981;">MO</div><span class="contact-name">Mike Okonkwo</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('1122334455','Zenith Bank','Kemi Fashola')">
+                <div class="contact-avatar" style="background:#f59e0b;">KF</div><span class="contact-name">Kemi Fashola</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('5566778899','First Bank','Tunde Kola')">
+                <div class="contact-avatar" style="background:#8b5cf6;">TK</div><span class="contact-name">Tunde Kola</span>
+              </div>
+              <div class="contact-item" onclick="prefillOtherBankContact('9988776655','UBA','Bisi Ibrahim')">
+                <div class="contact-avatar" style="background:#ef4444;">BI</div><span class="contact-name">Bisi Ibrahim</span>
+              </div>
             </div>
           </div>
 
-          <div class="input-group">
-            <label class="input-label">Account Number</label>
-            <div class="input-icon-wrap">
-              <i class="fa-solid fa-hashtag field-icon"></i>
-              <input type="tel" class="input-field" id="transfer-acct-input" placeholder="10-digit account number" maxlength="10" oninput="onTransferAcctInput(this.value)">
-            </div>
+          <!-- 7. MORE EVENTS & SUPER VOUCHER PACKAGE BUTTON -->
+          <div style="margin-bottom:24px;">
+            <p class="section-title" style="margin:0 0 10px;font-size:14px;">More Events</p>
+            
+            <button class="btn btn-full" style="padding:16px;background:linear-gradient(135deg, #fff7ed, #ffedd5);border:1.5px solid #fdba74;border-radius:18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-align:left;box-shadow:var(--shadow-sm);" onclick="claimSuperVoucher()">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg, #f97316, #c2410c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(249,115,22,0.35);flex-shrink:0;">
+                  <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                  <div style="font-size:15px;font-weight:800;color:#9a3412;font-family:'Outfit',sans-serif;">Super Voucher Package</div>
+                  <div style="font-size:13px;color:#c2410c;margin-top:2px;font-weight:600;">
+                    Claim 15% discount ₦99 on any bill
+                  </div>
+                </div>
+              </div>
+              <span class="btn btn-sm" style="background:#ea580c;color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:6px 14px;box-shadow:0 3px 10px rgba(234,88,12,0.3);flex-shrink:0;">
+                Get Package
+              </span>
+            </button>
           </div>
 
-          <div id="transfer-recipient-card" style="padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px;background:var(--bg-white);border-radius:16px;box-shadow:var(--shadow-sm);opacity:0;transition:opacity .3s;pointer-events:none;">
-            <div class="avatar" id="tr-initials" style="flex-shrink:0;">AJ</div>
-            <div>
-              <div style="font-size:14px;font-weight:700;" id="tr-name">Ada Joy Okafor</div>
-              <div style="font-size:12px;color:var(--text-secondary);" id="tr-bank">Antigravity Bank</div>
-            </div>
-            <i class="fa-solid fa-circle-check" style="margin-left:auto;color:var(--accent-green);font-size:20px;"></i>
-          </div>
 
-          <p class="section-title">Enter Amount</p>
-          <div class="amount-display" id="transfer-amount">&#8358; 0</div>
-          <div class="numpad">
-            <button class="numpad-key" onclick="numpadInput('1')">1</button>
-            <button class="numpad-key" onclick="numpadInput('2')">2</button>
-            <button class="numpad-key" onclick="numpadInput('3')">3</button>
-            <button class="numpad-key" onclick="numpadInput('4')">4</button>
-            <button class="numpad-key" onclick="numpadInput('5')">5</button>
-            <button class="numpad-key" onclick="numpadInput('6')">6</button>
-            <button class="numpad-key" onclick="numpadInput('7')">7</button>
-            <button class="numpad-key" onclick="numpadInput('8')">8</button>
-            <button class="numpad-key" onclick="numpadInput('9')">9</button>
-            <button class="numpad-key" onclick="numpadInput('.')">.</button>
-            <button class="numpad-key" onclick="numpadInput('0')">0</button>
-            <button class="numpad-key" onclick="numpadInput('del')"><i class="fa-solid fa-delete-left"></i></button>
-          </div>
-          <div class="input-group" style="margin-top:8px;">
-            <label class="input-label">Narration (optional)</label>
-            <input type="text" class="input-field" id="transfer-narration" placeholder="e.g. School fees payment">
-          </div>
-          <button class="btn btn-primary btn-full" onclick="doTransfer()"><i class="fa-solid fa-paper-plane"></i> Send Money</button>
+
         </div>
       </div>
 
@@ -1781,15 +2155,15 @@
           <!-- SECTION 1: CUSTOMER SERVICE SHORTCUTS -->
           <p class="section-title" style="margin-top:0;">Customer Service</p>
           <div class="cs-grid">
-            <div class="cs-item" onclick="openHelpModal('Transaction Dispute','Log a dispute for pending, failed, or uncredited debit transactions.')">
+            <div class="cs-item" onclick="openDisputeModal()">
               <div class="cs-icon" style="background:#fef2f2;color:#ef4444;"><i class="fa-solid fa-triangle-exclamation"></i></div>
               <div class="cs-label">Transaction Dispute</div>
             </div>
-            <div class="cs-item" onclick="openHelpModal('Erroneous Transfer','Request recall or report an accidental transfer to wrong recipient.')">
+            <div class="cs-item" onclick="openErroneousTransferModal()">
               <div class="cs-icon" style="background:#fff7ed;color:#f97316;"><i class="fa-solid fa-arrows-rotate"></i></div>
               <div class="cs-label">Erroneous Transfer</div>
             </div>
-            <div class="cs-item" onclick="openHelpModal('Account Limit','View daily transfer limits and submit Tier 3 upgrade documents.')">
+            <div class="cs-item" onclick="openAccountLimitModal()">
               <div class="cs-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-gauge-high"></i></div>
               <div class="cs-label">Account Limit</div>
             </div>
@@ -1797,11 +2171,11 @@
               <div class="cs-icon" style="background:#faf5ff;color:#9333ea;"><i class="fa-solid fa-lock"></i></div>
               <div class="cs-label">Password and PIN</div>
             </div>
-            <div class="cs-item" onclick="openHelpModal('Phone Number Change','Update registered phone number with OTP SMS verification.')">
+            <div class="cs-item" onclick="openPhoneChangeModal()">
               <div class="cs-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-mobile-retro"></i></div>
               <div class="cs-label">Phone Number Change</div>
             </div>
-            <div class="cs-item" onclick="openHelpModal('Report Scam','Freeze account instantly or report fraudulent activity.')">
+            <div class="cs-item" onclick="openReportScamModal()">
               <div class="cs-icon" style="background:#fef2f2;color:#dc2626;"><i class="fa-solid fa-shield-virus"></i></div>
               <div class="cs-label">Report Scam</div>
             </div>
@@ -1809,7 +2183,7 @@
               <div class="cs-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-comment-sms"></i></div>
               <div class="cs-label">SMS Alert Settings</div>
             </div>
-            <div class="cs-item" onclick="openHelpModal('More Support Services','Browse additional customer care tools and agent assistance.')">
+            <div class="cs-item" onclick="openHelpGuideModal('More Support Services', '🛠️ Additional Customer Care Tools:\n\n• Live Chat Support (24/7 Agent Access)\n• Automated Self-Service Dispute Portal\n• Official Email: support@antigravitybank.com\n• Toll-Free Helpline: 0800-ANTIGRAVITY\n\nNeed immediate live help? Tap Live Chat below.')">
               <div class="cs-icon" style="background:#f8fafc;color:#64748b;"><i class="fa-solid fa-ellipsis"></i></div>
               <div class="cs-label">And More</div>
             </div>
@@ -1840,23 +2214,23 @@
 
           <!-- Tab Content 1: Hot Issues -->
           <div id="help-panel-hot-issues">
-            <div class="help-list-item" onclick="openHelpModal('Office Address', '🏢 Antigravity Bank Headquarters:\n14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria.\n\nBranch Hours: Mon – Fri (8:00 AM – 4:00 PM)\nHotline: 0800-ANTIGRAVITY')">
+            <div class="help-list-item" onclick="openHelpGuideModal('Office Address', '🏢 Antigravity Bank Headquarters:\n14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria.\n\nBranch Hours: Mon – Fri (8:00 AM – 4:00 PM)\nHotline: 0800-ANTIGRAVITY\nEmail: info@antigravitybank.com', 'Copy Address', copyOfficeAddress)">
               <span style="font-size:14px;font-weight:600;">1. Office address</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('How to increase the limit', '📈 How to Increase Transfer Limit:\n1. Go to Profile → Account Details.\n2. Upload valid Government ID (NIN/Passport/Voters Card).\n3. Link verified BVN to upgrade to Tier 3 (Unlimited Daily Limit).')">
+            <div class="help-list-item" onclick="openAccountLimitModal()">
               <span style="font-size:14px;font-weight:600;">2. How to increase the limit</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('How to change mobile number', '📱 How to Change Mobile Number:\n1. Go to Settings → Security.\n2. Tap Mobile Number Update.\n3. Enter your new number and verify via instant SMS OTP code.')">
+            <div class="help-list-item" onclick="openPhoneChangeModal()">
               <span style="font-size:14px;font-weight:600;">3. How to change mobile number</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('How to download account statement', '📄 How to Download Account Statement:\n1. Go to Account Details or History.\n2. Tap \"Statement\" button.\n3. Select date range (e.g., 1 Month, 6 Months, Custom) and download official PDF receipt.')">
+            <div class="help-list-item" onclick="downloadAccountStatement()">
               <span style="font-size:14px;font-weight:600;">4. How to download account statement</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('What is stamp duty', '💡 What is Stamp Duty?\nStamp Duty is a CBN regulatory charge of ₦50 levied on electronic bank deposits and inflows of ₦10,000 and above, remitted directly to the Federal Inland Revenue Service (FIRS).')">
+            <div class="help-list-item" onclick="openHelpGuideModal('What is Stamp Duty?', '💡 CBN Stamp Duty Charge:\n\nStamp Duty is a statutory charge of ₦50 mandated by the Central Bank of Nigeria (CBN) and Federal Inland Revenue Service (FIRS) on electronic money inflows of ₦10,000 and above.\n\n• Charge: ₦50 per qualifying deposit\n• Beneficiary: Remitted directly to Federal Inland Revenue Service (FIRS)')">
               <span style="font-size:14px;font-weight:600;">5. What is stamp duty</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
@@ -1864,19 +2238,19 @@
 
           <!-- Tab Content 2: Transaction -->
           <div id="help-panel-transaction" style="display:none;">
-            <div class="help-list-item" onclick="openHelpModal('Debited for failed card transaction', '💳 Debited for Failed Card Transaction:\nIf your card was debited for a failed transaction, CBN rules require auto-reversal within 24 hours. If delayed, tap \"Log Dispute\" to resolve instantly.')">
+            <div class="help-list-item" onclick="openDisputeModal('Failed Card Transaction')">
               <span style="font-size:14px;font-weight:600;">1. Debited for failed card transaction</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('Why is the transfer still pending', '⏳ Why is Transfer Still Pending?\nTransfers may stay pending due to interbank network congestion (NIBSS switch delays). Most pending transfers settle within 15 minutes or automatically revert if rejected.')">
+            <div class="help-list-item" onclick="openHelpGuideModal('Pending Transfer Guide', '⏳ Why is Transfer Still Pending?\n\nInterbank transfers route through the NIBSS central switch. During peak traffic hours, processing may take up to 15 minutes.\n\nIf the transfer fails, funds are automatically reverted to your balance within 24 hours.')">
               <span style="font-size:14px;font-weight:600;">2. Why is the transfer still pending</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('Transfer successful but not credited', '🔄 Transfer Successful But Not Credited:\nIf your transfer was successful but the recipient hasn\'t received funds, share the Transaction Reference Code / Session ID with receiving bank support to credit recipient.')">
+            <div class="help-list-item" onclick="openHelpGuideModal('Transfer Successful But Not Credited', '🔄 Funds Not Credited to Beneficiary:\n\n1. Check the receiving bank processing status.\n2. Obtain the 30-digit NIBSS Session ID from your receipt.\n3. Share the receipt with the receiving bank support team to manually post the funds.')">
               <span style="font-size:14px;font-weight:600;">3. Transfer successful but not credited</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('How to recall erroneous transfer', '🚨 How to Recall Erroneous Transfer:\nTap \"Erroneous Transfer\" in Customer Care shortcuts immediately. Provide destination account & timestamp so our fraud operations team flags recipient bank for recall.')">
+            <div class="help-list-item" onclick="openErroneousTransferModal()">
               <span style="font-size:14px;font-weight:600;">4. How to recall erroneous transfer</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
@@ -1888,19 +2262,19 @@
 
           <!-- Tab Content 3: Account -->
           <div id="help-panel-account" style="display:none;">
-            <div class="help-list-item" onclick="openHelpModal('What is upgrade progress', '📊 What is Upgrade Progress?\nUpgrade progress measures your KYC compliance level (Tier 1 to Tier 3). Completing BVN, NIN, and utility bill verification unlocks maximum transaction privileges.')">
+            <div class="help-list-item" onclick="openAccountLimitModal()">
               <span style="font-size:14px;font-weight:600;">1. What is upgrade progress</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="navigate('settings')">
+            <div class="help-list-item" onclick="changePIN()">
               <span style="font-size:14px;font-weight:600;">2. How to change PIN</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('Can\'t receive verification code', '📩 Can\'t Receive Verification Code?\n1. Check network signal & SMS spam box.\n2. Ensure your phone isn\'t on DND (Do-Not-Disturb).\n3. Tap \"Resend Code via WhatsApp\" if available.')">
+            <div class="help-list-item" onclick="openHelpGuideModal('SMS OTP Troubleshooting', '📩 Can\'t Receive SMS OTP Code?\n\n1. Ensure your phone isn\'t in Do-Not-Disturb (DND) mode.\n2. Check SMS spam inbox.\n3. Verify mobile signal strength.\n4. You can also request OTP via WhatsApp or Automated Call.')">
               <span style="font-size:14px;font-weight:600;">3. Can\'t receive the verification code</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
-            <div class="help-list-item" onclick="openHelpModal('How to upgrade BVN/NIN name', '🆔 How to Upgrade BVN/NIN Name:\nIf your name on BVN/NIN differs from account registration, upload a marriage certificate, court affidavit, or newspaper publication under Profile → Edit Profile.')">
+            <div class="help-list-item" onclick="openHelpGuideModal('BVN / NIN Name Update', '🆔 BVN/NIN Name Correction:\n\nIf your name on BVN or NIN differs from your account profile, submit an official affidavit or marriage certificate.\n\nOur compliance team reviews documents within 24 hours.')">
               <span style="font-size:14px;font-weight:600;">4. How to upgrade BVN/NIN name</span>
               <i class="fa-solid fa-chevron-right menu-chevron"></i>
             </div>
@@ -1913,7 +2287,7 @@
           <!-- SECTION 4: LIVE CHAT ACTION BUTTON -->
           <div style="margin-top:28px;margin-bottom:12px;">
             <button class="btn btn-primary btn-full" onclick="openLiveChatModal()" style="height:52px;font-size:15px;font-weight:700;border-radius:14px;background:linear-gradient(135deg, var(--primary-blue), #2563eb);box-shadow:0 4px 14px rgba(37,99,235,0.35);">
-              <i class="fa-solid fa-headset" style="font-size:18px;"></i> Live Chat Customer Care
+              <i class="fa-solid fa-comments" style="font-size:18px;"></i> Live Chat
             </button>
           </div>
 
@@ -2347,20 +2721,87 @@
       <div id="screen-safebox" class="screen">
         <div class="sub-screen-header">
           <button class="back-btn" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
-          <h2 style="font-size:20px;">Safe Box</h2>
+          <h2 style="font-size:20px;">Safe Box &amp; Fixed Savings</h2>
         </div>
-        <div style="max-width:520px;">
-          <div class="balance-card" style="background:linear-gradient(135deg, #0d9488 0%, #115e59 100%);">
+        <div style="max-width:540px;">
+          <!-- Balance Summary Card -->
+          <div class="balance-card" style="background:linear-gradient(135deg, #0d9488 0%, #115e59 100%);margin-bottom:20px;">
             <div class="balance-label">Total Locked Savings</div>
             <div class="balance-amount" id="safebox-balance">₦1,200,000.00</div>
-            <div style="font-size:12px;opacity:.8;margin-top:8px;">Interest Rate: 15% Per Annum</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15);font-size:12px;">
+              <span>Daily Yield Rate: <strong style="color:#2dd4bf;">15% - 18% p.a.</strong></span>
+              <span>Daily Profit: <strong style="color:#2dd4bf;">+₦493.15 / day</strong></span>
+            </div>
           </div>
-          <div class="input-group">
-            <label class="input-label">Amount to Lock (₦)</label>
-            <input type="number" id="safebox-lock-amount" class="input-field" placeholder="e.g. 5000">
+
+          <!-- Lock Money Form Card -->
+          <div class="card" style="padding:20px;margin-bottom:20px;">
+            <p class="section-title" style="margin:0 0 14px;font-size:14px;color:var(--text-secondary);">Create New Fixed Lock</p>
+
+            <div class="input-group">
+              <label class="input-label">Amount to Lock (₦)</label>
+              <input type="number" id="safebox-lock-amount" class="input-field" placeholder="e.g. 50000" oninput="calculateSafeboxInterest()">
+            </div>
+
+            <!-- Quick Presets -->
+            <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+              <button onclick="setSafeboxPreset(10000)" style="flex:1;height:36px;border-radius:8px;border:1px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:600;cursor:pointer;">+₦10,000</button>
+              <button onclick="setSafeboxPreset(50000)" style="flex:1;height:36px;border-radius:8px;border:1px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:600;cursor:pointer;">+₦50,000</button>
+              <button onclick="setSafeboxPreset(100000)" style="flex:1;height:36px;border-radius:8px;border:1px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:600;cursor:pointer;">+₦100,000</button>
+              <button onclick="setSafeboxPreset(500000)" style="flex:1;height:36px;border-radius:8px;border:1px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:600;cursor:pointer;">+₦500,000</button>
+            </div>
+
+            <!-- Lock Duration / Tenor -->
+            <label class="input-label">Lock Duration &amp; Interest Yield</label>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+              <button class="tenor-btn" onclick="selectSafeboxTenor(this, 15)" style="height:44px;border-radius:10px;border:1.5px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:700;cursor:pointer;">30 Days<div style="font-size:10px;color:#10b981;">15% p.a.</div></button>
+              <button class="tenor-btn active" onclick="selectSafeboxTenor(this, 18)" style="height:44px;border-radius:10px;border:1.5px solid #0d9488;background:#f0fdf4;color:#0d9488;font-size:12px;font-weight:700;cursor:pointer;">90 Days<div style="font-size:10px;color:#10b981;">18% p.a.</div></button>
+              <button class="tenor-btn" onclick="selectSafeboxTenor(this, 17)" style="height:44px;border-radius:10px;border:1.5px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:700;cursor:pointer;">180 Days<div style="font-size:10px;color:#10b981;">17% p.a.</div></button>
+              <button class="tenor-btn" onclick="selectSafeboxTenor(this, 18)" style="height:44px;border-radius:10px;border:1.5px solid #cbd5e1;background:var(--bg-white);font-size:12px;font-weight:700;cursor:pointer;">365 Days<div style="font-size:10px;color:#10b981;">18% p.a.</div></button>
+            </div>
+
+            <!-- Estimated Profit Calculator -->
+            <div style="background:#f8fafc;border-radius:12px;padding:12px 14px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;border:1px solid #e2e8f0;">
+              <span style="font-size:13px;color:var(--text-secondary);">Estimated Maturity Profit:</span>
+              <strong id="safebox-est-profit" style="font-size:15px;color:#10b981;font-family:'Outfit',sans-serif;">₦0.00</strong>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <button class="btn btn-success btn-full" style="height:48px;font-size:15px;font-weight:700;border-radius:12px;background:linear-gradient(135deg, #0d9488, #0f766e);" onclick="lockMoney()">
+                <i class="fa-solid fa-lock"></i> Lock Money Now
+              </button>
+              <button class="btn btn-secondary btn-full" style="height:46px;font-size:14px;border-radius:12px;" onclick="withdrawSafebox()">
+                <i class="fa-solid fa-unlock"></i> Withdraw to Main Balance
+              </button>
+            </div>
           </div>
-          <button class="btn btn-success btn-full" style="margin-bottom:10px;" onclick="lockMoney()"><i class="fa-solid fa-lock"></i> Lock Money Now</button>
-          <button class="btn btn-secondary btn-full" onclick="withdrawSafebox()"><i class="fa-solid fa-unlock"></i> Withdraw to Main Balance</button>
+
+          <!-- Active Safe Box Plans List -->
+          <p class="section-title" style="margin:0 0 10px;font-size:14px;">Active Locked Savings</p>
+          <div id="safebox-plans-list">
+            <div style="background:var(--bg-white);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text-primary);">Fixed Safebox Plan #1</div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Rate: 18% p.a. · 180 Days</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:15px;font-weight:800;color:#0d9488;">₦800,000.00</div>
+                <div style="font-size:11px;color:#10b981;font-weight:600;">+₦59,178.08 profit</div>
+              </div>
+            </div>
+            <div style="background:var(--bg-white);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--text-primary);">Target Savings #1</div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Rate: 16% p.a. · 90 Days</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:15px;font-weight:800;color:#0d9488;">₦400,000.00</div>
+                <div style="font-size:11px;color:#10b981;font-weight:600;">+₦15,780.82 profit</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -2446,6 +2887,229 @@
   </div>
 </div>
 
+<!-- ===== LIVE CHAT MODAL ===== -->
+<div class="help-modal-overlay" id="live-chat-modal">
+  <div class="help-modal-box chat-modal-box">
+    <div class="chat-header">
+      <div class="chat-agent-info">
+        <div class="chat-agent-avatar"><i class="fa-solid fa-headset"></i></div>
+        <div>
+          <div style="font-size:15px;font-weight:700;">Antigravity Live Support</div>
+          <div style="font-size:11px;opacity:0.85;display:flex;align-items:center;gap:5px;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block;"></span> Agent Online · 24/7 Support
+          </div>
+        </div>
+      </div>
+      <button class="help-modal-close" onclick="closeLiveChatModal()" style="background:rgba(255,255,255,0.15);color:#fff;border:none;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="chat-messages" id="chat-messages-container">
+      <div class="msg-bubble msg-agent">
+        👋 Hello! Welcome to Antigravity Live Support.<br>How can we assist you with your banking experience today?
+        <span class="msg-time">Just now</span>
+      </div>
+      
+      <!-- Quick Chips -->
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin:4px 0;" id="chat-quick-chips">
+        <button class="cat-chip" onclick="sendQuickChatMessage('I have a failed card transaction debit')">💳 Failed Debit</button>
+        <button class="cat-chip" onclick="sendQuickChatMessage('How do I upgrade my account limit?')">📈 Account Limit</button>
+        <button class="cat-chip" onclick="sendQuickChatMessage('I need to recall an erroneous transfer')">🚨 Recall Transfer</button>
+      </div>
+    </div>
+    
+    <div class="chat-input-bar">
+      <input type="text" class="chat-input-field" id="chat-input-text" placeholder="Type your message here…" onkeypress="if(event.key==='Enter') sendChatMessage()">
+      <button class="chat-send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FEEDBACK MODAL ===== -->
+<div class="help-modal-overlay" id="feedback-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-regular fa-comment-dots" style="color:var(--accent-green);"></i> We Value Your Feedback</div>
+      <button class="help-modal-close" onclick="closeHelpModal('feedback-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">How would you rate your experience with Antigravity Bank today?</p>
+    
+    <div class="star-rating" id="feedback-stars">
+      <i class="fa-solid fa-star active" onclick="setFeedbackRating(1)"></i>
+      <i class="fa-solid fa-star active" onclick="setFeedbackRating(2)"></i>
+      <i class="fa-solid fa-star active" onclick="setFeedbackRating(3)"></i>
+      <i class="fa-solid fa-star active" onclick="setFeedbackRating(4)"></i>
+      <i class="fa-solid fa-star active" onclick="setFeedbackRating(5)"></i>
+    </div>
+
+    <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:8px;">Category</div>
+    <div class="category-chips">
+      <span class="cat-chip selected" onclick="selectChip(this)">App Design</span>
+      <span class="cat-chip" onclick="selectChip(this)">Transaction Speed</span>
+      <span class="cat-chip" onclick="selectChip(this)">Customer Service</span>
+      <span class="cat-chip" onclick="selectChip(this)">Feature Request</span>
+      <span class="cat-chip" onclick="selectChip(this)">Bug Report</span>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Your Message</label>
+      <textarea class="input-field" id="feedback-textarea" style="height:100px;padding:12px;resize:none;" placeholder="Tell us what you loved or how we can improve…"></textarea>
+    </div>
+
+    <button class="btn btn-success btn-full" onclick="submitFeedbackForm()"><i class="fa-solid fa-paper-plane"></i> Submit Feedback</button>
+  </div>
+</div>
+
+<!-- ===== DISPUTE MODAL ===== -->
+<div class="help-modal-overlay" id="dispute-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-solid fa-triangle-exclamation" style="color:#ef4444;"></i> Log Transaction Dispute</div>
+      <button class="help-modal-close" onclick="closeHelpModal('dispute-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="input-group">
+      <label class="input-label">Select Affected Transaction</label>
+      <select class="input-field" id="dispute-tx-select" style="cursor:pointer;">
+        <option>Shoprite Debit (₦8,400.00 - Jul 12)</option>
+        <option>EKEDC Electric Bill (₦15,000.00 - Jul 9)</option>
+        <option>MTN Airtime Topup (₦2,000.00 - Jul 8)</option>
+        <option value="custom">Other / Custom Transaction</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Dispute Issue Type</label>
+      <select class="input-field" id="dispute-type-select" style="cursor:pointer;">
+        <option>Failed Transaction (Debited without value)</option>
+        <option>Double / Duplicate Debit</option>
+        <option>ATM Cash Not Dispensed</option>
+        <option>Unauthorized Transaction</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Additional Details &amp; Reference Code</label>
+      <textarea class="input-field" id="dispute-details" style="height:80px;padding:12px;resize:none;" placeholder="Enter reference code or extra details…"></textarea>
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="submitDisputeForm()"><i class="fa-solid fa-shield-check"></i> Submit Official Dispute</button>
+  </div>
+</div>
+
+<!-- ===== ERRONEOUS TRANSFER MODAL ===== -->
+<div class="help-modal-overlay" id="erroneous-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-solid fa-arrows-rotate" style="color:#f97316;"></i> Erroneous Transfer Recall</div>
+      <button class="help-modal-close" onclick="closeHelpModal('erroneous-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Accidentally transferred funds to the wrong account? Submit a recall request for swift intervention by our fraud operations team.</p>
+
+    <div class="input-group">
+      <label class="input-label">Destination Account Number</label>
+      <input type="tel" class="input-field" id="erroneous-acct" placeholder="Enter 10-digit wrong account number" maxlength="10">
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Destination Bank</label>
+      <input type="text" class="input-field" id="erroneous-bank" placeholder="e.g. Access Bank, GTBank, OPay">
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Amount Transferred (₦)</label>
+      <input type="number" class="input-field" id="erroneous-amount" placeholder="e.g. 50000">
+    </div>
+
+    <button class="btn btn-primary btn-full" style="background:linear-gradient(135deg, #ea580c, #c2410c);" onclick="submitErroneousRecall()"><i class="fa-solid fa-headset"></i> Request Immediate Recall</button>
+  </div>
+</div>
+
+<!-- ===== ACCOUNT LIMIT MODAL ===== -->
+<div class="help-modal-overlay" id="limit-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-solid fa-gauge-high" style="color:#2563eb;"></i> Account Limit &amp; Tier Upgrade</div>
+      <button class="help-modal-close" onclick="closeHelpModal('limit-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="card" style="background:#eff6ff;border-color:#bfdbfe;padding:16px;margin-bottom:18px;">
+      <div style="font-size:12px;color:var(--text-secondary);">Current Status</div>
+      <div style="font-size:20px;font-weight:800;color:var(--primary-blue);margin:4px 0;">Tier 2 Account Verified ✓</div>
+      <div style="font-size:13px;color:var(--text-primary);">Daily Limit: <strong>₦5,000,000.00</strong></div>
+    </div>
+
+    <p style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:10px;">Upgrade to Tier 3 (Unlimited Daily Limit)</p>
+    <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin-bottom:16px;">
+      To unlock unlimited daily transfer privileges, verify your Government ID (NIN / International Passport) and proof of address.
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="upgradeToTier3()"><i class="fa-solid fa-circle-arrow-up"></i> Instant Upgrade to Tier 3</button>
+  </div>
+</div>
+
+<!-- ===== PHONE CHANGE MODAL ===== -->
+<div class="help-modal-overlay" id="phone-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-solid fa-mobile-retro" style="color:#16a34a;"></i> Change Phone Number</div>
+      <button class="help-modal-close" onclick="closeHelpModal('phone-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="phone-step-1">
+      <div class="input-group">
+        <label class="input-label">New Mobile Phone Number</label>
+        <input type="tel" class="input-field" id="new-phone-input" placeholder="+234 812 345 6789">
+      </div>
+      <button class="btn btn-success btn-full" onclick="sendPhoneOTP()"><i class="fa-solid fa-paper-plane"></i> Send Verification SMS OTP</button>
+    </div>
+
+    <div id="phone-step-2" style="display:none;">
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">An SMS OTP code has been sent to your new mobile number. Enter the 6-digit code below:</p>
+      <div class="input-group">
+        <label class="input-label">6-Digit Verification Code</label>
+        <input type="text" class="input-field" id="phone-otp-input" placeholder="e.g. 582910" maxlength="6" style="letter-spacing:4px;font-weight:700;text-align:center;font-size:18px;">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="verifyPhoneOTP()"><i class="fa-solid fa-check"></i> Verify &amp; Update Phone</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REPORT SCAM MODAL ===== -->
+<div class="help-modal-overlay" id="scam-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title"><i class="fa-solid fa-shield-virus" style="color:#dc2626;"></i> Report Scam &amp; Freeze</div>
+      <button class="help-modal-close" onclick="closeHelpModal('scam-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="card" style="background:#fef2f2;border-color:#fecaca;padding:16px;margin-bottom:18px;">
+      <div style="font-size:13px;font-weight:700;color:#dc2626;margin-bottom:4px;">🚨 Emergency Freeze Protection</div>
+      <div style="font-size:12px;color:#991b1b;line-height:1.4;">If you suspect suspicious activity or lost your device, freeze your account immediately to prevent unauthorized debits.</div>
+      <button class="btn" style="background:#dc2626;color:#fff;margin-top:12px;height:42px;font-size:13px;width:100%;" onclick="freezeAccountEmergency()"><i class="fa-solid fa-lock"></i> Freeze Account Immediately</button>
+    </div>
+
+    <div class="input-group">
+      <label class="input-label">Report Fraudulent Detail / Suspect Number</label>
+      <textarea class="input-field" id="scam-report-text" style="height:70px;padding:12px;resize:none;" placeholder="Describe what happened or enter suspect details…"></textarea>
+    </div>
+
+    <button class="btn btn-secondary btn-full" onclick="submitScamReport()"><i class="fa-solid fa-flag"></i> Submit Fraud Incident Report</button>
+  </div>
+</div>
+
+<!-- ===== GENERIC GUIDE MODAL ===== -->
+<div class="help-modal-overlay" id="help-guide-modal">
+  <div class="help-modal-box">
+    <div class="help-modal-header">
+      <div class="help-modal-title" id="guide-modal-title">Help Guide</div>
+      <button class="help-modal-close" onclick="closeHelpModal('help-guide-modal')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="guide-modal-body" style="font-size:13.5px;color:var(--text-primary);line-height:1.6;white-space:pre-line;margin-bottom:20px;"></div>
+    <button class="btn btn-primary btn-full" id="guide-modal-action-btn" onclick="closeHelpModal('help-guide-modal')">Got It</button>
+  </div>
+</div>
+
 <!-- ===== MOBILE BOTTOM NAV ===== -->
 <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
   <button class="mobile-nav-item active" id="mob-nav-home" onclick="navigate('home')"><i class="fa-solid fa-house"></i><span>Home</span></button>
@@ -2453,9 +3117,114 @@
   <button class="mobile-nav-item" id="mob-nav-transfer" onclick="navigate('transfer')"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transfer</span></button>
   <button class="mobile-nav-item" id="mob-nav-cards" onclick="navigate('cards')"><i class="fa-solid fa-credit-card"></i><span>Cards</span></button>
   <button class="mobile-nav-item" id="mob-nav-profile" onclick="navigate('profile')"><i class="fa-regular fa-circle-user"></i><span>Profile</span></button>
-</nav>
+<!-- ===== ALL BANKS IN NIGERIA MODAL ===== -->
+<div class="modal-overlay" id="all-banks-modal">
+  <div class="modal-card" style="max-width:500px;width:94%;max-height:85vh;display:flex;flex-direction:column;padding:24px 20px;border-radius:24px;background:var(--bg-white);position:relative;">
+    
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #f1f5f9;">
+      <div>
+        <h3 style="font-size:18px;font-weight:800;margin:0;font-family:'Outfit',sans-serif;color:var(--text-primary);">All Banks in Nigeria</h3>
+        <p style="font-size:12.5px;color:var(--text-secondary);margin:2px 0 0;">Select beneficiary bank to send money</p>
+      </div>
+      <button onclick="closeAllBanksModal()" style="background:#f1f5f9;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Search input inside modal -->
+    <div class="search-bar" style="margin-bottom:14px;max-width:100%;">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="modal-bank-search" placeholder="Search 30+ banks in Nigeria (OPay, PalmPay, GTBank)..." oninput="filterModalBanksList(this.value)" autocomplete="off">
+    </div>
+
+    <!-- Scrollable Banks List Container -->
+    <div id="modal-banks-list" style="overflow-y:auto;flex:1;max-height:55vh;padding-right:4px;display:flex;flex-direction:column;gap:8px;">
+    </div>
+  </div>
+</div>
+
+<!-- ===== BIOMETRIC / PASSWORD AUTH MODAL ===== -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal-card" style="max-width:400px;text-align:center;padding:28px 24px;border-radius:24px;background:var(--bg-white);position:relative;">
+    <button class="modal-close" onclick="closeAuthModal()" style="position:absolute;right:20px;top:20px;background:none;border:none;font-size:20px;color:var(--text-secondary);cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+    
+    <div style="width:64px;height:64px;border-radius:50%;background:#eff6ff;color:#0284c7;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(2,132,199,0.2);">
+      <i class="fa-solid fa-fingerprint"></i>
+    </div>
+
+    <h3 style="font-size:18px;font-weight:800;margin:0 0 6px;font-family:'Outfit',sans-serif;">Authorize Transfer</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin:0 0 20px;">Touch fingerprint sensor or enter password to confirm <strong style="color:var(--text-primary);" id="auth-modal-amount">₦0.00</strong> transfer.</p>
+
+    <!-- Fingerprint Touch Area -->
+    <div onclick="simulateFingerprintAuth()" style="border:2px dashed #0284c7;border-radius:18px;padding:20px;margin-bottom:20px;background:#f0f9ff;cursor:pointer;transition:all 0.2s;">
+      <i class="fa-solid fa-fingerprint" style="font-size:48px;color:#0284c7;display:block;margin-bottom:8px;"></i>
+      <span style="font-size:13px;font-weight:700;color:#0284c7;">Tap fingerprint sensor to authorize</span>
+    </div>
+
+    <div style="font-size:11px;color:var(--text-secondary);margin-bottom:12px;font-weight:700;letter-spacing:1px;">OR ENTER PASSWORD</div>
+
+    <!-- Password Input Fallback -->
+    <div class="input-group" style="margin-bottom:16px;">
+      <input type="password" id="auth-password-input" class="input-field" placeholder="Enter account password" style="text-align:center;letter-spacing:3px;">
+    </div>
+
+    <button class="btn btn-primary btn-full" style="height:48px;font-size:15px;font-weight:700;border-radius:12px;background:linear-gradient(135deg, #0284c7, #1d4ed8);" onclick="verifyPasswordAuth()">
+      <i class="fa-solid fa-lock"></i> Authorize Transfer
+    </button>
+  </div>
+</div>
 
 <script>
+  // ===== DYNAMIC USER SESSION SYNC =====
+  function initUserSession() {
+    try {
+      const stored = localStorage.getItem('antigravity_user') || sessionStorage.getItem('antigravity_user');
+      if (stored) {
+        const user = JSON.parse(stored);
+        if (user && user.name) {
+          const fullName = user.name.trim();
+          const firstName = fullName.split(' ')[0];
+          const parts = fullName.split(' ');
+          const initials = parts.length > 1 ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase() : fullName.slice(0, 2).toUpperCase();
+
+          // Update Topbar Greeting
+          const titleText = document.getElementById('topbar-title-text');
+          if (titleText) titleText.textContent = 'Hi, ' + firstName + '.';
+
+          // Update Avatars
+          document.querySelectorAll('.topbar-avatar, .opay-avatar, .profile-avatar-lg').forEach(el => {
+            el.textContent = initials;
+          });
+
+          // Update Name Displays
+          document.querySelectorAll('.profile-name, .card-holder-name').forEach(el => {
+            el.textContent = fullName;
+          });
+
+          const opayName = document.querySelector('.opay-user-name');
+          if (opayName) {
+            opayName.childNodes[0].nodeValue = fullName + ' ';
+          }
+
+          // Update Email in Profile Details if available
+          if (user.email) {
+            document.querySelectorAll('.detail-row').forEach(row => {
+              const label = row.querySelector('.detail-label');
+              if (label && label.textContent.includes('Email')) {
+                const val = row.querySelector('.detail-value');
+                if (val) val.textContent = user.email;
+              }
+            });
+          }
+        }
+      }
+    } catch(e) {
+      console.warn('Session init error:', e);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initUserSession);
+
   // ===== BANK INTERACTIVE SELECTION & SEARCH =====
   function selectBankCard(cardEl, bankName) {
     // Unselect previous
@@ -2545,7 +3314,7 @@
     if (cameFromMoreServices) navigate('more-services');
   }
 
-  // ===== HELP & SUPPORT (CUSTOMER CARE) =====
+  // ===== HELP & SUPPORT (CUSTOMER CARE & INTERACTIVE HANDLERS) =====
   function switchHelpTab(tab) {
     ['hot-issues', 'transaction', 'account'].forEach(t => {
       const panel = document.getElementById('help-panel-' + t);
@@ -2556,18 +3325,220 @@
   }
 
   function openHelpModal(title, text) {
-    alert(`📌 ${title}\n\n${text}`);
+    openHelpGuideModal(title, text);
   }
 
+  function openHelpGuideModal(title, text, actionText, actionFn) {
+    document.getElementById('guide-modal-title').textContent = title;
+    document.getElementById('guide-modal-body').textContent = text;
+    const btn = document.getElementById('guide-modal-action-btn');
+    if (actionText) {
+      btn.textContent = actionText;
+      btn.onclick = function() {
+        closeHelpModal('help-guide-modal');
+        if (actionFn) actionFn();
+      };
+    } else {
+      btn.textContent = 'Got It';
+      btn.onclick = function() { closeHelpModal('help-guide-modal'); };
+    }
+    document.getElementById('help-guide-modal').classList.add('active');
+  }
+
+  function closeHelpModal(modalId) {
+    const el = document.getElementById(modalId);
+    if (el) el.classList.remove('active');
+  }
+
+  function copyOfficeAddress() {
+    const addr = "14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria";
+    if (navigator.clipboard) navigator.clipboard.writeText(addr);
+    alert("📍 Address copied to clipboard:\n" + addr);
+  }
+
+  // Live Chat
+  function openLiveChatModal() {
+    document.getElementById('live-chat-modal').classList.add('active');
+    const input = document.getElementById('chat-input-text');
+    if (input) input.focus();
+  }
+
+  function closeLiveChatModal() {
+    document.getElementById('live-chat-modal').classList.remove('active');
+  }
+
+  function sendChatMessage() {
+    const input = document.getElementById('chat-input-text');
+    const msg = input.value.trim();
+    if (!msg) return;
+    
+    appendChatMessage(msg, 'user');
+    input.value = '';
+
+    // Hide quick chips once chatting
+    const chips = document.getElementById('chat-quick-chips');
+    if (chips) chips.style.display = 'none';
+
+    // Simulate Agent Typing & Reply
+    setTimeout(() => {
+      let reply = "Thank you for contacting Antigravity Support. I'm processing your inquiry right now.";
+      const lower = msg.toLowerCase();
+      if (lower.includes('debit') || lower.includes('failed')) {
+        reply = "I see you have a concern about a debit. Failed transactions automatically revert within 24 hours under CBN policy. You can also tap 'Transaction Dispute' to file a manual ticket.";
+      } else if (lower.includes('limit') || lower.includes('upgrade')) {
+        reply = "To increase your daily transfer limit to Tier 3 (Unlimited), please submit your valid NIN or Government ID under Account Limit in Customer Service.";
+      } else if (lower.includes('recall') || lower.includes('erroneous') || lower.includes('wrong')) {
+        reply = "For erroneous transfers, please provide the recipient account number and bank immediately so our fraud ops team can place an emergency hold.";
+      } else if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
+        reply = "Hello! How can I assist you with your Antigravity Bank account today?";
+      }
+      appendChatMessage(reply, 'agent');
+    }, 1000);
+  }
+
+  function sendQuickChatMessage(msg) {
+    document.getElementById('chat-input-text').value = msg;
+    sendChatMessage();
+  }
+
+  function appendChatMessage(text, sender) {
+    const container = document.getElementById('chat-messages-container');
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    const div = document.createElement('div');
+    div.className = 'msg-bubble ' + (sender === 'user' ? 'msg-user' : 'msg-agent');
+    div.innerHTML = text + `<span class="msg-time">${timeStr}</span>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  // Feedback Modal
+  let feedbackRatingScore = 5;
   function openFeedbackModal() {
-    const feedbackText = prompt("📝 We'd love your feedback!\nPlease share your comments or feature requests below:");
-    if (feedbackText && feedbackText.trim().length > 0) {
-      alert("✅ Thank you for your feedback!\nYour message has been received by our Customer Care Team.");
+    document.getElementById('feedback-modal').classList.add('active');
+  }
+
+  function setFeedbackRating(stars) {
+    feedbackRatingScore = stars;
+    const starEls = document.querySelectorAll('#feedback-stars i');
+    starEls.forEach((s, idx) => {
+      if (idx < stars) s.classList.add('active');
+      else s.classList.remove('active');
+    });
+  }
+
+  function selectChip(el) {
+    el.parentNode.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function submitFeedbackForm() {
+    const text = document.getElementById('feedback-textarea').value.trim();
+    closeHelpModal('feedback-modal');
+    alert(`⭐ Thank you for your ${feedbackRatingScore}-star rating!\nYour feedback has been submitted directly to our product leads.`);
+    document.getElementById('feedback-textarea').value = '';
+  }
+
+  // Dispute Modal
+  function openDisputeModal(presetType) {
+    if (presetType) {
+      const sel = document.getElementById('dispute-type-select');
+      if (sel) sel.value = 'Failed Transaction (Debited without value)';
+    }
+    document.getElementById('dispute-modal').classList.add('active');
+  }
+
+  function submitDisputeForm() {
+    const tx = document.getElementById('dispute-tx-select').value;
+    const type = document.getElementById('dispute-type-select').value;
+    const ticketId = 'DSP-2026-' + Math.floor(100000 + Math.random() * 900000);
+    closeHelpModal('dispute-modal');
+    alert(`✅ Dispute Ticket Logged Successfully!\nTicket Ref: ${ticketId}\nTransaction: ${tx}\nIssue: ${type}\n\nOur resolution team will review within 24 hours.`);
+  }
+
+  // Erroneous Transfer
+  function openErroneousTransferModal() {
+    document.getElementById('erroneous-modal').classList.add('active');
+  }
+
+  function submitErroneousRecall() {
+    const acct = document.getElementById('erroneous-acct').value.trim();
+    const bank = document.getElementById('erroneous-bank').value.trim();
+    const amt = document.getElementById('erroneous-amount').value;
+    if (!acct || acct.length !== 10) {
+      alert('Please enter a valid 10-digit destination account number.');
+      return;
+    }
+    closeHelpModal('erroneous-modal');
+    alert(`🚨 Recall Request Submitted!\nTarget: ${acct} (${bank || 'External Bank'})\nAmount: ₦${parseFloat(amt || 0).toLocaleString('en-NG')}\n\nFraud Operations has flagged this transaction for interbank recall.`);
+  }
+
+  // Account Limit & Tier Upgrade
+  function openAccountLimitModal() {
+    document.getElementById('limit-modal').classList.add('active');
+  }
+
+  function upgradeToTier3() {
+    closeHelpModal('limit-modal');
+    alert('🎉 Congratulations!\nYour account has been upgraded to Tier 3 (Unlimited Daily Limit)!');
+  }
+
+  // Phone Change
+  function openPhoneChangeModal() {
+    document.getElementById('phone-step-1').style.display = 'block';
+    document.getElementById('phone-step-2').style.display = 'none';
+    document.getElementById('phone-modal').classList.add('active');
+  }
+
+  function sendPhoneOTP() {
+    const newPhone = document.getElementById('new-phone-input').value.trim();
+    if (!newPhone || newPhone.length < 10) {
+      alert('Please enter a valid phone number.');
+      return;
+    }
+    document.getElementById('phone-step-1').style.display = 'none';
+    document.getElementById('phone-step-2').style.display = 'block';
+    alert(`📩 SMS OTP Sent!\nA 6-digit verification code was sent to ${newPhone}.`);
+  }
+
+  function verifyPhoneOTP() {
+    const otp = document.getElementById('phone-otp-input').value.trim();
+    if (!otp || otp.length !== 6) {
+      alert('Please enter the 6-digit OTP code.');
+      return;
+    }
+    const newPhone = document.getElementById('new-phone-input').value.trim();
+    closeHelpModal('phone-modal');
+    
+    // Update phone on profile screen if element exists
+    document.querySelectorAll('.detail-row').forEach(row => {
+      const label = row.querySelector('.detail-label');
+      if (label && label.textContent.includes('Phone')) {
+        const val = row.querySelector('.detail-value');
+        if (val) val.textContent = newPhone;
+      }
+    });
+
+    alert(`✅ Phone Number Updated!\nRegistered phone number changed to ${newPhone}.`);
+  }
+
+  // Report Scam & Emergency Freeze
+  function openReportScamModal() {
+    document.getElementById('scam-modal').classList.add('active');
+  }
+
+  function freezeAccountEmergency() {
+    const conf = confirm('⚠️ EMERGENCY FREEZE: Are you sure you want to freeze your account now? All outward transfers and debit cards will be locked immediately.');
+    if (conf) {
+      closeHelpModal('scam-modal');
+      alert('🔒 Account Frozen Successfully!\nYour account and debit cards are locked. Contact support to unfreeze when ready.');
     }
   }
 
-  function openLiveChatModal() {
-    alert("💬 Antigravity Live Support Chat\n\nConnecting you to a Live Customer Care Specialist...\n\n[Agent Connected]: Hello Oyedele! How can I assist you with your account today?");
+  function submitScamReport() {
+    closeHelpModal('scam-modal');
+    alert('🛡️ Fraud Report Received!\nOur Security & Anti-Money Laundering team is investigating this incident.');
   }
 
   function copyAcctNum(btnId) {
@@ -2592,10 +3563,11 @@
     history: 'Transaction History', bills: 'Pay Bills', airtime: 'Airtime & Data',
     cards: 'My Cards', notifications: 'Notifications', profile: 'My Profile',
     settings: 'Settings', help: 'Help & Support', 'add-money': 'Add Money',
+    'transfer-confirm': 'Transfer to Antigravity Account',
     'scan-qr': 'Scan QR Code', 'more-services': 'More Services',
     betting: 'Fund Betting Account', tv: 'Pay TV Subscription',
     safebox: 'Safe Box Savings', loan: 'Request Personal Loan',
-    invitation: 'Invite Friends & Earn',
+    invitation: 'Invite Friends & Earn', 'transfer-other': 'Transfer to Bank Account',
     'cat-main': 'Main Overview',
     'cat-transfers': 'Transfers & Payments',
     'cat-finance': 'Finance & Growth',
@@ -2652,6 +3624,18 @@
       cameFromMoreServices = false;
     }
 
+    // Reset transfer inputs if navigating to transfer screens
+    if (screenName === 'transfer') {
+      const inp = document.getElementById('transfer-acct-input');
+      if (inp) inp.value = '';
+      hideTransferRecipientCard();
+    } else if (screenName === 'transfer-other') {
+      const inp = document.getElementById('other-acct-input');
+      if (inp) inp.value = '';
+      const recCard = document.getElementById('other-recipient-card');
+      if (recCard) recCard.style.display = 'none';
+    }
+
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     const target = document.getElementById('screen-' + screenName);
     if (target) { 
@@ -2694,26 +3678,31 @@
   }
 
   // ===== ACCOUNT LOOKUP =====
+  const BANK_OWNERS = {
+    'OPay': 'Precious Adeleke',
+    'PalmPay': 'Samuel Oladipo',
+    'GTBank': 'Mike Okonkwo',
+    'Access Bank': 'Bisi Ibrahim',
+    'Zenith Bank': 'Kemi Fashola',
+    'First Bank': 'Tunde Kola',
+    'UBA': 'Usman Abubakar',
+    'Kuda Bank': 'Chisom Eze',
+    'Antigravity Bank': 'Ada Joy Okafor'
+  };
+
   const FAKE_ACCOUNTS = {
     '0123456789': { name: 'Ada Joy Okafor', initials: 'AJ', bank: 'Antigravity Bank' },
     '0987654321': { name: 'Mike Okonkwo', initials: 'MO', bank: 'GTBank' },
     '1122334455': { name: 'Kemi Fashola', initials: 'KF', bank: 'Zenith Bank' },
     '5566778899': { name: 'Tunde Kola', initials: 'TK', bank: 'First Bank' },
     '9988776655': { name: 'Bisi Ibrahim', initials: 'BI', bank: 'Access Bank' },
+    '7012345678': { name: 'Precious Adeleke', initials: 'PA', bank: 'OPay' },
+    '8012345678': { name: 'Samuel Oladipo', initials: 'SO', bank: 'PalmPay' },
+    '3344556677': { name: 'Usman Abubakar', initials: 'UA', bank: 'UBA' },
+    '6677889900': { name: 'Chisom Eze', initials: 'CE', bank: 'Kuda Bank' }
   };
   let transferLookupTimer = null;
   let resolvedTransferRecipient = null;
-
-  function onTransferAcctInput(val) {
-    clearTimeout(transferLookupTimer);
-    if (val.length === 10) { transferLookupTimer = setTimeout(() => resolveTransferAccount(val), 600); }
-    else { hideTransferRecipientCard(); }
-  }
-
-  function onTransferBankChange() {
-    const val = document.getElementById('transfer-acct-input').value;
-    if (val.length === 10) resolveTransferAccount(val);
-  }
 
   function resolveTransferAccount(acct) {
     const bankEl = document.getElementById('transfer-bank-select');
@@ -2723,7 +3712,7 @@
     resolvedTransferRecipient = { ...data, acct };
     document.getElementById('tr-initials').textContent = data.initials;
     document.getElementById('tr-name').textContent = data.name;
-    document.getElementById('tr-bank').textContent = data.bank;
+    document.getElementById('tr-bank').textContent = data.bank + ' · Tap to send money';
     const card = document.getElementById('transfer-recipient-card');
     card.style.opacity = '1';
     card.style.pointerEvents = 'auto';
@@ -2753,14 +3742,11 @@
     let foundCard = false;
     document.querySelectorAll('.bank-card').forEach(card => {
       const cardName = card.querySelector('.bank-card-name').textContent.toLowerCase();
-      // Match partial names like "GTBank" with "GTBank (Guaranty Trust Bank)"
       if (bank.toLowerCase().includes(cardName) || cardName.includes(bank.toLowerCase()) || 
           (bank === 'Antigravity Bank' && cardName === 'antigravity bank')) {
-        // Unselect others and select this card
         document.querySelectorAll('.bank-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         
-        // Show in selected display
         const displayEl = document.getElementById('selected-bank-display');
         const iconEl = document.getElementById('selected-bank-icon');
         const nameEl = document.getElementById('selected-bank-name');
@@ -2775,12 +3761,403 @@
     });
 
     if (!foundCard) {
-      // Hide selected badge if contact bank isn't on the grid
       const displayEl = document.getElementById('selected-bank-display');
       if (displayEl) displayEl.style.display = 'none';
     }
 
     resolveTransferAccount(acct);
+  }
+
+  let selectedTransferPurpose = 'Purchase';
+  let pendingTransferData = null;
+
+  function selectTransferPurpose(purpose) {
+    selectedTransferPurpose = purpose;
+    const btnPurchase = document.getElementById('pill-purchase');
+    const btnPersonal = document.getElementById('pill-personal');
+    if (btnPurchase && btnPersonal) {
+      btnPurchase.style.border = purpose === 'Purchase' ? '1.5px solid #0284c7' : '1.5px solid #cbd5e1';
+      btnPurchase.style.background = purpose === 'Purchase' ? '#eff6ff' : 'var(--bg-white)';
+      btnPurchase.style.color = purpose === 'Purchase' ? '#0284c7' : 'var(--text-secondary)';
+
+      btnPersonal.style.border = purpose === 'Personal' ? '1.5px solid #0284c7' : '1.5px solid #cbd5e1';
+      btnPersonal.style.background = purpose === 'Personal' ? '#eff6ff' : 'var(--bg-white)';
+      btnPersonal.style.color = purpose === 'Personal' ? '#0284c7' : 'var(--text-secondary)';
+    }
+  }
+
+  function doAntigravityTransferStep() {
+    const acctInput = document.getElementById('transfer-acct-input').value.trim();
+    if (!acctInput || acctInput.length !== 10) {
+      alert('Please enter a valid 10-digit Antigravity account number.');
+      return;
+    }
+    resolveTransferAccount(acctInput);
+
+    const recipientName = resolvedTransferRecipient ? resolvedTransferRecipient.name : 'Account Holder';
+    const recipientInitials = resolvedTransferRecipient ? resolvedTransferRecipient.initials : acctInput.slice(0, 2).toUpperCase();
+
+    // Fill Step 2 Screen Data
+    document.getElementById('step2-recipient-avatar').textContent = recipientInitials;
+    document.getElementById('step2-recipient-name').textContent = recipientName;
+    document.getElementById('step2-recipient-acct').innerHTML = 'Account No: <strong style="color:var(--text-primary);letter-spacing:0.5px;">' + acctInput.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3') + '</strong>';
+
+    const amtInp = document.getElementById('step2-amount-input');
+    if (amtInp) amtInp.value = '';
+    const remInp = document.getElementById('step2-remark-input');
+    if (remInp) remInp.value = '';
+    selectTransferPurpose('Purchase');
+
+    // Navigate to Step 2 Screen
+    navigate('transfer-confirm');
+  }
+
+  function openBiometricAuthModal() {
+    const amountVal = parseFloat(document.getElementById('step2-amount-input').value);
+    if (isNaN(amountVal) || amountVal <= 0) {
+      alert('Please enter a valid transfer amount.');
+      return;
+    }
+    if (amountVal > accountBalance) {
+      alert('Insufficient funds. Available balance: ₦' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 }));
+      return;
+    }
+
+    const acctInput = document.getElementById('transfer-acct-input').value.trim();
+    const recipientName = resolvedTransferRecipient ? resolvedTransferRecipient.name : 'Account Holder';
+    const remark = document.getElementById('step2-remark-input').value.trim();
+
+    pendingTransferData = {
+      acct: acctInput,
+      name: recipientName,
+      amount: amountVal,
+      remark: remark,
+      purpose: selectedTransferPurpose,
+      bank: 'Antigravity Bank'
+    };
+
+    document.getElementById('auth-modal-amount').textContent = '₦' + amountVal.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const passInp = document.getElementById('auth-password-input');
+    if (passInp) passInp.value = '';
+    document.getElementById('auth-modal').classList.add('active');
+  }
+
+  function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('active');
+  }
+
+  function simulateFingerprintAuth() {
+    // Biometric fingerprint scan simulation
+    closeAuthModal();
+    executePendingTransfer('Fingerprint Biometrics');
+  }
+
+  function verifyPasswordAuth() {
+    const pass = document.getElementById('auth-password-input').value.trim();
+    if (!pass) {
+      alert('Please enter your account password.');
+      return;
+    }
+    closeAuthModal();
+    executePendingTransfer('Password');
+  }
+
+  function executePendingTransfer(authMethod) {
+    if (!pendingTransferData) return;
+    const { acct, name, amount, remark, bank } = pendingTransferData;
+
+    // Deduct & Process Balance
+    accountBalance -= amount;
+    const fmtBalance = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+
+    const ref = 'AGV' + Date.now().toString().slice(-10);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fmtAmt = '₦' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    document.getElementById('receipt-title').textContent = 'Transfer Successful!';
+    document.getElementById('receipt-subtitle').textContent = 'Money sent to ' + name + '.';
+    document.getElementById('receipt-amount').textContent = fmtAmt;
+    document.getElementById('receipt-ref').textContent = ref;
+    document.getElementById('receipt-date').textContent = dateStr;
+
+    document.getElementById('receipt-to').textContent = name;
+    document.getElementById('receipt-acct-val').textContent = acct;
+    document.getElementById('receipt-bank-val').textContent = bank;
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+
+    if (remark) {
+      const narrEl = document.getElementById('receipt-narr-val');
+      if (narrEl) narrEl.textContent = remark;
+      document.getElementById('receipt-row-narr').style.display = 'flex';
+    } else {
+      document.getElementById('receipt-row-narr').style.display = 'none';
+    }
+
+    document.getElementById('receipt-overlay').classList.add('active');
+    pendingTransferData = null;
+  }
+
+  function shareAccountRequestLink() {
+    const text = "Hi! Please send me your Antigravity Bank account number so I can transfer money to you instantly with zero fees!";
+    if (navigator.share) {
+      navigator.share({ title: 'Request Account Number', text: text }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('📋 Request message copied to clipboard!\n\n"' + text + '"');
+      }).catch(() => {
+        prompt('Copy request message:', text);
+      });
+    }
+  }
+
+  function seeWhoElseIsUsingAntigravity() {
+    alert('📱 Scanning phone contacts...\n\nFound 14 friends in your phonebook using Antigravity Bank!');
+  }
+
+  function showAllRecentContacts() {
+    alert('👥 Recent & Favourite Contacts:\n\n1. Ada Joy Okafor (0123456789)\n2. Mike Okonkwo (0987654321)\n3. Kemi Fashola (1122334455)\n4. Tunde Kola (5566778899)\n5. Bisi Ibrahim (9988776655)');
+  }
+
+  function claimSuperVoucher() {
+    alert('🎉 Super Voucher Claimed!\n\nCongratulations! 15% discount coupon applied. You save up to ₦99 on your next bill payment.');
+  }
+
+  // ===== ALL NIGERIAN BANKS LIST =====
+  const ALL_NIGERIAN_BANKS = [
+    { name: 'OPay', code: '999992', color: '#00b875', icon: '<i class="fa-solid fa-bolt" style="font-size:16px;"></i>' },
+    { name: 'PalmPay', code: '999991', color: '#6d28d9', icon: '<i class="fa-solid fa-palm-tree" style="font-size:16px;"></i>' },
+    { name: 'GTBank (Guaranty Trust Bank)', code: '058', color: '#f97316', icon: 'GT' },
+    { name: 'Access Bank', code: '044', color: '#b91c1c', icon: 'AC' },
+    { name: 'Zenith Bank', code: '057', color: '#dc2626', icon: 'ZE' },
+    { name: 'First Bank of Nigeria', code: '011', color: '#92400e', icon: 'FB' },
+    { name: 'United Bank for Africa (UBA)', code: '033', color: '#e11d48', icon: 'UB' },
+    { name: 'Kuda Microfinance Bank', code: '50211', color: '#7c3aed', icon: 'KD' },
+    { name: 'Moniepoint MFB', code: '50515', color: '#0284c7', icon: 'MP' },
+    { name: 'FairMoney MFB', code: '51318', color: '#2563eb', icon: 'FM' },
+    { name: 'Stanbic IBTC Bank', code: '221', color: '#0284c7', icon: 'ST' },
+    { name: 'FCMB (First City Monument Bank)', code: '214', color: '#8b5cf6', icon: 'FC' },
+    { name: 'Fidelity Bank', code: '070', color: '#1d4ed8', icon: 'FD' },
+    { name: 'Wema Bank / ALAT', code: '035', color: '#9333ea', icon: 'WM' },
+    { name: 'Sterling Bank', code: '232', color: '#ef4444', icon: 'SB' },
+    { name: 'Polaris Bank', code: '076', color: '#0d9488', icon: 'PL' },
+    { name: 'Union Bank', code: '032', color: '#0284c7', icon: 'UB' },
+    { name: 'Ecobank Nigeria', code: '050', color: '#0369a1', icon: 'EC' },
+    { name: 'Providus Bank', code: '101', color: '#d97706', icon: 'PV' },
+    { name: 'Jaiz Bank', code: '301', color: '#15803d', icon: 'JZ' },
+    { name: 'Taj Bank', code: '302', color: '#b91c1c', icon: 'TJ' },
+    { name: 'VFD Microfinance Bank', code: '566', color: '#4338ca', icon: 'VF' },
+    { name: 'Heritage Bank', code: '030', color: '#15803d', icon: 'HB' },
+    { name: 'Keystone Bank', code: '082', color: '#0284c7', icon: 'KS' }
+  ];
+
+  // REAL NIGERIAN ACCOUNT OWNER GENERATOR FOR ALL INPUTTED ACCOUNTS
+  function getRealAccountOwner(acctNumber) {
+    const firstNames = ['Oluwaseun', 'Emeka', 'Amina', 'Chidimma', 'Babatunde', 'Damilola', 'Blessing', 'Tijani', 'Nneka', 'Adewale', 'Ibrahim', 'Chisom', 'Yusuf', 'Folake', 'Ifeanyi', 'Zainab', 'Kehinde', 'Omotola'];
+    const lastNames = ['Adeyemi', 'Nwosu', 'Bello', 'Ogunleye', 'Lawal', 'Okoro', 'Ibrahim', 'Eze', 'Abubakar', 'Adeleke', 'Oladipo', 'Okonkwo', 'Fashola', 'Kola', 'Okafor', 'Balogun', 'Danjuma', 'Soyinka'];
+
+    let hash = 0;
+    for (let i = 0; i < acctNumber.length; i++) {
+      hash = (hash * 31 + acctNumber.charCodeAt(i)) % 1000000;
+    }
+
+    const firstName = firstNames[hash % firstNames.length];
+    const lastName = lastNames[(hash * 7) % lastNames.length];
+    const fullName = firstName + ' ' + lastName;
+    const initials = firstName[0] + lastName[0];
+    return { name: fullName, initials: initials };
+  }
+
+  function openAllBanksModal() {
+    renderModalBanks(ALL_NIGERIAN_BANKS);
+    document.getElementById('modal-bank-search').value = '';
+    document.getElementById('all-banks-modal').classList.add('active');
+  }
+
+  function closeAllBanksModal() {
+    document.getElementById('all-banks-modal').classList.remove('active');
+  }
+
+  function renderModalBanks(banksList) {
+    const container = document.getElementById('modal-banks-list');
+    if (!container) return;
+    container.innerHTML = banksList.map(bank => `
+      <div onclick="chooseBankFromModal('${bank.name.replace(/'/g, "\\'")}', '${bank.color}', '${bank.icon.replace(/'/g, "\\'")}')" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #f1f5f9;border-radius:14px;cursor:pointer;transition:all 0.2s;background:#fff;" onmouseover="this.style.borderColor='#0284c7';this.style.background='#f0f9ff'" onmouseout="this.style.borderColor='#f1f5f9';this.style.background='#fff'">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;border-radius:10px;background:${bank.color};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-family:var(--font-display);flex-shrink:0;">${bank.icon}</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);">${bank.name}</div>
+            <div style="font-size:11.5px;color:var(--text-secondary);margin-top:1px;">CBN Code: ${bank.code}</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right" style="color:var(--text-secondary);font-size:12px;"></i>
+      </div>
+    `).join('');
+  }
+
+  function filterModalBanksList(query) {
+    const q = query.toLowerCase().trim();
+    const filtered = ALL_NIGERIAN_BANKS.filter(b => b.name.toLowerCase().includes(q) || b.code.includes(q));
+    renderModalBanks(filtered);
+  }
+
+  function chooseBankFromModal(bankName, color, icon) {
+    const cleanBank = bankName.split(' (')[0];
+    otherSelectedBank = cleanBank;
+    const labelEl = document.getElementById('select-bank-label');
+    const badgeEl = document.getElementById('select-bank-icon-badge');
+    if (labelEl) labelEl.textContent = cleanBank;
+    if (badgeEl) {
+      badgeEl.style.background = color || '#0284c7';
+      badgeEl.innerHTML = icon ? icon : cleanBank.slice(0,2).toUpperCase();
+    }
+    closeAllBanksModal();
+
+    const acctVal = document.getElementById('other-acct-input').value.trim();
+    if (acctVal.length === 10) onOtherAcctInput(acctVal);
+  }
+
+  // ===== OTHER BANK TRANSFER HELPERS =====
+  let otherSelectedBank = 'OPay';
+  let otherNumpadValue = '';
+
+  function onOtherAcctInput(val) {
+    if (val.length === 10) {
+      const match = FAKE_ACCOUNTS[val];
+      let name, bank, initials;
+      if (match) {
+        name = match.name;
+        bank = match.bank;
+        initials = match.initials;
+        otherSelectedBank = bank;
+        const labelEl = document.getElementById('select-bank-label');
+        if (labelEl) labelEl.textContent = bank;
+      } else {
+        const ownerInfo = getRealAccountOwner(val);
+        name = ownerInfo.name;
+        initials = ownerInfo.initials;
+        bank = otherSelectedBank || 'OPay';
+      }
+
+      document.getElementById('other-tr-initials').textContent = initials;
+      document.getElementById('other-tr-name').textContent = name;
+      document.getElementById('other-tr-bank').textContent = bank + ' · Verified Account (Tap to send)';
+      
+      const card = document.getElementById('other-recipient-card');
+      card.style.display = 'flex';
+      card.style.animation = 'popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
+    } else {
+      document.getElementById('other-recipient-card').style.display = 'none';
+    }
+  }
+
+  function prefillOtherBankContact(acct, bank, name) {
+    const input = document.getElementById('other-acct-input');
+    if (input) input.value = acct;
+    otherSelectedBank = bank;
+    const labelEl = document.getElementById('select-bank-label');
+    if (labelEl) labelEl.textContent = bank;
+    onOtherAcctInput(acct);
+  }
+
+  function doOtherBankNextStep() {
+    let acctInput = document.getElementById('other-acct-input').value.trim();
+    if (!acctInput || acctInput.length !== 10) {
+      acctInput = '7012345678';
+      document.getElementById('other-acct-input').value = acctInput;
+    }
+    onOtherAcctInput(acctInput);
+
+    const recipientName = document.getElementById('other-tr-name').textContent || 'Precious Adeleke';
+    const bankName = otherSelectedBank || 'OPay';
+    const amtStr = prompt(`Transfer to ${recipientName} (${bankName} - ${acctInput}):\n\nEnter amount to send (₦):`, '10000');
+    if (amtStr === null) return;
+    const amount = parseFloat(amtStr);
+    if (isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid transfer amount.');
+      return;
+    }
+    if (amount > accountBalance) {
+      alert('Insufficient funds. Available balance: ₦' + accountBalance.toLocaleString('en-NG'));
+      return;
+    }
+
+    // Deduct & Process
+    accountBalance -= amount;
+    const fmtBalance = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+
+    const ref = 'AGV' + Date.now().toString().slice(-10);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fmtAmt = '₦' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    document.getElementById('receipt-title').textContent = 'Bank Transfer Successful!';
+    document.getElementById('receipt-subtitle').textContent = 'Money sent to ' + recipientName + '.';
+    document.getElementById('receipt-amount').textContent = fmtAmt;
+    document.getElementById('receipt-ref').textContent = ref;
+    document.getElementById('receipt-date').textContent = dateStr;
+
+    document.getElementById('receipt-to').textContent = recipientName;
+    document.getElementById('receipt-acct-val').textContent = acctInput;
+    document.getElementById('receipt-bank-val').textContent = bankName;
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+    document.getElementById('receipt-row-narr').style.display = 'none';
+
+    document.getElementById('receipt-overlay').classList.add('active');
+  }
+
+  function otherNumpadInput(key) {
+    if (key === 'del') { otherNumpadValue = otherNumpadValue.slice(0, -1); }
+    else if (key === '.' && otherNumpadValue.includes('.')) { return; }
+    else if (otherNumpadValue.length >= 10) { return; }
+    else { otherNumpadValue += key; }
+    const display = otherNumpadValue ? '\u20A6 ' + parseFloat(otherNumpadValue || 0).toLocaleString('en-NG') : '\u20A6 0';
+    document.getElementById('other-transfer-amount').textContent = display;
+  }
+
+  function doOtherBankTransfer() {
+    const amount = parseFloat(otherNumpadValue);
+    if (!otherNumpadValue || amount <= 0) {
+      alert('Please enter a valid amount.');
+      return;
+    }
+    if (amount > accountBalance) { alert('Insufficient funds. Available: \u20A6' + accountBalance.toLocaleString('en-NG')); return; }
+    
+    accountBalance -= amount;
+    const fmtBalance = '\u20A6 ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+
+    const acct = document.getElementById('other-acct-input').value.trim();
+    const recipientName = document.getElementById('other-tr-name').textContent || 'Recipient';
+    const bankName = otherSelectedBank;
+    const narration = (document.getElementById('other-transfer-narration').value || '').trim();
+    const ref = 'AGV' + Date.now().toString().slice(-10);
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const fmtAmt = '\u20A6' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
+    document.getElementById('receipt-title').textContent = 'Bank Transfer Successful!';
+    document.getElementById('receipt-subtitle').textContent = 'Money sent to ' + recipientName + '.';
+    document.getElementById('receipt-amount').textContent = fmtAmt;
+    document.getElementById('receipt-ref').textContent = ref;
+    document.getElementById('receipt-date').textContent = dateStr;
+
+    document.getElementById('receipt-to').textContent = recipientName;
+    document.getElementById('receipt-acct-val').textContent = acct;
+    document.getElementById('receipt-bank-val').textContent = bankName;
+    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
+
+    if (narration) { document.getElementById('receipt-narration').textContent = narration; document.getElementById('receipt-row-narr').style.display = 'flex'; }
+    else { document.getElementById('receipt-row-narr').style.display = 'none'; }
+
+    otherNumpadValue = '';
+    document.getElementById('other-transfer-amount').textContent = '\u20A6 0';
+    document.getElementById('receipt-overlay').classList.add('active');
   }
 
   // ===== NUMPAD =====
@@ -3100,55 +4477,142 @@
 
   // ===== SAFE BOX LOGIC =====
   let safeboxBalance = 1200000;
+  let safeboxPlans = [
+    { id: 1, title: 'Fixed Safebox Plan #1', amount: 800000, rate: 18, duration: '180 Days', accrued: 59178.08 },
+    { id: 2, title: 'Target Savings #1', amount: 400000, rate: 16, duration: '90 Days', accrued: 15780.82 }
+  ];
+  let selectedTenorRate = 18;
+
+  function setSafeboxPreset(val) {
+    const input = document.getElementById('safebox-lock-amount');
+    if (input) {
+      input.value = val;
+      calculateSafeboxInterest();
+    }
+  }
+
+  function selectSafeboxTenor(btn, rate) {
+    document.querySelectorAll('.tenor-btn').forEach(b => {
+      b.style.border = '1.5px solid #cbd5e1';
+      b.style.background = 'var(--bg-white)';
+      b.style.color = 'inherit';
+    });
+    btn.style.border = '1.5px solid #0d9488';
+    btn.style.background = '#f0fdf4';
+    btn.style.color = '#0d9488';
+    selectedTenorRate = rate;
+    calculateSafeboxInterest();
+  }
+
+  function calculateSafeboxInterest() {
+    const val = parseFloat(document.getElementById('safebox-lock-amount').value || 0);
+    const estProfitEl = document.getElementById('safebox-est-profit');
+    if (val > 0) {
+      const profit = (val * (selectedTenorRate / 100) * (90 / 365));
+      if (estProfitEl) estProfitEl.textContent = '₦' + profit.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    } else {
+      if (estProfitEl) estProfitEl.textContent = '₦0.00';
+    }
+  }
+
   function lockMoney() {
     const amountVal = document.getElementById('safebox-lock-amount').value;
     const amount = parseFloat(amountVal);
-    if (!amountVal || amount <= 0) {
+    if (!amountVal || isNaN(amount) || amount <= 0) {
       alert('Please enter a valid amount to lock.');
       return;
     }
     if (amount > accountBalance) {
-      alert('Insufficient funds in your main balance.');
+      alert('Insufficient funds in your main balance. Available: ₦' + accountBalance.toLocaleString('en-NG'));
       return;
     }
 
-    // Process Transfer
+    // Deduct from Main Balance & Add to Safe Box
     accountBalance -= amount;
     safeboxBalance += amount;
 
-    // Update UI
+    // Record Plan
+    const newPlan = {
+      id: Date.now(),
+      title: 'Fixed Safebox Plan #' + (safeboxPlans.length + 1),
+      amount: amount,
+      rate: selectedTenorRate,
+      duration: '90 Days',
+      accrued: (amount * (selectedTenorRate / 100) * (90 / 365))
+    };
+    safeboxPlans.unshift(newPlan);
+
+    // Update UI Elements
+    const fmtMain = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const fmtSafe = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+
     const homeBalEl = document.getElementById('home-balance');
-    if (homeBalEl && balanceVisible) homeBalEl.textContent = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
-    document.getElementById('safebox-balance').textContent = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtMain;
     
-    alert(`Successfully locked ₦${amount.toLocaleString('en-NG')} in your Safe Box!`);
+    const safeboxBalEl = document.getElementById('safebox-balance');
+    if (safeboxBalEl) safeboxBalEl.textContent = fmtSafe;
+
+    renderSafeboxPlansList();
+
+    alert(`🎉 Success!\nLocked ₦${amount.toLocaleString('en-NG')} in Safe Box at ${selectedTenorRate}% annual interest yield.`);
     document.getElementById('safebox-lock-amount').value = '';
+    calculateSafeboxInterest();
     navigate('home');
   }
 
   function withdrawSafebox() {
-    const withdrawVal = prompt('Enter amount to withdraw from Safe Box to Main Balance:', '50000');
+    if (safeboxBalance <= 0) {
+      alert('Your Safe Box balance is currently ₦0.00.');
+      return;
+    }
+    const withdrawVal = prompt(`Withdraw from Safe Box to Main Balance:\n(Current Safe Box Balance: ₦${safeboxBalance.toLocaleString('en-NG')})`, safeboxBalance.toString());
     if (withdrawVal === null) return;
     const amount = parseFloat(withdrawVal);
     if (isNaN(amount) || amount <= 0) {
-      alert('Please enter a valid amount.');
+      alert('Please enter a valid withdrawal amount.');
       return;
     }
     if (amount > safeboxBalance) {
-      alert('Insufficient funds in your Safe Box.');
+      alert('Withdrawal amount exceeds your Safe Box balance.');
       return;
     }
 
-    // Process
+    // Transfer back
     safeboxBalance -= amount;
     accountBalance += amount;
 
     // Update UI
-    const homeBalEl = document.getElementById('home-balance');
-    if (homeBalEl && balanceVisible) homeBalEl.textContent = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
-    document.getElementById('safebox-balance').textContent = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const fmtMain = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const fmtSafe = '₦' + safeboxBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
 
-    alert(`Successfully withdrew ₦${amount.toLocaleString('en-NG')} to your Main Balance.`);
+    const homeBalEl = document.getElementById('home-balance');
+    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtMain;
+
+    const safeboxBalEl = document.getElementById('safebox-balance');
+    if (safeboxBalEl) safeboxBalEl.textContent = fmtSafe;
+
+    alert(`✅ Withdrawal Successful!\nTransferred ₦${amount.toLocaleString('en-NG')} from Safe Box back to your Main Balance.`);
+  }
+
+  function renderSafeboxPlansList() {
+    const listEl = document.getElementById('safebox-plans-list');
+    if (!listEl) return;
+    let html = '';
+    safeboxPlans.forEach(p => {
+      html += `
+        <div style="background:var(--bg-white);border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);">${p.title}</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Rate: ${p.rate}% p.a. · ${p.duration}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:15px;font-weight:800;color:#0d9488;">₦${p.amount.toLocaleString('en-NG')}</div>
+            <div style="font-size:11px;color:#10b981;font-weight:600;">+₦${p.accrued.toLocaleString('en-NG', {minimumFractionDigits:2, maximumFractionDigits:2})} profit</div>
+          </div>
+        </div>
+      `;
+    });
+    listEl.innerHTML = html;
   }
 
   // ===== LOAN LOGIC =====
