@@ -3,95 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antigravity Bank – Biometric Secure Login</title>
-  <meta name="description" content="Securely access your Antigravity Bank account using biometric fingerprint login or password authentication.">
-  <!-- Google Fonts -->
+  <title>Sign In – Antigravity Bank (OPay Edition)</title>
+  <meta name="description" content="Securely access your Antigravity Bank account using biometric fingerprint scan or password authentication.">
+  
+  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    :root {
+      --opay-green: #00B875;
+      --opay-green-dark: #008a57;
+      --opay-green-light: #e6f8f1;
+      --opay-green-glow: rgba(0, 184, 117, 0.4);
+      --opay-orange: #FF6B00;
+      --bg-dark: #060B17;
+      --card-bg-dark: rgba(15, 23, 42, 0.85);
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --text-light: #F8FAFC;
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --radius-lg: 28px;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    :root {
-      --primary-blue: #0284c7;
-      --primary-dark: #0f172a;
-      --accent-green: #00c896;
-      --accent-purple: #8b5cf6;
-      --bg-dark: #070d19;
-      --glass-bg: rgba(15, 23, 42, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-
     body, html {
       width: 100%;
       min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
+      font-family: var(--font-main);
+      background-color: var(--bg-dark);
+      color: var(--text-light);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* Animated Ambient Glowing Orbs */
-    .glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
+    /* Ambient Animated Glowing Orbs Background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.55;
-      animation: floatGlow 12s ease-in-out infinite alternate;
+      overflow: hidden;
     }
-
-    .glow-1 {
-      top: -10%;
-      left: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #0284c7 0%, rgba(2, 132, 199, 0) 70%);
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.5;
+      animation: floatOrb 14s ease-in-out infinite alternate;
     }
-
-    .glow-2 {
-      bottom: -15%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, #7c3aed 0%, rgba(124, 58, 237, 0) 70%);
-      animation-delay: -4s;
-    }
-
-    .glow-3 {
-      top: 40%;
-      left: 60%;
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, #00c896 0%, rgba(0, 200, 150, 0) 70%);
-      animation-delay: -8s;
-    }
-
-    @keyframes floatGlow {
+    .orb-1 { top: -10%; left: -10%; width: 550px; height: 550px; background: radial-gradient(circle, #00B875 0%, rgba(0,184,117,0) 70%); }
+    .orb-2 { bottom: -10%; right: -10%; width: 650px; height: 650px; background: radial-gradient(circle, #0284c7 0%, rgba(2,132,199,0) 70%); animation-delay: -5s; }
+    
+    @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, 40px) scale(1.08); }
-      100% { transform: translate(-20px, 20px) scale(0.95); }
+      50% { transform: translate(30px, 25px) scale(1.06); }
+      100% { transform: translate(-20px, -15px) scale(0.95); }
     }
 
     /* Header Nav */
     .auth-header {
       position: relative;
       z-index: 10;
-      padding: 24px 36px;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -100,719 +85,526 @@
     .auth-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-display);
       font-weight: 800;
-      font-size: 22px;
+      font-size: 20px;
       color: #ffffff;
-      letter-spacing: -0.5px;
     }
 
     .brand-icon {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(135deg, var(--primary-blue), #2563eb);
-      color: #fff;
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
+      background: linear-gradient(135deg, var(--opay-green), var(--opay-green-dark));
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 184, 117, 0.4);
     }
 
     .security-badge {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: #38bdf8;
+      gap: 6px;
+      font-size: 11.5px;
+      color: #38BDF8;
       background: rgba(56, 189, 248, 0.1);
       border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 99px;
       font-weight: 600;
     }
 
     /* Main Container */
-    .auth-container {
+    .auth-wrapper {
       position: relative;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 20px 60px;
+      padding: 20px 16px 40px;
       flex: 1;
     }
 
     .auth-card {
       width: 100%;
       max-width: 440px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--glass-border);
-      border-radius: 32px;
-      padding: 40px 32px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      background: #ffffff;
+      color: var(--text-dark);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+      animation: cardAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Owner Avatar & Greeting */
+    .user-profile-header {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes cardAppear {
-      from { opacity: 0; transform: translateY(20px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* 1. Account Owner Picture Frame */
-    .avatar-wrapper {
-      position: relative;
-      width: 124px;
-      height: 124px;
-      margin-bottom: 16px;
-      cursor: pointer;
-    }
-
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3.5px solid #00c896;
-      box-shadow: 0 8px 24px rgba(0, 200, 150, 0.35);
-      transition: all 0.3s ease;
-      background: #0f172a;
-    }
-
-    .avatar-wrapper:hover .avatar-img {
-      transform: scale(1.04);
-      border-color: #34d399;
-      box-shadow: 0 12px 32px rgba(0, 200, 150, 0.5);
-    }
-
-    .avatar-upload-badge {
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0284c7, #00c896);
-      border: 2.5px solid #070d19;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.2s;
-    }
-
-    .avatar-wrapper:hover .avatar-upload-badge {
-      transform: scale(1.1);
-    }
-
-    #avatar-file-input {
-      display: none;
-    }
-
-    /* 2. Second Name of Account Owner */
-    .owner-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: #00c896;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .owner-second-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 2px;
-      letter-spacing: -0.5px;
-    }
-
-    .owner-subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 26px;
-    }
-
-    /* 3. Fingerprint Visual Container */
-    .fingerprint-box {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: rgba(0, 200, 150, 0.1);
-      border: 2px dashed rgba(0, 200, 150, 0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      margin-bottom: 18px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-    }
-
-    .fingerprint-box:hover, .fingerprint-box.scanning {
-      background: rgba(0, 200, 150, 0.2);
-      border-color: #00c896;
-      border-style: solid;
-      transform: scale(1.06);
-      box-shadow: 0 0 35px rgba(0, 200, 150, 0.5);
-    }
-
-    .fingerprint-icon {
-      font-size: 50px;
-      color: #00c896;
-      transition: transform 0.2s ease;
-    }
-
-    .fingerprint-box:hover .fingerprint-icon {
-      transform: scale(1.05);
-      color: #34d399;
-    }
-
-    .scan-line {
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #00c896, transparent);
-      box-shadow: 0 0 12px #00c896;
-      animation: scanMove 2s infinite linear;
-    }
-
-    @keyframes scanMove {
-      0% { top: 0%; }
-      50% { top: 100%; }
-      100% { top: 0%; }
-    }
-
-    /* 4. Click to Log In With Fingerprint Button */
-    .fingerprint-cta-btn {
-      width: 100%;
-      height: 52px;
-      background: linear-gradient(135deg, #00c896 0%, #059669 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: 16px;
-      font-size: 15px;
-      font-weight: 700;
-      font-family: 'Outfit', sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(0, 200, 150, 0.35);
-      transition: all 0.25s ease;
       margin-bottom: 24px;
     }
 
-    .fingerprint-cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 200, 150, 0.55);
-      background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    .avatar-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--opay-green), #0284c7);
+      padding: 3px;
+      margin-bottom: 10px;
+      box-shadow: 0 8px 24px rgba(0, 184, 117, 0.3);
     }
 
-    .fingerprint-cta-btn:active {
-      transform: translateY(0);
-    }
-
-    /* 5. Bottom Navigation Actions */
-    .bottom-actions {
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #0F172A;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      font-size: 13.5px;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 20px;
-      width: 100%;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
     }
 
-    .bottom-actions a {
-      color: #38bdf8;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
+    .user-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 2px;
     }
 
-    .bottom-actions a:hover {
-      color: #7dd3fc;
-      text-decoration: underline;
-    }
-
-    .bottom-actions .divider {
-      color: rgba(255, 255, 255, 0.25);
-    }
-
-    /* Footer */
-    .auth-footer {
-      position: relative;
-      z-index: 10;
-      padding: 20px;
-      text-align: center;
+    .user-account-no {
       font-size: 12px;
       color: var(--text-muted);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-weight: 600;
     }
 
-    /* Modals */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(7, 13, 25, 0.85);
-      backdrop-filter: blur(16px);
-      z-index: 1000;
+    /* Dual Authentication Tab Switcher */
+    .auth-tab-bar {
+      display: flex;
+      background: #F1F5F9;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      height: 42px;
+      border: none;
+      background: transparent;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #64748B;
+      cursor: pointer;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      gap: 8px;
+      transition: all 0.25s ease;
     }
 
-    .modal-overlay.active {
+    .auth-tab-btn.active {
+      background: #ffffff;
+      color: var(--opay-green-dark);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Mode Panels */
+    .auth-mode-panel {
+      display: none;
+    }
+    .auth-mode-panel.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    /* FINGERPRINT BIOMETRICS MODE */
+    .biometrics-box {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 0 16px;
     }
 
-    .modal-box {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      padding: 32px 28px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-      animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      color: #f8fafc;
+    .fingerprint-sensor {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--opay-green-light);
+      color: var(--opay-green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(0, 184, 117, 0.4);
+      animation: sensorPulse 2s infinite;
+      transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+
+    @keyframes sensorPulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 184, 117, 0.4); }
+      70% { box-shadow: 0 0 0 20px rgba(0, 184, 117, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 184, 117, 0); }
+    }
+
+    .fingerprint-sensor.scanning {
+      background: #0F172A;
+      color: var(--opay-green);
+      animation: scanSpin 1s infinite linear;
+    }
+
+    .biometrics-instruction {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+    .biometrics-subtext {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* PASSWORD & PIN MODE */
+    .form-group {
+      margin-bottom: 16px;
       text-align: left;
     }
-
-    @keyframes popIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .modal-title {
-      font-size: 18px;
+    .form-label {
+      display: block;
+      font-size: 12.5px;
       font-weight: 700;
-      font-family: 'Outfit', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      font-size: 15px;
+    }
+    .form-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px 0 42px;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: var(--font-main);
+      color: #0F172A;
+      background: #F8FAFC;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--opay-green);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 184, 117, 0.15);
+    }
+    .toggle-pass-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 14px;
     }
 
-    .modal-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+    /* Buttons */
+    .submit-btn {
+      width: 100%;
+      height: 48px;
+      background: linear-gradient(135deg, var(--opay-green), var(--opay-green-dark));
+      color: #ffffff;
       border: none;
-      color: #94a3b8;
-      font-size: 14px;
+      border-radius: 14px;
+      font-size: 14.5px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s;
-    }
-
-    .modal-close:hover {
-      background: rgba(239,68,68,0.2);
-      color: #ef4444;
-    }
-
-    .input-group {
-      margin-bottom: 18px;
-    }
-
-    .input-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #e2e8f0;
-      margin-bottom: 8px;
-    }
-
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 16px;
-      color: #64748b;
-      font-size: 16px;
-    }
-
-    .input-field {
-      width: 100%;
-      height: 48px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1.5px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      padding: 0 16px 0 44px;
-      font-size: 14px;
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
+      gap: 10px;
+      box-shadow: var(--opay-green-glow);
       transition: all 0.25s ease;
+      margin-top: 8px;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 184, 117, 0.35);
+    }
+    .submit-btn:active {
+      transform: scale(0.96);
     }
 
-    .input-field:focus {
-      outline: none;
-      border-color: #0284c7;
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
-    }
-
-    .submit-modal-btn {
-      width: 100%;
-      height: 48px;
-      background: linear-gradient(135deg, #0284c7, #2563eb);
-      color: #ffffff;
-      border: none;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 700;
-      font-family: 'Outfit', sans-serif;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: all 0.25s ease;
-    }
-
-    .submit-modal-btn:hover {
-      background: linear-gradient(135deg, #0369a1, #1d4ed8);
-    }
-
-    /* Toast Notification */
-    .toast-msg {
+    .toast-popup {
       position: fixed;
-      bottom: 30px;
+      bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(0, 200, 150, 0.4);
+      background: #0F172A;
       color: #ffffff;
+      border: 1px solid var(--opay-green);
       padding: 12px 24px;
       border-radius: 99px;
-      font-size: 13.5px;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      z-index: 2000;
-      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 13px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .toast-popup.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
-    .toast-msg.show {
-      transform: translateX(-50%) translateY(0);
+    .auth-footer-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 12.5px;
+    }
+
+    .footer-link {
+      color: var(--opay-green-dark);
+      text-decoration: none;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Background Orbs -->
-  <div class="glow-orb glow-1"></div>
-  <div class="glow-orb glow-2"></div>
-  <div class="glow-orb glow-3"></div>
+  <!-- Ambient Glowing Background Orbs -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-  <!-- Header Bar -->
+  <!-- Header Navigation -->
   <header class="auth-header">
     <a href="index.html" class="auth-brand">
-      <span class="brand-icon"><i class="fa-solid fa-building-columns"></i></span>
-      Antigravity
+      <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+      <span>Antigravity Bank</span>
     </a>
     <div class="security-badge">
       <i class="fa-solid fa-shield-halved"></i> 256-Bit Encrypted
     </div>
   </header>
 
-  <!-- Main Content Card -->
-  <main class="auth-container">
+  <!-- Main Login Card Container -->
+  <main class="auth-wrapper">
     <div class="auth-card">
       
-      <!-- 1. Owner Profile Picture (Uploadable) -->
-      <div class="avatar-wrapper" onclick="triggerPhotoUpload()" title="Click to change account owner picture">
-        <img id="owner-avatar" src="family.png" alt="Account Owner Picture" class="avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Kehinde&background=00c896&color=fff&size=200'">
-        <div class="avatar-upload-badge">
-          <i class="fa-solid fa-camera"></i>
+      <!-- User Profile Header -->
+      <div class="user-profile-header">
+        <div class="avatar-ring">
+          <div class="avatar-inner" id="avatar-initials">KO</div>
+        </div>
+        <h2 class="user-name" id="display-user-name">Welcome Back, Kehinde</h2>
+      </div>
+
+      <!-- Authentication Tab Switcher (Fingerprint vs Password/PIN) -->
+      <div class="auth-tab-bar">
+        <button class="auth-tab-btn active" id="tab-bio" onclick="switchAuthMode('bio')">
+          <i class="fa-solid fa-fingerprint"></i> Fingerprint Scan
+        </button>
+        <button class="auth-tab-btn" id="tab-pass" onclick="switchAuthMode('pass')">
+          <i class="fa-solid fa-key"></i> Password & PIN
+        </button>
+      </div>
+
+      <!-- MODE 1: FINGERPRINT BIOMETRICS -->
+      <div class="auth-mode-panel active" id="panel-bio">
+        <div class="biometrics-box">
+          <div class="fingerprint-sensor" id="bio-sensor-btn" onclick="handleFingerprintScan()">
+            <i class="fa-solid fa-fingerprint"></i>
+          </div>
+          <div class="biometrics-instruction">Touch Fingerprint Sensor to Sign In</div>
+          <div class="biometrics-subtext">Verified Biometric Scan for Instant Access</div>
+
+          <button class="submit-btn" onclick="handleFingerprintScan()" id="btn-bio-submit">
+            <i class="fa-solid fa-fingerprint"></i> Click to Authenticate
+          </button>
         </div>
       </div>
-      <input type="file" id="avatar-file-input" accept="image/*" onchange="handlePhotoSelected(event)">
 
-      <!-- 2. Second Name of Account Owner -->
-      <div class="owner-title">Account Owner</div>
-      <h2 class="owner-second-name" id="owner-second-name">Kehinde</h2>
-      <p class="owner-subtitle" id="owner-email">oyedelekehinde97@gmail.com</p>
+      <!-- MODE 2: PASSWORD & SECURITY PIN -->
+      <div class="auth-mode-panel" id="panel-pass">
+        <form onsubmit="handlePasswordLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Phone Number / Account Number</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-phone input-icon"></i>
+              <input type="text" class="form-input" id="login-user" value="08012345678" placeholder="08012345678" required>
+            </div>
+          </div>
 
-      <!-- 3. Fingerprint Scanner Visual -->
-      <div class="fingerprint-box" id="fingerprint-box" onclick="handleFingerprintLogin()" title="Click fingerprint to verify">
-        <i class="fa-solid fa-fingerprint fingerprint-icon"></i>
-        <div class="scan-line"></div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-key input-icon"></i>
+              <input type="password" class="form-input" id="login-pass" value="password123" placeholder="Enter password" required>
+              <button type="button" class="toggle-pass-btn" onclick="togglePassVisibility('login-pass')">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">4-Digit Security PIN</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" class="form-input" id="login-pin" value="1234" maxlength="4" placeholder="••••" required>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="btn-pass-submit">
+            <span>Sign In to Dashboard</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
       </div>
 
-      <!-- 4. Click to Log In with Fingerprint Button -->
-      <button class="fingerprint-cta-btn" id="btn-fingerprint-cta" onclick="handleFingerprintLogin()">
-        <i class="fa-solid fa-fingerprint"></i> Click to log in with fingerprint
-      </button>
-
-      <!-- 5. Bottom Actions: Switch Account | Log in with Password -->
-      <div class="bottom-actions">
-        <a href="#" onclick="openSwitchAccountModal(event)">Switch Account</a>
-        <span class="divider">|</span>
-        <a href="#" onclick="openPasswordModal(event)">Log in with Password</a>
+      <!-- Footer Actions -->
+      <div class="auth-footer-links">
+        <a href="signup.html" class="footer-link">Don't have an account? <strong>Sign Up</strong></a>
+        <a href="index.html" class="footer-link" style="color:#64748B;">Index Hub</a>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="auth-footer">
-    &copy; 2026 Antigravity Bank Nigeria Plc. Licensed by the Central Bank of Nigeria (CBN) &amp; insured by NDIC.
-  </footer>
-
-  <!-- Modal 1: Log in with Password -->
-  <div class="modal-overlay" id="password-modal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div class="modal-title"><i class="fa-solid fa-lock" style="color:#0284c7;"></i> Password Login</div>
-        <button class="modal-close" onclick="closePasswordModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form onsubmit="handlePasswordLoginSubmit(event)">
-        <div class="input-group">
-          <label class="input-label">Username or Email</label>
-          <div class="input-wrapper">
-            <i class="fa-solid fa-user input-icon"></i>
-            <input type="text" id="pw-user" class="input-field" placeholder="Enter username or email" required>
-          </div>
-        </div>
-        <div class="input-group">
-          <label class="input-label">Password</label>
-          <div class="input-wrapper">
-            <i class="fa-solid fa-key input-icon"></i>
-            <input type="password" id="pw-pass" class="input-field" placeholder="Enter your password" required>
-          </div>
-        </div>
-        <button type="submit" class="submit-modal-btn">Log In with Password</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal 2: Switch Account -->
-  <div class="modal-overlay" id="switch-modal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div class="modal-title"><i class="fa-solid fa-user-gear" style="color:#00c896;"></i> Switch Account</div>
-        <button class="modal-close" onclick="closeSwitchAccountModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form onsubmit="handleSwitchAccountSubmit(event)">
-        <div class="input-group">
-          <label class="input-label">Account Owner Second Name / Surname</label>
-          <div class="input-wrapper">
-            <i class="fa-solid fa-user input-icon"></i>
-            <input type="text" id="switch-name" class="input-field" placeholder="e.g. Kehinde" required>
-          </div>
-        </div>
-        <div class="input-group">
-          <label class="input-label">Email Address</label>
-          <div class="input-wrapper">
-            <i class="fa-solid fa-envelope input-icon"></i>
-            <input type="email" id="switch-email" class="input-field" placeholder="e.g. kehinde@example.com" required>
-          </div>
-        </div>
-        <button type="submit" class="submit-modal-btn" style="background: linear-gradient(135deg, #00c896, #059669);">Switch to Account</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
-  <div class="toast-msg" id="toast-msg">
-    <i class="fa-solid fa-circle-check" style="color: #00c896;"></i>
-    <span id="toast-text">Success message</span>
+  <!-- Toast Popup Notification -->
+  <div class="toast-popup" id="app-toast">
+    <i class="fa-solid fa-circle-check" style="color:var(--opay-green); font-size:16px;"></i>
+    <span id="toast-text">Authentication successful</span>
   </div>
 
   <script>
-    // ===== INITIALIZE USER DATA & AVATAR =====
+    // ===== READ QUERY PARAMS FOR PRE-FILLED USER DATA =====
     document.addEventListener('DOMContentLoaded', () => {
-      loadStoredAccountDetails();
+      const urlParams = new URLSearchParams(window.location.search);
+      const phone = urlParams.get('phone');
+      const created = urlParams.get('created');
+
+      if (phone) {
+        document.getElementById('login-user').value = phone;
+      }
+      if (created) {
+        showToast(`Account ${phone || ''} created! Touch fingerprint sensor or enter password.`);
+      }
     });
 
-    function loadStoredAccountDetails() {
-      try {
-        const stored = localStorage.getItem('antigravity_user');
-        if (stored) {
-          const user = JSON.parse(stored);
-          if (user.name) {
-            // Extract second name / surname
-            const nameParts = user.name.trim().split(/\s+/);
-            const secondName = nameParts.length > 1 ? nameParts[1] : nameParts[0];
-            document.getElementById('owner-second-name').textContent = secondName;
-          }
-          if (user.email) {
-            document.getElementById('owner-email').textContent = user.email;
-          }
-          if (user.photo) {
-            document.getElementById('owner-avatar').src = user.photo;
-          }
-        }
-      } catch(e) {
-        console.warn('Could not load stored account details:', e);
+    // ===== TAB MODE SWITCHER =====
+    function switchAuthMode(mode) {
+      document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.auth-mode-panel').forEach(p => p.classList.remove('active'));
+
+      if (mode === 'bio') {
+        document.getElementById('tab-bio').classList.add('active');
+        document.getElementById('panel-bio').classList.add('active');
+      } else if (mode === 'pass') {
+        document.getElementById('tab-pass').classList.add('active');
+        document.getElementById('panel-pass').classList.add('active');
       }
     }
 
-    // ===== PHOTO UPLOAD LOGIC =====
-    function triggerPhotoUpload() {
-      document.getElementById('avatar-file-input').click();
-    }
+    // ===== FINGERPRINT SCANNER LOGIN HANDLER =====
+    let isScanning = false;
+    function handleFingerprintScan() {
+      if (isScanning) return;
+      isScanning = true;
 
-    function handlePhotoSelected(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const photoDataUrl = e.target.result;
-          document.getElementById('owner-avatar').src = photoDataUrl;
-          
-          // Save photo to stored session
-          const stored = localStorage.getItem('antigravity_user');
-          let userObj = stored ? JSON.parse(stored) : { name: 'Oyedele Kehinde', email: 'oyedelekehinde97@gmail.com' };
-          userObj.photo = photoDataUrl;
-          localStorage.setItem('antigravity_user', JSON.stringify(userObj));
+      const sensor = document.getElementById('bio-sensor-btn');
+      const btn = document.getElementById('btn-bio-submit');
 
-          showToast('Account owner picture updated successfully!');
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // ===== FINGERPRINT LOGIN HANDLER =====
-    let isAuthenticating = false;
-    function handleFingerprintLogin() {
-      if (isAuthenticating) return;
-      isAuthenticating = true;
-
-      const box = document.getElementById('fingerprint-box');
-      const btn = document.getElementById('btn-fingerprint-cta');
-      
-      box.classList.add('scanning');
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Verifying Fingerprint...';
-
-      showToast('Scanning fingerprint biometrics...');
+      sensor.classList.add('scanning');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Scanning Biometrics...';
+      showToast('Scanning fingerprint biometric data...');
 
       setTimeout(() => {
-        const secondName = document.getElementById('owner-second-name').textContent || 'Kehinde';
-        const email = document.getElementById('owner-email').textContent || 'oyedelekehinde97@gmail.com';
-        
-        // Save active session
-        const stored = localStorage.getItem('antigravity_user');
-        let userObj = stored ? JSON.parse(stored) : {};
-        userObj.name = userObj.name || ('Oyedele ' + secondName);
-        userObj.email = email;
-        userObj.loginTime = new Date().toISOString();
-
-        localStorage.setItem('antigravity_user', JSON.stringify(userObj));
-        sessionStorage.setItem('antigravity_user', JSON.stringify(userObj));
-
+        sensor.classList.remove('scanning');
+        sensor.style.background = '#00B875';
+        sensor.style.color = '#ffffff';
         btn.innerHTML = '<i class="fa-solid fa-check"></i> Fingerprint Verified!';
-        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
 
-        showToast(`Fingerprint match confirmed! Welcome, ${secondName}.`);
+        showToast('Fingerprint matched! Access granted.');
 
         setTimeout(() => {
           window.location.href = 'dashboard.html';
         }, 800);
-      }, 1600);
+      }, 1400);
     }
 
-    // ===== MODALS HANDLERS =====
-    function openPasswordModal(e) {
-      if (e) e.preventDefault();
-      document.getElementById('password-modal').classList.add('active');
-    }
-
-    function closePasswordModal() {
-      document.getElementById('password-modal').classList.remove('active');
-    }
-
-    function handlePasswordLoginSubmit(e) {
+    // ===== PASSWORD / PIN LOGIN HANDLER =====
+    function handlePasswordLogin(e) {
       e.preventDefault();
-      const user = document.getElementById('pw-user').value.trim();
-      if (!user) return;
+      const btn = document.getElementById('btn-pass-submit');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+      btn.disabled = true;
 
-      const userObj = {
-        name: user.includes('@') ? user.split('@')[0] : user,
-        email: user.includes('@') ? user : user + '@gmail.com',
-        loginTime: new Date().toISOString()
-      };
+      showToast('Verifying password and security PIN...');
 
-      localStorage.setItem('antigravity_user', JSON.stringify(userObj));
-      sessionStorage.setItem('antigravity_user', JSON.stringify(userObj));
-
-      closePasswordModal();
-      showToast('Password authenticated! Redirecting...');
       setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 700);
+        showToast('Password & PIN verified! Opening Dashboard...');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 800);
+      }, 1200);
     }
 
-    function openSwitchAccountModal(e) {
-      if (e) e.preventDefault();
-      document.getElementById('switch-modal').classList.add('active');
+    function togglePassVisibility(id) {
+      const inp = document.getElementById(id);
+      if (inp.type === 'password') inp.type = 'text';
+      else inp.type = 'password';
     }
 
-    function closeSwitchAccountModal() {
-      document.getElementById('switch-modal').classList.remove('active');
-    }
-
-    function handleSwitchAccountSubmit(e) {
-      e.preventDefault();
-      const sName = document.getElementById('switch-name').value.trim();
-      const sEmail = document.getElementById('switch-email').value.trim();
-
-      if (!sName || !sEmail) return;
-
-      document.getElementById('owner-second-name').textContent = sName;
-      document.getElementById('owner-email').textContent = sEmail;
-
-      const userObj = {
-        name: 'Account Owner ' + sName,
-        email: sEmail,
-        loginTime: new Date().toISOString()
-      };
-
-      localStorage.setItem('antigravity_user', JSON.stringify(userObj));
-      closeSwitchAccountModal();
-      showToast(`Switched account to ${sName}!`);
-    }
-
-    // ===== TOAST NOTIFICATION =====
+    let toastTimer;
     function showToast(msg) {
-      const toast = document.getElementById('toast-msg');
-      document.getElementById('toast-text').textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      const toast = document.getElementById('app-toast');
+      const text = document.getElementById('toast-text');
+      if (text) text.textContent = msg;
+      if (toast) {
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+      }
     }
   </script>
 </body>

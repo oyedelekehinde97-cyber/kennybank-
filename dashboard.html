@@ -3692,6 +3692,8 @@
 
   const FAKE_ACCOUNTS = {
     '0123456789': { name: 'Ada Joy Okafor', initials: 'AJ', bank: 'Antigravity Bank' },
+    '08012345678': { name: 'Oyedele Kehinde', initials: 'OK', bank: 'Antigravity Bank' },
+    '8012345678': { name: 'Oyedele Kehinde', initials: 'OK', bank: 'Antigravity Bank' },
     '0987654321': { name: 'Mike Okonkwo', initials: 'MO', bank: 'GTBank' },
     '1122334455': { name: 'Kemi Fashola', initials: 'KF', bank: 'Zenith Bank' },
     '5566778899': { name: 'Tunde Kola', initials: 'TK', bank: 'First Bank' },
@@ -3704,15 +3706,26 @@
   let transferLookupTimer = null;
   let resolvedTransferRecipient = null;
 
+  function onTransferAcctInput(val) {
+    clearTimeout(transferLookupTimer);
+    if (val.length === 10) {
+      transferLookupTimer = setTimeout(() => resolveTransferAccount(val), 300);
+    } else {
+      hideTransferRecipientCard();
+    }
+  }
+
   function resolveTransferAccount(acct) {
-    const bankEl = document.getElementById('transfer-bank-select');
-    const bank = bankEl ? bankEl.value : 'Antigravity Bank';
-    const match = FAKE_ACCOUNTS[acct];
-    const data = match || { name: 'Account Holder', initials: acct.slice(0, 2).toUpperCase(), bank };
-    resolvedTransferRecipient = { ...data, acct };
-    document.getElementById('tr-initials').textContent = data.initials;
-    document.getElementById('tr-name').textContent = data.name;
-    document.getElementById('tr-bank').textContent = data.bank + ' · Tap to send money';
+    const ownerInfo = getRealAccountOwner(acct, 'Antigravity Bank');
+    resolvedTransferRecipient = {
+      name: ownerInfo.name,
+      initials: ownerInfo.initials,
+      bank: 'Antigravity Bank',
+      acct: acct
+    };
+    document.getElementById('tr-initials').textContent = ownerInfo.initials;
+    document.getElementById('tr-name').textContent = ownerInfo.name;
+    document.getElementById('tr-bank').textContent = 'Antigravity Bank · Verified Account ✓ (Tap to send)';
     const card = document.getElementById('transfer-recipient-card');
     card.style.opacity = '1';
     card.style.pointerEvents = 'auto';
@@ -3836,18 +3849,41 @@
       bank: 'Antigravity Bank'
     };
 
-    document.getElementById('auth-modal-amount').textContent = '₦' + amountVal.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const amtEl = document.getElementById('auth-modal-amount');
+    if (amtEl) amtEl.textContent = '₦' + amountVal.toLocaleString('en-NG', { minimumFractionDigits: 2 });
     const passInp = document.getElementById('auth-password-input');
     if (passInp) passInp.value = '';
-    document.getElementById('auth-modal').classList.add('active');
+    
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+    }
+    if (passInp) setTimeout(() => passInp.focus(), 150);
   }
 
   function closeAuthModal() {
-    document.getElementById('auth-modal').classList.remove('active');
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('active');
+    }
+  }
+
+  function toggleAuthPassVisibility() {
+    const inp = document.getElementById('auth-password-input');
+    const eye = document.getElementById('auth-eye-icon');
+    if (!inp || !eye) return;
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      eye.className = 'fa-regular fa-eye-slash';
+    } else {
+      inp.type = 'password';
+      eye.className = 'fa-regular fa-eye';
+    }
   }
 
   function simulateFingerprintAuth() {
-    // Biometric fingerprint scan simulation
     closeAuthModal();
     executePendingTransfer('Fingerprint Biometrics');
   }
@@ -3855,11 +3891,11 @@
   function verifyPasswordAuth() {
     const pass = document.getElementById('auth-password-input').value.trim();
     if (!pass) {
-      alert('Please enter your account password.');
+      alert('Please enter your 4-digit PIN or password to authorize transfer.');
       return;
     }
     closeAuthModal();
-    executePendingTransfer('Password');
+    executePendingTransfer('Password / PIN');
   }
 
   function executePendingTransfer(authMethod) {
@@ -3927,6 +3963,7 @@
 
   // ===== ALL NIGERIAN BANKS LIST =====
   const ALL_NIGERIAN_BANKS = [
+    { name: 'Antigravity Bank', code: '000001', color: '#00b875', icon: '<i class="fa-solid fa-bolt" style="font-size:16px;"></i>' },
     { name: 'OPay', code: '999992', color: '#00b875', icon: '<i class="fa-solid fa-bolt" style="font-size:16px;"></i>' },
     { name: 'PalmPay', code: '999991', color: '#6d28d9', icon: '<i class="fa-solid fa-palm-tree" style="font-size:16px;"></i>' },
     { name: 'GTBank (Guaranty Trust Bank)', code: '058', color: '#f97316', icon: 'GT' },
@@ -3954,20 +3991,61 @@
   ];
 
   // REAL NIGERIAN ACCOUNT OWNER GENERATOR FOR ALL INPUTTED ACCOUNTS
-  function getRealAccountOwner(acctNumber) {
-    const firstNames = ['Oluwaseun', 'Emeka', 'Amina', 'Chidimma', 'Babatunde', 'Damilola', 'Blessing', 'Tijani', 'Nneka', 'Adewale', 'Ibrahim', 'Chisom', 'Yusuf', 'Folake', 'Ifeanyi', 'Zainab', 'Kehinde', 'Omotola'];
-    const lastNames = ['Adeyemi', 'Nwosu', 'Bello', 'Ogunleye', 'Lawal', 'Okoro', 'Ibrahim', 'Eze', 'Abubakar', 'Adeleke', 'Oladipo', 'Okonkwo', 'Fashola', 'Kola', 'Okafor', 'Balogun', 'Danjuma', 'Soyinka'];
+  function getRealAccountOwner(acctNumber, targetBank = 'Antigravity Bank') {
+    const cleanAcct = String(acctNumber).trim();
+
+    // 1. Registered user in local storage
+    try {
+      const savedUser = JSON.parse(localStorage.getItem('antigravity_user') || sessionStorage.getItem('antigravity_user') || '{}');
+      if (savedUser && (savedUser.phone || savedUser.accountNo)) {
+        const uPhone = String(savedUser.phone || '').replace(/\D/g, '');
+        const uAcct  = String(savedUser.accountNo || '').replace(/\D/g, '');
+        const cAcct  = cleanAcct.replace(/\D/g, '');
+        if (cAcct && (cAcct === uAcct || cAcct === uPhone || (uPhone.length === 11 && uPhone.slice(1) === cAcct))) {
+          const fullN = savedUser.name || savedUser.fullname || 'Oyedele Kehinde';
+          const parts = fullN.trim().split(' ');
+          const inits = (parts[0]?.[0] || 'O') + (parts[parts.length - 1]?.[0] || 'K');
+          return { name: fullN, initials: inits.toUpperCase(), bank: targetBank || 'Antigravity Bank' };
+        }
+      }
+    } catch (e) {}
+
+    // 2. Preset accounts match
+    if (FAKE_ACCOUNTS[cleanAcct]) {
+      const p = FAKE_ACCOUNTS[cleanAcct];
+      return {
+        name: p.name,
+        initials: p.initials,
+        bank: targetBank || p.bank
+      };
+    }
+
+    // 3. Real-life name hashing generator
+    const firstNames = [
+      'Oluwaseun', 'Emeka', 'Amina', 'Chidimma', 'Babatunde', 'Damilola', 'Blessing', 
+      'Tijani', 'Nneka', 'Adewale', 'Ibrahim', 'Chisom', 'Yusuf', 'Folake', 
+      'Ifeanyi', 'Zainab', 'Kehinde', 'Omotola', 'Chukwudi', 'Chioma', 'Farouk', 
+      'Aisha', 'Ebuka', 'Yetunde', 'Funke', 'Funsho', 'Olawale', 'Gbenga', 'Nnamdi'
+    ];
+    const lastNames = [
+      'Adeyemi', 'Nwosu', 'Bello', 'Ogunleye', 'Lawal', 'Okoro', 'Ibrahim', 
+      'Eze', 'Abubakar', 'Adeleke', 'Oladipo', 'Okonkwo', 'Fashola', 'Kola', 
+      'Okafor', 'Balogun', 'Danjuma', 'Soyinka', 'Nwachukwu', 'Ogundele', 
+      'Suleiman', 'Alabi', 'Igwe', 'Mohammed', 'Akpan', 'Utomi', 'Sanusi'
+    ];
 
     let hash = 0;
-    for (let i = 0; i < acctNumber.length; i++) {
-      hash = (hash * 31 + acctNumber.charCodeAt(i)) % 1000000;
+    const seed = cleanAcct + (targetBank || '');
+    for (let i = 0; i < seed.length; i++) {
+      hash = (hash * 31 + seed.charCodeAt(i)) % 1000000;
     }
 
     const firstName = firstNames[hash % firstNames.length];
-    const lastName = lastNames[(hash * 7) % lastNames.length];
-    const fullName = firstName + ' ' + lastName;
-    const initials = firstName[0] + lastName[0];
-    return { name: fullName, initials: initials };
+    const lastName  = lastNames[(hash * 7) % lastNames.length];
+    const fullName  = firstName + ' ' + lastName;
+    const initials  = (firstName[0] + lastName[0]).toUpperCase();
+
+    return { name: fullName, initials: initials, bank: targetBank || 'Antigravity Bank' };
   }
 
   function openAllBanksModal() {
@@ -4025,25 +4103,10 @@
 
   function onOtherAcctInput(val) {
     if (val.length === 10) {
-      const match = FAKE_ACCOUNTS[val];
-      let name, bank, initials;
-      if (match) {
-        name = match.name;
-        bank = match.bank;
-        initials = match.initials;
-        otherSelectedBank = bank;
-        const labelEl = document.getElementById('select-bank-label');
-        if (labelEl) labelEl.textContent = bank;
-      } else {
-        const ownerInfo = getRealAccountOwner(val);
-        name = ownerInfo.name;
-        initials = ownerInfo.initials;
-        bank = otherSelectedBank || 'OPay';
-      }
-
-      document.getElementById('other-tr-initials').textContent = initials;
-      document.getElementById('other-tr-name').textContent = name;
-      document.getElementById('other-tr-bank').textContent = bank + ' · Verified Account (Tap to send)';
+      const ownerInfo = getRealAccountOwner(val, otherSelectedBank || 'OPay');
+      document.getElementById('other-tr-initials').textContent = ownerInfo.initials;
+      document.getElementById('other-tr-name').textContent = ownerInfo.name;
+      document.getElementById('other-tr-bank').textContent = (otherSelectedBank || 'OPay') + ' · Verified Account ✓ (Tap to send)';
       
       const card = document.getElementById('other-recipient-card');
       card.style.display = 'flex';
@@ -4065,14 +4128,14 @@
   function doOtherBankNextStep() {
     let acctInput = document.getElementById('other-acct-input').value.trim();
     if (!acctInput || acctInput.length !== 10) {
-      acctInput = '7012345678';
-      document.getElementById('other-acct-input').value = acctInput;
+      alert('Please enter a valid 10-digit account number.');
+      return;
     }
     onOtherAcctInput(acctInput);
 
-    const recipientName = document.getElementById('other-tr-name').textContent || 'Precious Adeleke';
-    const bankName = otherSelectedBank || 'OPay';
-    const amtStr = prompt(`Transfer to ${recipientName} (${bankName} - ${acctInput}):\n\nEnter amount to send (₦):`, '10000');
+    const ownerInfo = getRealAccountOwner(acctInput, otherSelectedBank || 'OPay');
+    
+    const amtStr = prompt(`Transfer to ${ownerInfo.name} (${ownerInfo.bank} - ${acctInput}):\n\nEnter amount to send (₦):`, '5000');
     if (amtStr === null) return;
     const amount = parseFloat(amtStr);
     if (isNaN(amount) || amount <= 0) {
@@ -4080,34 +4143,30 @@
       return;
     }
     if (amount > accountBalance) {
-      alert('Insufficient funds. Available balance: ₦' + accountBalance.toLocaleString('en-NG'));
+      alert('Insufficient funds. Available balance: ₦' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 }));
       return;
     }
 
-    // Deduct & Process
-    accountBalance -= amount;
-    const fmtBalance = '₦ ' + accountBalance.toLocaleString('en-NG', { minimumFractionDigits: 2 });
-    const homeBalEl = document.getElementById('home-balance');
-    if (homeBalEl && balanceVisible) homeBalEl.textContent = fmtBalance;
+    pendingTransferData = {
+      acct: acctInput,
+      name: ownerInfo.name,
+      amount: amount,
+      remark: 'Interbank Transfer',
+      purpose: 'Personal',
+      bank: ownerInfo.bank
+    };
 
-    const ref = 'AGV' + Date.now().toString().slice(-10);
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const fmtAmt = '₦' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
-
-    document.getElementById('receipt-title').textContent = 'Bank Transfer Successful!';
-    document.getElementById('receipt-subtitle').textContent = 'Money sent to ' + recipientName + '.';
-    document.getElementById('receipt-amount').textContent = fmtAmt;
-    document.getElementById('receipt-ref').textContent = ref;
-    document.getElementById('receipt-date').textContent = dateStr;
-
-    document.getElementById('receipt-to').textContent = recipientName;
-    document.getElementById('receipt-acct-val').textContent = acctInput;
-    document.getElementById('receipt-bank-val').textContent = bankName;
-    ['receipt-row-to', 'receipt-row-acct', 'receipt-row-bank'].forEach(id => document.getElementById(id).style.display = 'flex');
-    document.getElementById('receipt-row-narr').style.display = 'none';
-
-    document.getElementById('receipt-overlay').classList.add('active');
+    const amtEl = document.getElementById('auth-modal-amount');
+    if (amtEl) amtEl.textContent = '₦' + amount.toLocaleString('en-NG', { minimumFractionDigits: 2 });
+    const passInp = document.getElementById('auth-password-input');
+    if (passInp) passInp.value = '';
+    
+    const modal = document.getElementById('auth-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+    }
+    if (passInp) setTimeout(() => passInp.focus(), 150);
   }
 
   function otherNumpadInput(key) {
@@ -4959,5 +5018,55 @@
     }
   }
 </script>
+
+<!-- ===== TRANSACTION PIN / PASSWORD AUTH MODAL ===== -->
+<div class="modal-overlay" id="auth-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);">
+  <div class="modal-card" style="max-width:440px;width:92%;padding:28px 24px;border-radius:24px;background:#ffffff;position:relative;box-shadow:0 20px 50px rgba(0,0,0,0.3);animation:popIn 0.3s ease;">
+    
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid #f1f5f9;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:38px;height:38px;border-radius:12px;background:#e0f2fe;color:#0284c7;display:flex;align-items:center;justify-content:center;font-size:18px;">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h3 style="font-size:17px;font-weight:800;margin:0;font-family:'Outfit',sans-serif;color:var(--text-primary);">Transaction Verification</h3>
+          <p style="font-size:12px;color:var(--text-secondary);margin:2px 0 0;">Enter your 4-digit PIN or password to authorize</p>
+        </div>
+      </div>
+      <button onclick="closeAuthModal()" style="background:#f1f5f9;border:none;width:32px;height:32px;border-radius:50%;font-size:15px;color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Amount Summary -->
+    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:14px;text-align:center;margin-bottom:20px;">
+      <div style="font-size:12px;color:var(--text-secondary);font-weight:600;margin-bottom:4px;">Transfer Amount</div>
+      <div id="auth-modal-amount" style="font-size:26px;font-weight:800;color:#0284c7;font-family:'Outfit',sans-serif;">₦0.00</div>
+    </div>
+
+    <!-- Password / PIN Input -->
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Transaction PIN or Account Password</label>
+      <div style="position:relative;display:flex;align-items:center;">
+        <i class="fa-solid fa-key" style="position:absolute;left:14px;color:#94a3b8;font-size:15px;"></i>
+        <input type="password" id="auth-password-input" placeholder="Enter 4-digit PIN or Password" maxlength="16" autocomplete="off" style="width:100%;padding:13px 44px 13px 40px;border-radius:14px;border:1.5px solid #cbd5e1;outline:none;font-size:15px;font-weight:700;letter-spacing:2px;background:#fff;" onkeyup="if(event.key==='Enter') verifyPasswordAuth()">
+        <button type="button" onclick="toggleAuthPassVisibility()" style="position:absolute;right:14px;background:none;border:none;color:#94a3b8;cursor:pointer;font-size:15px;">
+          <i class="fa-regular fa-eye" id="auth-eye-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Confirm Button -->
+    <button class="btn btn-primary" onclick="verifyPasswordAuth()" style="width:100%;height:48px;font-size:15px;font-weight:700;border-radius:14px;background:linear-gradient(135deg, #0284c7, #2563eb);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(2,132,199,0.35);">
+      <i class="fa-solid fa-check"></i> Authorize Transfer
+    </button>
+
+    <!-- Biometrics alternative button -->
+    <button class="btn" onclick="simulateFingerprintAuth()" style="width:100%;height:44px;font-size:13.5px;font-weight:700;border-radius:14px;border:1.5px solid #10b981;color:#059669;background:#ecfdf5;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <i class="fa-solid fa-fingerprint" style="font-size:18px;"></i> Use Biometric Fingerprint
+    </button>
+
+  </div>
+</div>
 </body>
 </html>

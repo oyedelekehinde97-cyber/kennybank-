@@ -2,10 +2,15 @@
    Design Tokens & Variables
 =================================================== */
 :root {
-  --primary-blue: hsl(216, 85%, 39%);
-  --primary-blue-light: hsl(217, 100%, 95%);
-  --accent-green: hsl(160, 100%, 26%);
-  --accent-green-light: hsl(160, 100%, 95%);
+  --primary-blue: #00B875;
+  --primary-blue-light: #e6f8f1;
+  --opay-green: #00B875;
+  --opay-green-dark: #008a57;
+  --opay-green-light: #e6f8f1;
+  --accent-green: #00B875;
+  --accent-green-light: #e6f8f1;
+  --opay-orange: #FF6B00;
+  --opay-gold: #FFB800;
   --bg-white: hsl(0, 0%, 100%);
   --surface-off-white: hsl(210, 17%, 98%);
   --text-primary: hsl(217, 65%, 11%);
@@ -767,5 +772,15 @@ body.dark-theme .sub-screen-header {
 }
 body.dark-theme .notif-badge {
   border-color: var(--bg-white);
+}
+
+/* Hide native up and down spinner arrows on all number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 

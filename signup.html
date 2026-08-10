@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account – Antigravity Bank (OPay Edition)</title>
+  <meta name="description" content="Open a instant Tier 1 Antigravity Bank account with 18% p.a. OWealth interest, zero transfer fees, and instant NIBSS settlement.">
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --opay-green: #00B875;
+      --opay-green-dark: #008a57;
+      --opay-green-light: #e6f8f1;
+      --opay-green-glow: rgba(0, 184, 117, 0.35);
+      --opay-orange: #FF6B00;
+      --bg-dark: #0B132B;
+      --bg-card-dark: rgba(15, 23, 42, 0.85);
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --text-light: #F8FAFC;
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-glow: 0 12px 35px rgba(0, 184, 117, 0.25);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: #060B17;
+      color: var(--text-light);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Glowing Orbs Background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.45;
+      animation: floatOrb 16s ease-in-out infinite alternate;
+    }
+    .orb-1 { top: -10%; left: -5%; width: 500px; height: 500px; background: radial-gradient(circle, #00B875 0%, rgba(0,184,117,0) 70%); }
+    .orb-2 { bottom: -10%; right: -5%; width: 600px; height: 600px; background: radial-gradient(circle, #0284c7 0%, rgba(2,132,199,0) 70%); animation-delay: -5s; }
+    
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, 20px) scale(1.05); }
+      100% { transform: translate(-20px, -20px) scale(0.95); }
+    }
+
+    /* Header Navbar */
+    .header-nav {
+      position: relative;
+      z-index: 10;
+      background: rgba(11, 19, 43, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 16px 24px;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--opay-green), var(--opay-green-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 4px 15px rgba(0, 184, 117, 0.4);
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-link-btn {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 99px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.2s ease;
+    }
+    .nav-link-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Main Container */
+    .signup-wrapper {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .signup-card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      color: var(--text-dark);
+      border-radius: var(--radius-lg);
+      padding: 36px 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .signup-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 6px;
+    }
+    .signup-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Multi-step Stepper Progress Bar */
+    .stepper-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .stepper-line {
+      position: absolute;
+      top: 15px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: #E2E8F0;
+      z-index: 0;
+    }
+    .stepper-progress {
+      position: absolute;
+      top: 15px;
+      left: 10%;
+      width: 0%;
+      height: 3px;
+      background: var(--opay-green);
+      z-index: 0;
+      transition: width 0.35s ease;
+    }
+    .step-item {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      padding: 0 6px;
+    }
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #F1F5F9;
+      color: #94A3B8;
+      border: 2px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .step-item.active .step-circle {
+      background: var(--opay-green);
+      color: #ffffff;
+      border-color: var(--opay-green);
+      box-shadow: 0 0 12px rgba(0, 184, 117, 0.4);
+    }
+    .step-item.completed .step-circle {
+      background: var(--opay-green-dark);
+      color: #ffffff;
+      border-color: var(--opay-green-dark);
+    }
+    .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+    }
+    .step-item.active .step-label, .step-item.completed .step-label {
+      color: var(--opay-green-dark);
+    }
+
+    /* Form Panels */
+    .form-step-panel {
+      display: none;
+    }
+    .form-step-panel.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      font-size: 15px;
+    }
+    .form-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px 0 42px;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: var(--font-main);
+      color: #0F172A;
+      background: #F8FAFC;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--opay-green);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 184, 117, 0.15);
+    }
+    .toggle-pass-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* OTP Code Boxes */
+    .otp-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .otp-box {
+      height: 48px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 800;
+      font-family: var(--font-display);
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      background: #F8FAFC;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .otp-box:focus {
+      border-color: var(--opay-green);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 184, 117, 0.15);
+    }
+
+    /* Buttons */
+    .submit-btn {
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(135deg, var(--opay-green), var(--opay-green-dark));
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-glow);
+      transition: all 0.25s ease;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(0, 184, 117, 0.35);
+    }
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: #F1F5F9;
+      color: #334155;
+      border: 1px solid #CBD5E1;
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: #E2E8F0;
+    }
+
+    /* Checkbox & Switch */
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: #475569;
+      margin: 14px 0;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--opay-green);
+      cursor: pointer;
+    }
+
+    /* Success Card Overlay */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .success-card.active { display: block; animation: fadeIn 0.4s ease; }
+    .success-icon-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--opay-green-light);
+      color: var(--opay-green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 25px rgba(0, 184, 117, 0.3);
+    }
+    .acct-number-box {
+      background: #F8FAFC;
+      border: 1px dashed var(--opay-green);
+      border-radius: 14px;
+      padding: 14px;
+      margin: 18px 0;
+    }
+    .acct-val {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--opay-green-dark);
+      letter-spacing: 1px;
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0F172A;
+      color: #ffffff;
+      border: 1px solid var(--opay-green);
+      padding: 12px 24px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .toast-popup.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive Mobile Adjustments (<640px) */
+    @media (max-width: 640px) {
+      .header-nav {
+        padding: 12px 16px;
+      }
+      .signup-wrapper {
+        padding: 16px 12px 30px;
+      }
+      .signup-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+      .signup-title {
+        font-size: 20px;
+      }
+      .signup-subtitle {
+        font-size: 12px;
+      }
+      .step-label {
+        font-size: 10px;
+      }
+      .otp-box {
+        height: 44px;
+        font-size: 18px;
+      }
+    }
+
+    button:active, .submit-btn:active, .nav-link-btn:active {
+      transform: scale(0.96) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glowing Orbs Background -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-badge"><i class="fa-solid fa-bolt"></i></div>
+        <span>Antigravity Bank</span>
+      </a>
+      <div class="header-actions">
+        <a href="index.html" class="nav-link-btn"><i class="fa-solid fa-house"></i> Index Hub</a>
+        <a href="login.html" class="nav-link-btn" style="background:var(--opay-green); color:#fff; border:none;">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Sign Up Card Container -->
+  <main class="signup-wrapper">
+    <div class="signup-card">
+      
+      <!-- Stepper Progress Bar -->
+      <div class="stepper-bar" id="stepper-bar">
+        <div class="stepper-line"></div>
+        <div class="stepper-progress" id="stepper-progress"></div>
+        
+        <div class="step-item active" id="step-node-1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Basic Info</span>
+        </div>
+        <div class="step-item" id="step-node-2">
+          <div class="step-circle">2</div>
+          <span class="step-label">OTP Verify</span>
+        </div>
+        <div class="step-item" id="step-node-3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Security PIN</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: Basic Information -->
+      <div class="form-step-panel active" id="step-panel-1">
+        <div class="signup-header">
+          <h2 class="signup-title">Create Account</h2>
+          <p class="signup-subtitle">Enter your phone number and details to get started</p>
+        </div>
+
+        <form onsubmit="goToStep2(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name (As shown on ID/NIN)</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user input-icon"></i>
+              <input type="text" class="form-input" id="reg-name" placeholder="e.g. Kehinde Oyedele" value="Kehinde Oyedele" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mobile Phone Number (Account No)</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-phone input-icon"></i>
+              <input type="tel" class="form-input" id="reg-phone" placeholder="08012345678" value="08012345678" maxlength="11" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">NIN / BVN Number (Optional for Tier 1)</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-id-card input-icon"></i>
+              <input type="text" class="form-input" id="reg-nin" placeholder="22198765432" maxlength="11">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Referral Code (Optional)</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-gift input-icon"></i>
+              <input type="text" class="form-input" placeholder="Get ₦1,500 bonus with code" value="OPAYBONUS">
+            </div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="terms-check" checked required>
+            <label for="terms-check">I agree to Antigravity Bank Terms of Service & Privacy Policy.</label>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>Continue to Verification</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <div style="text-align:center; margin-top:20px; font-size:13px; color:#64748B;">
+          Already have an account? <a href="login.html" style="color:var(--opay-green-dark); font-weight:700; text-decoration:none;">Log In Here</a>
+        </div>
+      </div>
+
+      <!-- STEP 2: OTP Verification -->
+      <div class="form-step-panel" id="step-panel-2">
+        <div class="signup-header">
+          <h2 class="signup-title">Verify Phone Number</h2>
+          <p class="signup-subtitle">Enter the 6-digit OTP code sent to <strong id="display-otp-phone" style="color:#0F172A;">08012345678</strong></p>
+        </div>
+
+        <form onsubmit="goToStep3(event)">
+          <div class="otp-grid">
+            <input type="text" class="otp-box" maxlength="1" value="5" autofocus onkeyup="moveOtp(this, 1)">
+            <input type="text" class="otp-box" maxlength="1" value="9" onkeyup="moveOtp(this, 2)">
+            <input type="text" class="otp-box" maxlength="1" value="2" onkeyup="moveOtp(this, 3)">
+            <input type="text" class="otp-box" maxlength="1" value="8" onkeyup="moveOtp(this, 4)">
+            <input type="text" class="otp-box" maxlength="1" value="4" onkeyup="moveOtp(this, 5)">
+            <input type="text" class="otp-box" maxlength="1" value="1" onkeyup="moveOtp(this, 6)">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; margin-bottom:18px;">
+            <span style="color:#64748B;">Resend code in <strong id="timer-sec" style="color:var(--opay-green-dark);">45s</strong></span>
+            <button type="button" onclick="autoFillOtp()" style="background:none; border:none; color:var(--opay-green); font-weight:700; cursor:pointer;">Auto-fill Demo Code</button>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="submit-btn btn-secondary" onclick="goToStep1()" style="width:35%;">Back</button>
+            <button type="submit" class="submit-btn" style="width:65%;">
+              <span>Verify Code</span>
+              <i class="fa-solid fa-shield-halved"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3: Security PIN & Password -->
+      <div class="form-step-panel" id="step-panel-3">
+        <div class="signup-header">
+          <h2 class="signup-title">Set Security Credentials</h2>
+          <p class="signup-subtitle">Create your 4-digit PIN for transactions & password</p>
+        </div>
+
+        <form onsubmit="completeSignup(event)">
+          <div class="form-group">
+            <label class="form-label">Set 4-Digit Security PIN</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" class="form-input" id="reg-pin" placeholder="••••" value="1234" maxlength="4" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Account Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-key input-icon"></i>
+              <input type="password" class="form-input" id="reg-pass" placeholder="At least 6 characters" value="password123" required>
+              <button type="button" class="toggle-pass-btn" onclick="togglePassVisibility('reg-pass')"><i class="fa-solid fa-eye"></i></button>
+            </div>
+          </div>
+
+          <div class="checkbox-row" style="background:#F8FAFC; padding:12px; border-radius:12px; border:1px solid #E2E8F0;">
+            <input type="checkbox" id="bio-enable" checked>
+            <label for="bio-enable">
+              <strong>Enable Fingerprint / FaceID Login</strong>
+              <div style="font-size:11px; color:#64748B;">Fast single-tap authentication for future sign-ins</div>
+            </label>
+          </div>
+
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="submit-btn btn-secondary" onclick="goToStep2(event)" style="width:35%;">Back</button>
+            <button type="submit" class="submit-btn" id="btn-finish" style="width:65%;">
+              <span>Create Account</span>
+              <i class="fa-solid fa-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- SUCCESS CONFIRMATION PANEL -->
+      <div class="success-card" id="success-panel">
+        <div class="success-icon-box"><i class="fa-solid fa-circle-check"></i></div>
+        <h2 style="font-family:var(--font-display); font-size:22px; font-weight:800; color:#0F172A; margin-bottom:4px;">Account Created!</h2>
+        <p style="font-size:13px; color:#64748B;">Welcome to Antigravity Bank (OPay Hub)</p>
+
+        <div class="acct-number-box">
+          <div style="font-size:11.5px; color:#64748B; font-weight:600; text-transform:uppercase;">Your New Account Number</div>
+          <div class="acct-val" id="final-acct-num">1234567890</div>
+          <div style="font-size:11px; color:var(--opay-green); font-weight:700; margin-top:2px;">Tier 1 Verified • 18% p.a. OWealth Active</div>
+        </div>
+
+        <button onclick="redirectToLogin()" class="submit-btn">
+          <span>Proceed to Sign In Page</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Toast Popup -->
+  <div class="toast-popup" id="app-toast">
+    <i class="fa-solid fa-circle-check" style="color:var(--opay-green); font-size:16px;"></i>
+    <span id="toast-text">Success</span>
+  </div>
+
+  <footer class="page-footer">
+    © 2026 Antigravity Bank Nigeria. Licensed by Central Bank of Nigeria (CBN). Deposits insured by NDIC.
+  </footer>
+
+  <script>
+    function updateProgress(step) {
+      const line = document.getElementById('stepper-progress');
+      if (step === 1) line.style.width = '0%';
+      else if (step === 2) line.style.width = '50%';
+      else if (step === 3) line.style.width = '100%';
+
+      for (let i = 1; i <= 3; i++) {
+        const node = document.getElementById(`step-node-${i}`);
+        if (i < step) {
+          node.className = 'step-item completed';
+          node.querySelector('.step-circle').innerHTML = '<i class="fa-solid fa-check"></i>';
+        } else if (i === step) {
+          node.className = 'step-item active';
+          node.querySelector('.step-circle').textContent = i;
+        } else {
+          node.className = 'step-item';
+          node.querySelector('.step-circle').textContent = i;
+        }
+      }
+    }
+
+    function goToStep1() {
+      document.querySelectorAll('.form-step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('step-panel-1').classList.add('active');
+      updateProgress(1);
+    }
+
+    function goToStep2(e) {
+      if (e) e.preventDefault();
+      const phone = document.getElementById('reg-phone').value;
+      if (!phone) {
+        showToast('Please enter a valid mobile number');
+        return;
+      }
+      document.getElementById('display-otp-phone').textContent = phone;
+      document.querySelectorAll('.form-step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('step-panel-2').classList.add('active');
+      updateProgress(2);
+      showToast('OTP sent to ' + phone);
+    }
+
+    function goToStep3(e) {
+      if (e) e.preventDefault();
+      document.querySelectorAll('.form-step-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('step-panel-3').classList.add('active');
+      updateProgress(3);
+      showToast('Phone number verified successfully!');
+    }
+
+    function moveOtp(elem, idx) {
+      if (elem.value.length >= 1 && idx < 6) {
+        const next = elem.parentElement.children[idx];
+        if (next) next.focus();
+      }
+    }
+
+    function autoFillOtp() {
+      const inputs = document.querySelectorAll('.otp-box');
+      const sample = ['5', '9', '2', '8', '4', '1'];
+      inputs.forEach((inp, i) => inp.value = sample[i]);
+      showToast('OTP auto-filled!');
+    }
+
+    function togglePassVisibility(id) {
+      const inp = document.getElementById(id);
+      if (inp.type === 'password') inp.type = 'text';
+      else inp.type = 'password';
+    }
+
+    function completeSignup(e) {
+      e.preventDefault();
+      const phone = document.getElementById('reg-phone').value || '08012345678';
+      const btn = document.getElementById('btn-finish');
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating Account...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.querySelectorAll('.form-step-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('stepper-bar').style.display = 'none';
+        
+        // Account number calculation (10 digit format)
+        let acctNo = phone.length === 11 && phone.startsWith('0') ? phone.substring(1) : '1234567890';
+        document.getElementById('final-acct-num').textContent = acctNo;
+        
+        document.getElementById('success-panel').classList.add('active');
+        showToast('Account successfully opened!');
+      }, 1200);
+    }
+
+    function redirectToLogin() {
+      const phone = document.getElementById('reg-phone').value || '08012345678';
+      window.location.href = `login.html?phone=${encodeURIComponent(phone)}&created=true`;
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('app-toast');
+      const text = document.getElementById('toast-text');
+      if (text) text.textContent = msg;
+      if (toast) {
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+      }
+    }
+  </script>
+</body>
+</html>
